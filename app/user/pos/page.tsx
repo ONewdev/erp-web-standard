@@ -1,0 +1,190 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+
+export default function POSPage() {
+  return (
+    <div className="font-kanit min-h-screen bg-gradient-to-b from-purple-400 to-white">
+      {/* ===== Breadcrumb / Navigation ===== */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-3">
+          <Link href="/" className="text-blue-600 hover:text-blue-700">
+            ← กลับไปหน้าหลัก
+          </Link>
+        </div>
+      </div>
+
+      {/* ===== Main Content ===== */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* ===== Left Sidebar ===== */}
+          <div className="md:col-span-1">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="border-b border-gray-200 p-6">
+                <h5 className="text-xl font-bold text-gray-800">Q.Soft POS</h5>
+              </div>
+              <div className="relative h-48 mb-4">
+                <Image
+                  src="/img/feature/qsoft_pos_big.png"
+                  alt="Q.Soft POS"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <h5 className="font-bold text-gray-800 mb-2">Q.Soft POS</h5>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    เป็นโปรแกรมที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์
+                    และพัฒนาระบบบริหารร้านสะดวกซื้อ หรือบริษัทที่มีจุดขายหน้าร้านหลายสาขา
+                    ผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-bold text-gray-800 mb-2">จุดมุ่งหมายของโปรแกรมนี้</h5>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    ให้ผู้ประกอบการที่กำลังมองหาโปรแกรมบริหารจุดขายที่มีคุณภาพ
+                    ใช้งานง่าย และราคาไม่สูงจนเกินไป
+                    เพื่อให้รับรู้ต้นทุนที่แท้จริง (Actual Cost)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ===== Right Content ===== */}
+          <div className="md:col-span-2">
+            <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                  Q.Soft POS - Point of Sale
+                </h2>
+                <div className="text-slate-600 space-y-2">
+                  <h3 className="text-lg font-semibold text-gray-700">
+                    โปรแกรม Q.Soft POS ประกอบไปด้วย Feature การทำงานหลักๆ ดังนี้
+                  </h3>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-200 pt-6">
+                <div className="space-y-3 text-slate-600">
+                  <p>
+                    <strong>1. ระบบขายหน้าร้าน</strong> (จุดขาย คิดเงิน)
+                  </p>
+                  <p>
+                    <strong>2. ระบบโปรโมชั่น</strong> สำหรับแนวทางการขายสินค้า
+                  </p>
+                  <p>
+                    <strong>3. ระบบสต็อกสินค้า</strong> การบริหารคลังสินค้า
+                  </p>
+                  <p>
+                    <strong>4. ระบบแจ้งซ่อมสินค้า</strong> การบริหารการให้บริการหลังการขาย
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                  ประโยชน์ที่ได้รับจากโปรแกรม
+                </h3>
+                <div className="space-y-2 text-slate-600 text-sm">
+                  <div className="space-y-2">
+                    <p>✓ เรียกดูข้อมูลรายละเอียดสินค้า รหัส ราคา จำนวนคงเหลือ</p>
+                    <p>✓ ขายสินค้าผ่านระบบ Barcode ได้</p>
+                    <p>✓ กำหนดโปรโมชั่นการขายสินค้าได้หลากหลาย</p>
+                    <p>✓ รองรับระบบสมาชิก และราคาสมาชิก</p>
+                    <p>✓ ออกใบกำกับภาษีอย่างย่อหรือเต็มรูปแบบได้</p>
+                    <p>✓ รับชำระได้ทั้งเงินสด บัตรเครดิต</p>
+                    <p>✓ แสดงยอดคงเหลือสินค้าแยกตามคลัง/สาขา</p>
+                    <p>✓ โอนสินค้าข้ามสาขาได้</p>
+                    <p>✓ เช็คข้อมูลการรับประกันสินค้า</p>
+                    <p>✓ ทำเรื่องแจ้งซ่อมที่สาขาไหนก็ได้</p>
+                    <p>✓ ติดตามสถานะงานแจ้งซ่อม</p>
+                    <p>✓ เช็คประวัติการซ่อม</p>
+                    <p>✓ เรียกข้อมูลการขายย้อนหลัง</p>
+                    <p>✓ ดูรายงานวิเคราะห์ต่างๆ ได้</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ===== Documents Download ===== */}
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                  📄 ดาวน์โหลดเอกสารประกอบ
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-sm text-slate-600">
+                    <a
+                      href="/doc/Q_Soft_POS.zip"
+                      download
+                      className="text-blue-600 hover:text-blue-700 font-semibold"
+                    >
+                      📦 ดาวน์โหลดทั้งหมด (ZIP)
+                    </a>
+                  </p>
+                  <div className="space-y-2">
+                    {[
+                      { name: "Q.Soft POS Brochure (Thai)", file: "Q_Soft_POS_Brochue(thai)600305.pdf" },
+                    ].map((doc, idx) => (
+                      <a
+                        key={idx}
+                        href={`/doc/${doc.file}`}
+                        download
+                        className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        <span className="text-lg mr-1">📕</span> {doc.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* ===== CTA ===== */}
+              <div className="border-t border-gray-200 pt-6">
+                <div className="bg-blue-50 rounded-lg p-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">
+                    สนใจใช้งานระบบ Q.Soft POS?
+                  </h3>
+                  <Link
+                    href="/#contact"
+                    className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+                  >
+                    ติดต่อเราเลย
+                  </Link>
+                </div>
+              </div>
+
+              {/* ===== Related Products ===== */}
+              <div className="border-t border-gray-200 pt-6">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                  🔗 โปรแกรมที่เกี่ยวข้อง
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {[
+                    { label: "MRP", href: "/mrp" },
+                    { label: "APS", href: "/aps" },
+                    { label: "PM", href: "/pm" },
+                    { label: "WMS", href: "/wms" },
+                    { label: "VFS", href: "/vfs" },
+                    { label: "Service", href: "/service" },
+                  ].map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="text-center p-3 bg-gray-100 rounded hover:bg-blue-100 transition"
+                    >
+                      <span className="text-sm font-semibold text-blue-600">
+                        {item.label}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
