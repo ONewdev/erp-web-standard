@@ -3,6 +3,10 @@ import { Kanit } from "next/font/google";
 import "./globals.css";
 import "font-awesome/css/font-awesome.min.css";
 
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+
 const kanit = Kanit({
   subsets: ["thai", "latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -12,17 +16,8 @@ const kanit = Kanit({
 export const metadata: Metadata = {
   title: "ERP Enterprise Resource Planning To THAILAND",
   description: "Business Competitive Intelligence",
-  icons: {
-    icon: "/img/bci_logo.png",
-    shortcut: "/img/bci_logo.png",
-  },
 };
 
-/**
- * Root Layout
- * This is the minimal root layout that only provides html/body structure
- * Specific layouts (user/admin) are handled by route groups
- */
 export default function RootLayout({
   children,
 }: {
@@ -30,7 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th" className={kanit.variable}>
-      <body className="font-kanit">{children}</body>
+      <body className="font-kanit">
+        <Navbar />
+        <main style={{ minHeight: "80vh", padding: "24px" }}>
+          {children}
+        </main>
+        <ScrollToTop />
+        <Footer />
+      </body>
     </html>
   );
 }
