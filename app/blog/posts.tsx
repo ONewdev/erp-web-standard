@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export type Post = {
   slug: string;
   title: string;
@@ -19,7 +18,7 @@ export const posts: Post[] = [
       "BCI ร่วมเวที ICDL Asia Digital Literacy Day 2025 - ผลักดันความร่วมมือสามฝ่าย จีน–สิงคโปร์–ไทย",
     category: "Business",
     date: "18/10/2025",
-    cover: "/img/blog/ICDLchina7.jpg",
+    cover: "/img/blog/ICDLchina4.jpg",
     excerpt:
       "BCI ร่วมบรรยายหัวข้อ Standards · Skills · Mobility ในงาน International Digital Talent Development Conference 2025 ที่เมืองหนานจิง ประเทศจีน",
     body: (
@@ -50,7 +49,7 @@ export const posts: Post[] = [
         </p>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <img src="/img/blog/ICDLchina4.jpg" alt="ICDL China audience" className="rounded-lg" />
+          <img src="/img/blog/ICDLchina9.jpg" alt="ICDL China audience" className="rounded-lg" />
           <img src="/img/blog/ICDLchina5.jpg" alt="ICDL China panel" className="rounded-lg" />
         </div>
 
@@ -59,10 +58,6 @@ export const posts: Post[] = [
           (Digital Competency) ให้สอดคล้องกับมาตรฐานสากล และรองรับการเคลื่อนย้ายแรงงานดิจิทัลคุณภาพ
         </p>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <img src="/img/blog/ICDLchina9.jpg" alt="ICDL China networking" className="rounded-lg" />
-          <img src="/img/blog/ICDLchina5.jpg" alt="ICDL China discussion" className="rounded-lg" />
-        </div>
 
         <div className="overflow-hidden rounded-xl bg-slate-100">
           <div className="relative aspect-video">
@@ -112,6 +107,8 @@ export const posts: Post[] = [
           <img src="/img/blog/aicar2.jpg" alt="Workshop" className="rounded-lg" />
           <img src="/img/blog/aicar4.jpg" alt="Group photo" className="rounded-lg" />
           <img src="/img/blog/aicar5.jpg" alt="Training activity" className="rounded-lg" />
+          <img src="/img/blog/aicar6.jpg" alt="" className="rounded-lg" />
+          <img src="/img/blog/aicar7.jpg" alt="" className="rounded-lg" />
         </div>
       </div>
     ),
@@ -134,9 +131,7 @@ export const posts: Post[] = [
           กิจกรรม Business Matching และ Thai Software Business Trip
         </p>
 
-        <div>
-          <img src="/img/blog/africa5.jpg" alt="Africa Technology Expo 2025" className="rounded-lg w-full" />
-        </div>
+        <br></br>
 
         <p>
           การดำเนินงานในครั้งนี้มุ่งเน้นการสนับสนุนผู้ประกอบการซอฟต์แวร์ไทยที่มีศักยภาพด้านระบบ Cyber Security,

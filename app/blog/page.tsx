@@ -7,6 +7,19 @@ export const metadata = {
   description: "อัปเดตบทความ ข่าวสาร และกิจกรรมของ BCI",
 };
 
+const categoryColor = (category: string) => {
+  switch (category) {
+    case "Business":
+      return "bg-blue-50 text-blue-700";
+    case "Training":
+      return "bg-red-50 text-red-700";
+    case "Technology":
+      return "bg-purple-50 text-purple-700";
+    default:
+      return "bg-slate-100 text-slate-700";
+  }
+};
+
 export default function BlogPage() {
   return (
     <div className="font-kanit">
@@ -57,10 +70,15 @@ export default function BlogPage() {
               </div>
               <div className="flex flex-1 flex-col p-5 space-y-3">
                 <div className="flex items-center gap-2 text-sm text-slate-500">
-                  <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700 font-semibold text-xs">
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full font-semibold ${categoryColor(
+                      post.category
+                    )}`}
+                  >
                     {post.category}
                   </span>
-                  <span>{post.date}</span>
+
+
                 </div>
                 <h2 className="text-lg font-semibold text-slate-900 leading-snug line-clamp-2">
                   {post.title}

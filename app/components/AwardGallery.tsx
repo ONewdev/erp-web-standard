@@ -11,6 +11,9 @@ type Props = {
 };
 
 export default function AwardGallery({ items, variant = 'grid' }: Props) {
+  const getSrc = (name: string) =>
+    `/img/awards/${encodeURIComponent(name)}`;
+
   if (variant === 'masonry') {
     return (
       <div
@@ -31,8 +34,8 @@ export default function AwardGallery({ items, variant = 'grid' }: Props) {
             }}
           >
             <img
-              src={`/img/awards/${item.name}`}
-              alt={item.label}
+              src={getSrc(item.name)}
+              alt={item.label ?? ''}
               style={{
                 width: '100%',
                 display: 'block',
@@ -77,7 +80,7 @@ export default function AwardGallery({ items, variant = 'grid' }: Props) {
     );
   }
 
-  /* ===== fallback แบบ grid ธรรมดา ===== */
+  /* ===== fallback grid ===== */
   return (
     <div
       style={{
@@ -89,8 +92,8 @@ export default function AwardGallery({ items, variant = 'grid' }: Props) {
       {items.map((item, i) => (
         <img
           key={i}
-          src={`/img/awards/${item.name}`}
-          alt={item.label}
+          src={getSrc(item.name)}
+          alt={item.label ?? ''}
           style={{
             width: '100%',
             borderRadius: 12,

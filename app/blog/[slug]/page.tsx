@@ -19,6 +19,19 @@ export default async function BlogDetail({ params }: Props) {
   const post = posts.find((item) => item.slug === slug);
   if (!post) return notFound();
 
+  const categoryColor = (category: string) => {
+    switch (category) {
+      case "Business":
+        return "bg-blue-50 text-blue-700";
+      case "Training":
+        return "bg-red-50 text-red-700";
+      case "Technology":
+        return "bg-purple-50 text-purple-700";
+      default:
+        return "bg-slate-100 text-slate-700";
+    }
+  };
+
   return (
     <article className="font-kanit px-4 sm:px-6 lg:px-10 py-10 max-w-4xl mx-auto space-y-8">
       <Link href="/blog" className="text-blue-600 hover:text-blue-700 font-semibold">
@@ -27,7 +40,11 @@ export default async function BlogDetail({ params }: Props) {
 
       <header className="space-y-3">
         <div className="flex items-center gap-3 text-sm text-slate-600">
-          <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700 font-semibold text-xs">
+          <span
+            className={`rounded-full px-3 py-1 font-semibold text-xs ${categoryColor(
+              post.category
+            )}`}
+          >
             {post.category}
           </span>
           <span>{post.date}</span>
