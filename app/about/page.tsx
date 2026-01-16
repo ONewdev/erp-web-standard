@@ -1,7 +1,5 @@
 'use client';
 
-import AwardGallery from '@/app/components/AwardGallery';
-
 export default function AboutPage() {
   const infoSections = [
     {
@@ -30,6 +28,50 @@ export default function AboutPage() {
       desc: "บริษัทเป็นผู้เชี่ยวชาญการวางระบบ ERP ด้วยประสบการณ์กว่า 19 ปี มีศูนย์ให้คำปรึกษา Call Center, e-Learning, ศูนย์ฝึกอบรม เพื่อให้ลูกค้าสามารถใช้งานโปรแกรมได้อย่างมีประสิทธิภาพ",
     },
   ];
+
+  const awardRows = [
+    {
+
+      items: [
+        { name: "Consultants.jpg", label: "Award Ceremony" },
+        { name: "cer_qsoft.jpg", label: "Q.Soft Certified" },
+      ],
+    },
+    {
+
+      items: [
+        { name: "FINAL-ISO29110_BCI.jpg", label: "ISO 29110" },
+        { name: "Pre ISO_IEC 29110-certificate.jpg", label: "Commercial Registration" },
+        { name: "image_2020_11_25T02_35_41_627Z.png", label: "Commercial Registration" },
+      ],
+    },
+    {
+
+      items: [
+        { name: "image_2020_11_25T02_35_21_527Z.png", label: "Honor" },
+        { name: "image_2020_11_25T02_34_54_878Z.png", label: "Achievement" },
+        { name: "image_2020_11_25T02_35_29_944Z.png", label: "Achievement" },
+        { name: "DSCF7800.JPG", label: "Award Trophy" },
+      ],
+    },
+    {
+      items: [
+        { name: "IMG_2004_.jpg", label: "Special Award" },
+        { name: "image_2020_11_25T02_35_09_271Z.png", label: "Recognition" },
+        { name: "image_2020_11_25T02_35_16_410Z.png", label: "Corporate Award" },
+       
+
+      ],
+    },
+    {
+      items: [
+        { name: "image_2020_11_25T02_35_46_458Z.png", label: "Corporate Award" },
+        { name: "image_2020_11_25T02_35_35_652Z.png", label: "Corporate Award" },
+
+      ],
+    },
+  ];
+
 
   const wrap: React.CSSProperties = {
     maxWidth: 1100,
@@ -217,120 +259,76 @@ export default function AboutPage() {
         </div>
 
         {/* ===== Section 3: Company Description ===== */}
-        <section style={{ ...card, background: "linear-gradient(135deg, #f8fafc 0%, #f0f7ff 100%)", marginBottom: 28 }}>
-          <div style={{ textAlign: "center" }}>
-            <h2 style={{
-              fontSize: 32,
-              margin: "0 0 8px 0",
-              background: "-webkit-linear-gradient(135deg, #0b39f0, #9fe0e8)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontWeight: 700,
-            }}>
-              Business Competitive Intelligence
-            </h2>
-            <p style={{ fontSize: 14, color: "#64748b", marginBottom: 24, fontWeight: 500 }}>ด้วยประสบการณ์กว่า 19 ปี</p>
-
-            <div style={{ maxWidth: 500, margin: "0 auto", marginBottom: 24 }}>
-              <div style={{
-                width: 140,
-                height: 140,
-                margin: "0 auto 24px",
-                padding: 16,
-                background: "#fff",
-                borderRadius: 16,
-                border: "2px solid #0b39f0",
-                boxShadow: "0 8px 24px rgba(11, 57, 240, 0.1)",
-                display: "grid",
-                placeItems: "center",
-              }}>
-                <img
-                  src="/img/bci_logo.png"
-                  alt="BCI Logo"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
+        <section style={{ marginBottom: 40 }}>
+          {awardRows.map((row, rowIdx) => (
+            <div key={rowIdx} style={{ marginBottom: 40 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                  gap: 24,
+                }}
+              >
+                {row.items.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={`/img/award/${item.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div
+                      style={{
+                        background: "#fff",
+                        borderRadius: 16,
+                        overflow: "hidden",
+                        border: "1px solid #e5e7eb",
+                        boxShadow: "0 8px 28px rgba(0,0,0,0.08)",
+                        transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                        cursor: "pointer",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-6px)";
+                        e.currentTarget.style.boxShadow =
+                          "0 14px 36px rgba(11,57,240,0.18)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "none";
+                        e.currentTarget.style.boxShadow =
+                          "0 8px 28px rgba(0,0,0,0.08)";
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          aspectRatio: "3 / 2",
+                          background: "#f8fafc",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: 12,
+                        }}
+                      >
+                        <img
+                          src={`/img/award/${item.name}`}
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </a>
+                ))}
               </div>
             </div>
-
-            <p style={{
-              margin: "0 0 16px 0",
-              color: "#334155",
-              lineHeight: 1.9,
-              fontSize: 16,
-              fontWeight: 500,
-            }}>
-              ทีมงานมืออาชีพที่มีความสามารถ ความเชี่ยวชาญ ในการให้คำปรึกษาและฝึกอบรม
-            </p>
-            <p style={{
-              margin: "0 0 24px 0",
-              color: "#475569",
-              lineHeight: 1.9,
-              fontSize: 15,
-            }}>
-              อันจะนำท่านไปสู่การพัฒนาศักยภาพในการแข่งขันขององค์กร และพัฒนาระบบการทำงานให้เจริญเติบโตอย่างต่อเนื่องและยั่งยืน
-            </p>
-
-            <div style={{
-              background: "#fff",
-              border: "2px solid #0b39f0",
-              borderRadius: 12,
-              padding: 24,
-              margin: "24px 0",
-              boxShadow: "0 4px 16px rgba(11, 57, 240, 0.1)",
-            }}>
-              <p style={{
-                margin: 0,
-                fontSize: 18,
-                fontWeight: 700,
-                color: "#0b39f0",
-                lineHeight: 2.2,
-                fontStyle: "italic",
-              }}>
-                "เราจึงมีความเชื่อมั่นว่า<br />
-                เราจะสามารถแก้ปัญหาให้ท่านได้อย่างตรงจุด<br />
-                ภายในระยะเวลาอันสั้น"
-              </p>
-            </div>
-          </div>
+          ))}
         </section>
 
-        {/* ===== Section 4: Award & Recognition Gallery ===== */}
-        <section style={{ marginBottom: 28 }}>
-          <div style={{ textAlign: "center", marginBottom: 28 }}>
-            <h2 style={{
-              fontSize: 32,
-              margin: 0,
-              marginBottom: 8,
-              background: "-webkit-linear-gradient(135deg, #0b39f0, #9fe0e8)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontWeight: 700,
-            }}>
-              สัญกรณ์ และ รางวัล
-            </h2>
-            <p style={{ color: "#64748b", marginBottom: 0, fontSize: 14 }}>ความเชื่อมั่นจากองค์กรและหน่วยงานต่างๆ</p>
-          </div>
 
-          <AwardGallery
-            variant="masonry"
-            items={[
-              { name: "Pre ISO_IEC 29110-certificate.jpg", label: "ISO Certified" },
-              { name: "FINAL-ISO29110_BCI.jpg", label: "ISO 29110" },
-              { name: "cer_qsoft.jpg", label: "Q.Soft Certified" },
-              { name: "Consultants.jpg", label: "Professional Consultants" },
-              { name: "DSCF7800.JPG", label: "Award Ceremony" },
-              { name: "image_2020_11_25T02_34_54_878Z.png", label: "Achievement" },
-              { name: "image_2020_11_25T02_35_09_271Z.png", label: "Recognition" },
-              { name: "image_2020_11_25T02_35_16_410Z.png", label: "Corporate Award" },
-              { name: "image_2020_11_25T02_35_21_527Z.png", label: "Honor" },
-              { name: "IMG_2004_.jpg", label: "Special Award" },
-            ]}
-          />
-        </section>
+
       </div>
     </div>
 
