@@ -6,6 +6,8 @@ import "font-awesome/css/font-awesome.min.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import PageWrapper from "./components/PageWrapper";
+import CookieModal from "./components/CookieModal";
 
 const kanit = Kanit({
   subsets: ["thai", "latin"],
@@ -25,12 +27,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th" className={kanit.variable}>
-      <body className="font-kanit">
+      <body className="font-kanit" style={{ backgroundColor: "#fff" }}>
         <Navbar />
-        <main style={{ minHeight: "80vh", padding: "24px" }}>
-          {children}
-        </main>
+        <PageWrapper>{children}</PageWrapper>
         <ScrollToTop />
+        <CookieModal />
         <Footer />
       </body>
     </html>

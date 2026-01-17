@@ -102,7 +102,7 @@ export default function Home() {
   return (
     <div className="font-kanit">
       {/* ===== Slide ===== */}
-      <div className="relative rounded-xl overflow-hidden mb-10 min-h-[80vh] text-white">
+      <div className="relative overflow-hidden w-full h-[470px] text-white">
         {/* Background Images with Fade Transition */}
         {slides.map((slide, i) => (
           <div
@@ -314,167 +314,144 @@ export default function Home() {
 
         <section
           id="contact"
-          className="scroll-mt-24 pt-16 border-t border-slate-200
-             bg-[url('/img/shattered.png')]
-             bg-cover bg-center bg-no-repeat"
+          className="scroll-mt-24 pt-16 pb-16 bg-[#f4f4f4] relative"
         >
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-xl md:text-2xl font-bold mb-2 text-center">
-              ติดต่อเรา
-            </h2>
-            <p className="text-slate-600 mb-10 text-center">
-              เราจะสามารถแก้ปัญหาให้ท่านได้อย่างตรงจุด ภายในระยะเวลาอันสั้น
-            </p>
+          {/* Background Image (World Map) */}
+          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-center overflow-hidden">
+            {/* Use a placeholder or the actual image if available in public folder. 
+                    Based on ERP code: background-image: url('../../img/word_map.png');
+                    I'll use a placeholder or assume it's moved to public/img/word_map.png
+                */}
+            <div
+              className="w-full h-full bg-[url('/img/word_map.png')] bg-no-repeat bg-center bg-contain"
+            />
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-              {/* ===== ซ้าย : เนื้อหา ===== */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-slate-600">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="h-[2px] w-[60px] bg-[#0e9aef] mx-auto mb-4"></div>
+              <h1 className="text-3xl font-light text-[#676a6c] mb-2">
+                ติดต่อเรา
+              </h1>
+              <p className="text-[#aeaeae] text-sm">
+                เราจะสามารถแก้ปัญหาให้ท่านได้อย่างตรงจุด ภายในระยะเวลาอันสั้น
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+              {/* ===== Left: Content ===== */}
+              <div className="mt-8 lg:ml-12">
+                <h3 className="text-xl md:text-2xl font-light text-[#676a6c] mb-6 text-left">
                   บริการให้คำปรึกษา การเพิ่มประสิทธิภาพภาคการผลิต
                 </h3>
 
-                <p className="text-slate-600 leading-relaxed mb-6">
+                <p className="text-[#676a6c] text-[16px] leading-relaxed mb-6 font-light">
                   Q. Soft เป็น Software ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลาย ผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application (โปรแกรมที่มีระบบการจัดเก็บฐานข้อมูลจำนวนมาก)
                 </p>
 
-                <h4 className="font-semibold mb-3 text-blue-500">บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด</h4>
-                <ul className="space-y-2 text-slate-600 mb-8">
-                  <li>59/69 หมู่ 1 ซ.ติวานนท์ - ปากเกร็ด 56 ต.บ้านใหม่</li>
-                  <li>การวิเคราะห์ปัญหาและแนวทางแก้ไขที่เหมาะสมกับธุรกิจ</li>
-                  <li>อ.ปากเกร็ด จ.นนทบุรี 11120</li>
-                  <li>หมายเลขประจำตัวของผู้เสียภาษี 0105545127622</li>
-                  <li>ฝ่ายขาย  02-582-2110  091-762-3838  086-395-0364</li>
-                  <li>ฝ่าย support  083-122-6349  091-762-3838  086-321-3874</li>
-                </ul>
+                <address className="text-[13px] text-[#676a6c] not-italic leading-loose">
+                  <strong className="block mb-1 text-[16px]">
+                    <span className="text-[#0e9aef]">บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด </span>
+                  </strong>
+                  59/69 หมู่ 1 ซ.ติวานนท์ - ปากเกร็ด 56 ต.บ้านใหม่
+                  <br /> อ.ปากเกร็ด จ.นนทบุรี 11120
+                  <br /> หมายเลขประจำตัวของผู้เสียภาษี 0105545127622
+                  <br />
+                  <br />
+                  <span className="font-bold border-b border-dotted border-slate-400" title="Phone">ฝ่ายขาย</span>
+                  <i className="fa fa-phone mx-2"></i> <a href="tel:025822110" className="mr-2 hover:text-[#0e9aef]">02-582-2110</a>
+                  <i className="fa fa-mobile mx-2"></i> <a href="tel:0917623838" className="mr-2 hover:text-[#0e9aef]">091-762-3838</a>
+                  <i className="fa fa-mobile mx-2"></i> <a href="tel:0863950364" className="mr-2 hover:text-[#0e9aef]">086-395-0364</a>
 
-                {/* ===== Google Maps ===== */}
-                <div className="rounded-lg overflow-hidden border border-slate-300 mb-4">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920763.529429801!2d97.11627460000003!3d16.329552995362384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2836299299ac5%3A0xffd24ce376fe4efe!2z4Lia4LiI4LiBLiDguJrguLTguKrguIvguLTguYDguJnguKog4LiE4Lit4Lih4LmA4Lie4LmH4LiU4LiX4Li04LiX4Li14LifIOC4reC4tOC4meC5gOC4l-C4peC4peC4tOC5gOC4iOC4meC4i-C5jA!5e0!3m2!1sth!2sth!4v1766657472243!5m2!1sth!2sth"
-                    width="100%"
-                    height="400"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full"
-                  />
-                </div>
+                  <br />
+                  <span className="font-bold border-b border-dotted border-slate-400" title="Phone">ฝ่าย support</span>
+                  <i className="fa fa-mobile mx-2"></i> <a href="tel:0831226349" className="mr-2 hover:text-[#0e9aef]">083-122-6349</a>
+                  <i className="fa fa-mobile mx-2"></i> <a href="tel:0917623838" className="mr-2 hover:text-[#0e9aef]">091-762-3838</a>
+                  <i className="fa fa-mobile mx-2"></i> <a href="tel:0863213874" className="hover:text-[#0e9aef]">086-321-3874</a>
+                </address>
               </div>
 
-              {/* ===== ขวา : ฟอร์ม ===== */}
-              <div className="relative rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-2xl p-8 md:p-10 lg:p-12">
-                <form
-                  className="space-y-6"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    alert("ส่งข้อมูลเรียบร้อย!");
-                  }}
-                >
-                  <h1 className="text-lg font-semibold mb-6 text-slate-800">ติดต่อผู้เชี่ยวชาญของเรา</h1>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      id="fullname"
-                      name="fullname"
-                      required
-                      className="peer w-full rounded-lg bg-white/70 border border-white/40 px-4 pt-5 pb-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
-                    />
-                    <label
-                      htmlFor="fullname"
-                      className="pointer-events-none absolute left-4 top-4 text-slate-500 text-sm transition-all duration-300 ease-out peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600 peer-valid:-top-2 peer-valid:text-xs bg-white/80 px-1"
-                    >
-                      ชื่อ-สกุล
-                    </label>
-                  </div>
-
-
-                  <div className="relative">
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      className="peer w-full rounded-lg bg-white/70 border border-white/40 px-4 pt-5 pb-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                    />
-                    <label
-                      htmlFor="phone"
-                      className="pointer-events-none absolute left-4 top-3 text-slate-500 text-sm transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600 peer-valid:-top-2 peer-valid:text-xs bg-white/70 px-1"
-                    >
-                      เบอร์โทรศัพท์ติดต่อ
-                    </label>
-                  </div>
-
-
-                  <div className="relative">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      className="peer w-full rounded-lg bg-white/70 border border-white/40 px-4 pt-5 pb-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                    />
-                    <label
-                      htmlFor="email"
-                      className="pointer-events-none absolute left-4 top-3 text-slate-500 text-sm transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600 peer-valid:-top-2 peer-valid:text-xs bg-white/70 px-1"
-                    >
-                      อีเมล
-                    </label>
-                  </div>
-
-                  <div className="relative">
-                    <select
-                      id="company"
-                      name="company"
-                      required
-                      defaultValue=""
-                      className=" peer w-full rounded-lg bg-white/70 border border-white/40 px-4 pt-5 pb-2  text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition
-    "
-                    >
-                      <option value="" disabled hidden></option>
-                      <option value="manufacturing">อุตสาหกรรมการผลิต</option>
-                      <option value="construction">ก่อสร้าง / โครงการ</option>
-                      <option value="trading">ค้าส่ง-ค้าปลีก</option>
-                      <option value="service">บริการ</option>
-                      <option value="other">อื่น ๆ</option>
-                    </select>
-
-                    <label
-                      htmlFor="company"
-                      className=" pointer-events-none absolute left-4 top-3 text-slate-500 text-sm transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600 peer-valid:-top-2 peer-valid:text-xs bg-white/70 px-1"
-                    >
-                      บริษัท / ประเภทธุรกิจ
-                    </label>
-                  </div>
-
-
-                  <div className="relative">
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      className="peer w-full rounded-lg bg-white/70 border border-white/40 px-4 pt-5 pb-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition "
-                    />
-                    <label
-                      htmlFor="message"
-                      className="pointer-events-none absolute left-4 top-3 text-slate-500 text-sm transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-blue-600 peer-valid:-top-2 peer-valid:text-xs bg-white/70 px-1 "
-                    >
-                      ข้อความ
-                    </label>
-                  </div>
-
-
-                  <button
-                    type="submit"
-                    className=" relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              {/* ===== Right: Form (Login Box Style) ===== */}
+              <div className="lg:mr-12">
+                {/* ERP 'login-box' recreation */}
+                <div className="p-10 bg-black/50 rounded-lg shadow-2xl backdrop-blur-sm box-border">
+                  <h2 className="text-white text-center text-2xl mb-8 font-light">
+                    ติดต่อผู้เชี่ยวชาญของเรา
+                  </h2>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      alert("ส่งข้อมูลเรียบร้อย!");
+                    }}
                   >
-                    <span className="relative z-10">Submit</span>
-                    <span
-                      className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 group-hover:translate-x-full"
-                    />
-                  </button>
-                </form>
+                    {/* User Box Input 1 */}
+                    <div className="relative mb-8 group">
+                      <input type="text" name="name" required
+                        className="w-full py-2.5 text-white bg-transparent border-none border-b border-white outline-none focus:border-b-[#64BAEE] peer transition-colors"
+                      />
+                      <label className="absolute top-0 left-0 py-2.5 text-white pointer-events-none transition-all duration-500 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#64BAEE] peer-valid:-top-5 peer-valid:text-xs peer-valid:text-[#64BAEE]">
+                        ชื่อ-สกุล
+                      </label>
+                    </div>
+
+                    {/* User Box Input 2 */}
+                    <div className="relative mb-8 group">
+                      <input type="text" name="phone" required
+                        className="w-full py-2.5 text-white bg-transparent border-none border-b border-white outline-none focus:border-b-[#64BAEE] peer transition-colors"
+                      />
+                      <label className="absolute top-0 left-0 py-2.5 text-white pointer-events-none transition-all duration-500 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#64BAEE] peer-valid:-top-5 peer-valid:text-xs peer-valid:text-[#64BAEE]">
+                        เบอร์โทรศัพท์ติดต่อ
+                      </label>
+                    </div>
+
+                    {/* User Box Input 3 */}
+                    <div className="relative mb-8 group">
+                      <input type="text" name="email" required
+                        className="w-full py-2.5 text-white bg-transparent border-none border-b border-white outline-none focus:border-b-[#64BAEE] peer transition-colors"
+                      />
+                      <label className="absolute top-0 left-0 py-2.5 text-white pointer-events-none transition-all duration-500 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#64BAEE] peer-valid:-top-5 peer-valid:text-xs peer-valid:text-[#64BAEE]">
+                        อีเมล์
+                      </label>
+                    </div>
+
+                    {/* User Box Input 4 */}
+                    <div className="relative mb-8 group">
+                      <input type="text" name="company" required
+                        className="w-full py-2.5 text-white bg-transparent border-none border-b border-white outline-none focus:border-b-[#64BAEE] peer transition-colors"
+                      />
+                      <label className="absolute top-0 left-0 py-2.5 text-white pointer-events-none transition-all duration-500 peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#64BAEE] peer-valid:-top-5 peer-valid:text-xs peer-valid:text-[#64BAEE]">
+                        บริษัท
+                      </label>
+                    </div>
+
+                    {/* Select Box */}
+                    <div className="relative mb-8 group">
+                      <select className="w-full py-2.5 text-white bg-transparent border-none border-b border-white outline-none focus:border-b-[#64BAEE] [&>option]:text-black">
+                        <option value="" selected disabled hidden>เลือกบริการของเรา</option>
+                        <option value="1">Q.Soft MRP - Manufacturing Resource Planning</option>
+                        <option value="2">Q.Soft APS - Advanced Planning and Scheduling</option>
+                        <option value="3">Q.Soft PM - Plant Maintenance</option>
+                        <option value="4">Q.Soft POS - Point of Sale</option>
+                        <option value="5">Q.Soft WMS - Warehouse Management System</option>
+                        <option value="6">Q.Soft VFS - Village Fund System</option>
+                        <option value="7">Q.Soft POS for Restuarant</option>
+                        <option value="8">WINSPEED</option>
+                        <option value="9">myAccount</option>
+                        <option value="10">HRMI</option>
+                        <option value="11">Industrial Internet of things</option>
+                      </select>
+                    </div>
+
+                    {/* Submit Button with Neon Effect */}
+                    <div className="flex justify-center mt-10">
+                      <button type="submit" className="relative inline-block px-5 py-2.5 text-[#64BAEE] text-base uppercase tracking-[4px] overflow-hidden transition-all duration-500 hover:bg-[#64BAEE] hover:text-white shadow-[0_0_5px_#64BAEE,0_0_25px_#64BAEE,0_0_50px_#64BAEE,0_0_100px_#64BAEE]">
+                        Submit
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
               </div>
             </div>
 
@@ -483,24 +460,24 @@ export default function Home() {
               <div className="text-center mb-12">
                 <a
                   href="mailto:chopaka_m@q-softthai.com;nurng.t072@gmail.com;chopaka1817@gmail.com"
-                  className="inline-block bg-blue-600 text-white px-8 py-3 rounded font-semibold hover:bg-blue-700 transition duration-300"
+                  className="inline-block bg-[#0e9aef] text-white px-5 py-2.5 rounded text-sm font-semibold hover:bg-[#0c88d3] transition duration-300"
                 >
                   ส่งอีเมลถึงเรา
                 </a>
 
-                <p className="text-slate-600 mt-6 mb-4">
+                <p className="text-[#676a6c] mt-6 mb-4 text-sm">
                   หรือติดตามเราบนแพลตฟอร์มโซเชียล
                 </p>
-                <ul className="flex justify-center gap-6">
+                <ul className="flex justify-center gap-4">
                   <li>
                     <a
                       href="https://www.youtube.com/user/qsoftthai/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-red-600 hover:text-red-700 transition"
+                      className="bg-[#0e9aef] text-white w-7 h-7 rounded-full flex items-center justify-center hover:bg-[#64BAEE] transition"
                       title="YouTube"
                     >
-                      <i className="fa fa-youtube-play text-3xl"></i>
+                      <i className="fa fa-youtube-play text-sm"></i>
                     </a>
                   </li>
                   <li>
@@ -508,10 +485,10 @@ export default function Home() {
                       href="https://www.facebook.com/q.soft/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 transition"
+                      className="bg-[#0e9aef] text-white w-7 h-7 rounded-full flex items-center justify-center hover:bg-[#64BAEE] transition"
                       title="Facebook"
                     >
-                      <i className="fa fa-facebook text-3xl"></i>
+                      <i className="fa fa-facebook text-sm"></i>
                     </a>
                   </li>
                 </ul>
@@ -519,13 +496,13 @@ export default function Home() {
 
               {/* ===== Footer Info ===== */}
               <div className="text-center max-w-4xl mx-auto py-12 border-t border-slate-200">
-                <p className="text-slate-600 leading-relaxed mb-4">
+                <p className="text-[#676a6c] leading-relaxed mb-4 text-[13px]">
                   <strong>&copy; 2017 Business Competitive Intelligence Co., Ltd.</strong>
                 </p>
-                <a href="privacypolicy" className="text-blue-600 hover:text-blue-700 font-semibold">
+                <a href="privacypolicy" className="text-[#0e9aef] hover:underline font-bold text-[13px]">
                   Privacy policy
                 </a>
-                <p className="text-slate-600 text-sm leading-relaxed mt-4">
+                <p className="text-[#aeaeae] text-[13px] leading-relaxed mt-4">
                   With more than 10 years with a professional team of skilled, professional. In consulting and training
                   <br />
                   "We are confident that we can solve the problem, you have a point. Within a short time."

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -21,26 +21,36 @@ const navItems = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const headerRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (headerRef.current) {
-        const rect = headerRef.current.getBoundingClientRect();
-        setCursorPos({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const isHome = pathname === "/" || pathname === "";
+
+  // Decide navbar appearance based on scroll and page
+  // On Home: Transparent at top, White when scrolled.
+  // On Other pages: Always white (standard practice if no hero image, but if we want consistent ERP style which implies hero everywhere, we might stick to transparency. 
+  // However, looking at the file list (e.g. about.html), they likely have headers. 
+  // For safety in this Next.js app without knowing all page layouts, I'll default to 'White' on non-home pages unless scrolled.
+  // Actually, ERP site seems to share the header style. Let's stick to the scroll rule for Home. For others, let's keep it white to be safe, or check requirements. 
+  // The plan said: "If !isScrolled && isHome: Background transparent... If isScrolled || !isHome: Background white"
+  const isTransparent = isHome && !isScrolled;
+
+  const navbarClasses = isTransparent
+    ? "bg-transparent border-transparent text-white"
+    : "bg-white border-b border-[#e7eaec] text-[#676a6c]";
 
   const mainLinks = navItems.slice(0, 2);
   const otherLinks = navItems.slice(2, 7);
@@ -48,55 +58,47 @@ export default function Navbar() {
 
   return (
     <header
-      ref={headerRef}
-      className="sticky top-0 z-[100] border-b border-slate-200 bg-white/95 backdrop-blur shadow-lg"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out ${navbarClasses}`}
     >
-      {/* Spotlight */}
-      <div
-        className="pointer-events-none absolute top-0 left-0"
-        style={{
-          left: cursorPos.x,
-          top: cursorPos.y,
-          width: 180,
-          height: 180,
-          background:
-            "radial-gradient(circle, rgba(59,130,246,0.45) 0%, rgba(59,130,246,0.2) 40%, transparent 70%)",
-          transform: "translate(-50%, -50%)",
-          filter: "blur(35px)",
-          zIndex: 40,
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-2 rounded-b-lg bg-blue-600 px-4 py-2
-                       text-2xl font-extrabold tracking-tight text-white font-kanit
-                       hover:bg-blue-700 transition"
-          >
-            BCI
-          </Link>
+        <div className="flex items-start justify-between">
+          {/* Logo - Hanging Tab Style with Animation */}
+          <div className="navbar-header">
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              className={`flex items-center justify-center bg-[#0e9aef] text-white font-bold font-kanit hover:bg-[#64BAEE] transition-all duration-300 ease-in-out shadow-sm
+                ${isTransparent
+                  ? "px-5 py-4 text-sm rounded-b-md"
+                  : "mt-[15px] px-3 py-2 text-xs rounded-md"
+                }
+              `}
+            >
+              BCI
+            </Link>
+          </div>
+
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center">
             {isHome ? (
               <>
                 {mainLinks.map((item) => {
                   const isActive = pathname === item.href;
+                  // ERP Active style: border-top 6px solid #0e9aef
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`rounded-lg px-3 py-2 text-sm font-medium font-kanit
-                        hover:bg-slate-100 hover:text-blue-700
-                        ${
-                          isActive
-                            ? "bg-blue-50 text-blue-700 font-bold"
-                            : "text-slate-700"
-                        }`}
+                      className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] transition-all duration-300 ease-in-out
+                        ${isTransparent ? "px-3 pt-[25px] pb-[15px]" : "px-3 py-[20px]"}
+                        ${isActive
+                          ? "border-[#0e9aef] bg-transparent"
+                          : "border-transparent hover:text-[#0e9aef]"
+                        }
+                        ${!isTransparent && !isActive && "text-[#676a6c]"}
+                        ${isTransparent && !isActive && "text-white hover:text-[#0e9aef]"}
+                      `}
                     >
                       {item.label}
                     </Link>
@@ -106,10 +108,11 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/"
-                className="rounded-lg px-3 py-2 text-sm font-medium font-kanit
-                           text-blue-700 hover:bg-blue-100"
+                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent hover:text-[#0e9aef] transition-all duration-300 ease-in-out
+                 ${isTransparent ? "px-3 pt-[25px] pb-[15px] text-white" : "px-3 py-[20px] text-[#676a6c]"}
+                 `}
               >
-                กลับหน้าแรก
+                หน้าหลัก
               </Link>
             )}
 
@@ -119,13 +122,15 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium font-kanit
-                    hover:bg-slate-100 hover:text-blue-700
-                    ${
-                      isActive
-                        ? "bg-blue-50 text-blue-700 font-bold"
-                        : "text-slate-700"
-                    }`}
+                  className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] transition-all duration-300 ease-in-out
+                    ${isTransparent ? "px-3 pt-[25px] pb-[15px]" : "px-3 py-[20px]"}
+                    ${isActive
+                      ? "border-[#0e9aef] bg-transparent"
+                      : "border-transparent hover:text-[#0e9aef]"
+                    }
+                     ${!isTransparent && !isActive && "text-[#676a6c]"}
+                     ${isTransparent && !isActive && "text-white hover:text-[#0e9aef]"}
+                  `}
                 >
                   {item.label}
                 </Link>
@@ -133,23 +138,24 @@ export default function Navbar() {
             })}
 
             {/* Dropdown */}
-            <div className="relative">
+            <div className="relative group">
               <button
                 onClick={() => setDropdownOpen((v) => !v)}
-                className="rounded-lg px-3 py-2 text-sm font-medium font-kanit
-                           text-slate-700 hover:bg-slate-100 hover:text-blue-700"
+                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent transition-all duration-300 ease-in-out hover:text-[#0e9aef] outline-none
+                 ${isTransparent ? "px-3 pt-[25px] pb-[15px] text-white" : "px-3 py-[20px] text-[#676a6c]"}
+                 `}
               >
                 เพิ่มเติม ▾
               </button>
 
+              {/* Hover/Click Dropdown */}
               <div
-                className={`absolute right-0 mt-2 w-52 rounded-lg border border-slate-200
-                  bg-white shadow-lg transition
-                  ${
-                    dropdownOpen
-                      ? "visible opacity-100"
-                      : "invisible opacity-0"
-                  }`}
+                className={`absolute right-0 top-full mt-0 w-52 rounded-b-lg border border-slate-200
+                  bg-white shadow-lg transition-all transform origin-top
+                  ${dropdownOpen
+                    ? "visible opacity-100 scale-100"
+                    : "invisible opacity-0 scale-95"
+                  } group-hover:visible group-hover:opacity-100 group-hover:scale-100`}
               >
                 {moreLinks.map((item) => {
                   const isActive = pathname === item.href;
@@ -158,12 +164,11 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setDropdownOpen(false)}
-                      className={`block px-4 py-2.5 text-sm font-kanit
-                        hover:bg-slate-100 hover:text-blue-700
-                        ${
-                          isActive
-                            ? "bg-blue-50 text-blue-700 font-bold"
-                            : "text-slate-700"
+                      className={`block px-4 py-3 text-sm font-kanit border-l-4
+                        hover:bg-slate-50 hover:text-[#0e9aef] hover:border-[#0e9aef]
+                        ${isActive
+                          ? "bg-blue-50 text-[#0e9aef] border-[#0e9aef]"
+                          : "text-[#676a6c] border-transparent"
                         }`}
                     >
                       {item.label}
@@ -175,20 +180,24 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile button */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="lg:hidden rounded-lg border border-slate-200
-                       px-4 py-2 text-sm font-semibold font-kanit
-                       text-slate-700 hover:bg-slate-100 hover:text-blue-700"
-          >
-            {open ? "ปิดเมนู" : "เมนู"}
-          </button>
+          <div className="lg:hidden flex items-center h-16">
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className={`rounded border px-4 py-2 text-sm font-semibold font-kanit transition
+                ${isTransparent
+                  ? "border-white/30 text-white hover:bg-white/10"
+                  : "border-slate-200 text-[#676a6c] hover:bg-slate-100"
+                }`}
+            >
+              {open ? "ปิดเมนู" : "เมนู"}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
         {open && (
           <div className="lg:hidden pb-4">
-            <nav className="mt-2 grid gap-1 rounded-lg border border-slate-200 bg-white p-2">
+            <nav className="mt-2 grid gap-1 rounded-lg border border-slate-200 bg-white p-2 shadow-xl">
               {[...mainLinks, ...otherLinks, ...moreLinks].map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -196,12 +205,11 @@ export default function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium font-kanit
-                      hover:bg-slate-100 hover:text-blue-700
-                      ${
-                        isActive
-                          ? "bg-blue-50 text-blue-700 font-bold"
-                          : "text-slate-700"
+                    className={`rounded-lg px-4 py-3 text-sm font-medium font-kanit
+                      hover:bg-slate-50 hover:text-[#0e9aef]
+                      ${isActive
+                        ? "bg-blue-50 text-[#0e9aef] font-bold"
+                        : "text-[#676a6c]"
                       }`}
                   >
                     {item.label}
@@ -215,3 +223,4 @@ export default function Navbar() {
     </header>
   );
 }
+
