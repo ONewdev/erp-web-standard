@@ -1,130 +1,115 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { GraduationCap, Clock, BarChart, ChevronRight } from "lucide-react";
+import FadeInSection from "@/app/components/FadeInSection";
+
+const courses = [
+  {
+    title: "AI for Executive Course",
+    desc: "หลักสูตร AI สำหรับผู้บริหาร เพื่อสร้างความเข้าใจในการนำ AI ไปประยุกต์ใช้ในการวางแผนกลยุทธ์และการบริหารองค์กรในยุคดิจิทัล",
+    duration: "2 วัน",
+    level: "Executive",
+    image: "/img/course/Executive.jpg",
+    href: "/executive",
+    color: "bg-blue-600"
+  },
+  {
+    title: "Utilizing Generative AI for your jobs",
+    desc: "เจาะลึกการใช้ Generative AI ในการทำงานประจำวัน เพื่อเพิ่มประสิทธิภาพ ความคิดสร้างสรรค์ และความรวดเร็วในการทำงานอย่างก้าวกระโดด",
+    duration: "1 วัน",
+    level: "All Level",
+    image: "/img/course/Utilizing.jpg",
+    href: "/utilizing",
+    color: "bg-indigo-600"
+  },
+  {
+    title: "LLMs in your organization",
+    desc: "เรียนรู้การนำ Large Language Models (LLMs) มาติดตั้งและใช้งานภายในองค์กร เพื่อสร้างระบบฐานความรู้และความปลอดภัยของข้อมูลขั้นสูง",
+    duration: "2 วัน",
+    level: "Intermediate",
+    image: "/img/course/LLMs.jpg",
+    href: "/llms",
+    color: "bg-slate-800"
+  },
+];
+
 export default function CoursePage() {
-  const cards = [
-    {
-      title: "AI for Executive Course",
-      desc: "หลักสูตร AI สำหรับผู้บริหาร เข้าใจการประยุกต์ใช้ AI ในการบริหารองค์กร",
-      duration: "2 วัน",
-      level: "Executive",
-      image: "/img/course/Executive.jpg",
-      href: "/executive",
-    },
-    {
-      title: "Utilizing Generative AI for your jobs",
-      desc: "หลักสูตร Generative AI ในการทำงานประจำวัน เพิ่มประสิทธิภาพและความเร็วในการทำงาน",
-      duration: "1 วัน",
-      level: "All Level",
-      image: "/img/course/Utilizing.jpg",
-      href: "/utilizing",
-    },
-    {
-      title: "LLMs in your organization",
-      desc: "หลักสูตร LLMs ในองค์กร เรียนรู้การใช้ Large Language Models ให้เกิดประโยชน์สูงสุด",
-      duration: "2 วัน",
-      level: "Intermediate",
-      image: "/img/course/LLMs.jpg",
-      href: "/llms",
-    },
-  ];
-
   return (
-    <div className="font-kanit" style={{ maxWidth: 1100, margin: "0 auto" }}>
-      <h1 style={{ fontSize: 28, marginBottom: 8 }}>COURSE อบรม</h1>
-      <p style={{ marginBottom: 24 }}>หน้านี้คือ /course</p>
+    <div className="min-h-full bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-kanit">
+      <div className="max-w-6xl mx-auto">
+        {/* Header Section */}
+        <FadeInSection>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-2xl mb-4">
+              <GraduationCap className="w-8 h-8 text-[#0e9aef]" />
+            </div>
+            <h1 className="text-4xl font-bold text-slate-800 mb-4 uppercase tracking-tight">Course อบรม</h1>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              ยกระดับศักยภาพบุคลากรและองค์กรของคุณด้วยหลักสูตรอบรมด้านเทคโนโลยีและ AI ที่ออกแบบมาเป็นพิเศษเพื่อการใช้งานจริง
+            </p>
+            <div className="w-24 h-1.5 bg-[#0e9aef] mx-auto mt-8 rounded-full"></div>
+          </div>
+        </FadeInSection>
 
-      {/* Card Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: 20,
-        }}
-      >
-        {cards.map((c, idx) => (
-          <a
-            key={idx}
-            href={c.href}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <div
-              style={{
-                border: "1px solid #e5e7eb",
-                borderRadius: 16,
-                background: "#fff",
-                boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
-                overflow: "hidden",
-                transition: "transform 0.2s, box-shadow 0.2s",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.12)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.06)";
-              }}
-            >
-              {/* รูป */}
-              <img
-                src={c.image}
-                alt={c.title}
-                style={{
-                  width: "100%",
-                  height: 200,
-                  objectFit: "cover",
-                }}
-              />
-
-              {/* Content */}
-              <div style={{ padding: 20 }}>
-                <h2 style={{ fontSize: 18, marginBottom: 8, fontWeight: 600 }}>
-                  {c.title}
-                </h2>
-
-                <p
-                  style={{
-                    color: "#475569",
-                    lineHeight: 1.6,
-                    marginBottom: 16,
-                    fontSize: 14,
-                  }}
-                >
-                  {c.desc}
-                </p>
-
-                <div
-                  style={{
-                    fontSize: 13,
-                    color: "#334155",
-                    marginBottom: 16,
-                  }}
-                >
-                  ⏱ ระยะเวลา: <strong>{c.duration}</strong>
-                  <br />
-                  🎯 ระดับ: <strong>{c.level}</strong>
+        {/* Course Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {courses.map((course, index) => (
+            <FadeInSection key={course.title} delay={index * 0.1}>
+              <div className="group bg-white rounded-[2rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col h-full">
+                {/* Image Container */}
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <span className="text-white text-sm font-medium flex items-center gap-2">
+                      ดูรายละเอียด <ChevronRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                  <div className={`absolute top-4 left-4 ${course.color} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest`}>
+                    {course.level}
+                  </div>
                 </div>
 
-                <button
-                  style={{
-                    width: "100%",
-                    padding: "12px 0",
-                    borderRadius: 10,
-                    border: "none",
-                    background: "#2563eb",
-                    color: "#fff",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    fontSize: 14,
-                  }}
-                >
-                  ดูรายละเอียด →
-                </button>
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-[#0e9aef] transition-colors leading-tight">
+                    {course.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1">
+                    {course.desc}
+                  </p>
+
+                  <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                        <Clock className="w-3.5 h-3.5 text-[#0e9aef]" />
+                        <span>{course.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                        <BarChart className="w-3.5 h-3.5 text-[#0e9aef]" />
+                        <span>{course.level}</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={course.href}
+                      className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-[#0e9aef] group-hover:text-white transition-all duration-300"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </a>
-        ))}
+            </FadeInSection>
+          ))}
+        </div>
+
+        {/* Contact Info */}
+        
       </div>
     </div>
   );

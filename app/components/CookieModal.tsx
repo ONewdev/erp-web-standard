@@ -7,14 +7,12 @@ import { XCircle } from "lucide-react";
 
 export default function CookieModal() {
     const [isVisible, setIsVisible] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Check if cookie is set
-        const checkCookie = document.cookie.indexOf("Cookie_QSoft=QsoftUser");
-        if (checkCookie === -1) {
-            // Small delay to make the entrance smooth
-            setTimeout(() => setIsVisible(true), 500);
-        }
+        setMounted(true);
+        console.log("CookieModal Debug: Force showing modal");
+        setIsVisible(true);
     }, []);
 
     const acceptCookie = () => {
@@ -27,13 +25,13 @@ export default function CookieModal() {
         setIsVisible(false);
     };
 
-    if (!isVisible) return null;
+    if (!mounted || !isVisible) return null;
 
     return (
         <div
-            className={`fixed bottom-5 right-5 z-[200] max-w-[365px] flex flex-col items-center text-center 
-                  bg-[#0e9aef] text-white p-6 rounded-[15px] shadow-lg
-                  transition-all duration-300 transform scale-100 opacity-100`}
+            className="fixed bottom-10 right-10 z-[99999] max-w-[365px] flex flex-col items-center text-center 
+                  bg-[#0e9aef] text-white p-6 rounded-[15px] shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+                  opacity-100 scale-100 ring-4 ring-white"
         >
             <div className="absolute top-2 right-2">
                 <button

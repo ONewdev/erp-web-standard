@@ -58,194 +58,132 @@ const sections = [
   },
 ];
 
+import FadeInSection from "../components/FadeInSection";
+
 export default function TestimonialsPage() {
+  const brandBlue = "#0e9aef";
+
   return (
-    <div className="font-kanit">
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 220px",
-          gap: 24,
-          padding: 24,
-          maxWidth: 1300,
-          margin: "0 auto",
-        }}
-      >
+    <div className="font-kanit bg-white">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-12 p-6 md:p-12 max-w-7xl mx-auto">
         {/* ===== LEFT + CENTER ===== */}
         <main>
-          <div style={{ marginBottom: 32 }}>
-            <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 16 }}>
-              <i style={{ fontSize: 48, color: "#0b39f0" }} className="fa fa-comments-o" />
-              <div>
-                <h1 style={{ fontSize: 32, margin: 0, marginBottom: 4, fontWeight: 700 }}>
-                  Customers Testimonials
-                </h1>
-                <p style={{ fontSize: 18, margin: 0, color: "#475569" }}>
-                  คำรับรองจากลูกค้า
-                </p>
+          <FadeInSection>
+            <div className="mb-16">
+              <div className="flex items-center gap-6 mb-8">
+                <div className="p-4 rounded-2xl bg-blue-50">
+                  <i style={{ fontSize: 40, color: brandBlue }} className="fa fa-comments-o" />
+                </div>
+                <div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+                    Customers Testimonials
+                  </h1>
+                  <p className="text-lg text-slate-500 font-medium tracking-wide">
+                    คำรับรองจากลูกค้า
+                  </p>
+                </div>
               </div>
+              <div className="h-1 w-20 rounded-full" style={{ backgroundColor: brandBlue }}></div>
             </div>
-          </div>
+          </FadeInSection>
 
-          {sections.map((s) => (
-            <section
-              key={s.id}
-              id={s.id}
-              style={{
-                scrollMarginTop: 90,
-                display: "grid",
-                gridTemplateColumns: "200px 1fr",
-                gap: 24,
-                marginBottom: 32,
-                padding: 28,
-                border: "2px solid #e5e7eb",
-                borderRadius: 16,
-                background: "#fff",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
-              }}
-            >
-              {/* ===== LEFT: PERSON IMAGE ===== */}
-              <div style={{ textAlign: "center" }}>
-                <img
-                  src={s.image}
-                  alt={s.person}
-                  style={{
-                    width: 160,
-                    height: 160,
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    border: "4px solid #9CC1D3",
-                    marginBottom: 14,
-                    objectPosition: "center",
-                  }}
-                />
-                <strong style={{ display: "block", fontSize: 16, color: "#0b39f0", marginBottom: 4 }}>
-                  {s.person}
-                </strong>
-                <span style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>
-                  {s.role}
-                </span>
-              </div>
+          <div className="space-y-0">
+            {sections.map((s, idx) => (
+              <FadeInSection key={s.id} delay={idx * 0.1}>
+                <section
+                  id={s.id}
+                  className={`scroll-mt-24 py-16 ${idx !== sections.length - 1 ? 'border-b border-slate-100' : ''}`}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-10">
+                    {/* ===== LEFT: PERSON IMAGE ===== */}
+                    <div className="text-center md:text-left">
+                      <div className="relative inline-block mb-6 group">
+                        <img
+                          src={s.image}
+                          alt={s.person}
+                          className="w-40 h-40 rounded-full object-cover border-4 border-white shadow-xl transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 rounded-full border-2 opacity-20 border-slate-300 pointer-events-none"></div>
+                      </div>
+                      <div className="space-y-1">
+                        <strong className="block text-lg font-bold" style={{ color: brandBlue }}>
+                          {s.person}
+                        </strong>
+                        <p className="text-sm text-slate-500 font-medium">
+                          {s.role}
+                        </p>
+                      </div>
+                    </div>
 
-              {/* ===== CENTER: CONTENT ===== */}
-              <div>
-                <h2 style={{
-                  fontSize: 22,
-                  fontWeight: 700,
-                  marginBottom: 16,
-                  color: "#0b39f0",
-                  borderBottom: "2px solid #0b39f0",
-                  paddingBottom: 12,
-                }}>
-                  {s.title}
-                </h2>
+                    {/* ===== CENTER: CONTENT ===== */}
+                    <div className="flex flex-col">
+                      <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <span className="w-1 h-6 rounded-full" style={{ backgroundColor: brandBlue }}></span>
+                        {s.title}
+                      </h2>
 
-                <p style={{
-                  marginBottom: 20,
-                  color: "#334155",
-                  lineHeight: 1.9,
-                  fontSize: 16,
-                  fontStyle: "italic",
-                  paddingLeft: 12,
-                  borderLeft: "4px solid #9CC1D3",
-                }}>
-                  {s.quote}
-                </p>
+                      <div className="relative mb-8">
+                        <i
+                          className="fa fa-quote-left absolute -left-8 -top-4 opacity-10 text-6xl"
+                          style={{ color: brandBlue }}
+                        ></i>
+                        <p className="text-xl text-slate-600 leading-relaxed italic pl-0 md:pl-2 relative z-10">
+                          {s.quote}
+                        </p>
+                      </div>
 
-                {s.videoId && (
-                  <div
-                    style={{
-                      position: "relative",
-                      paddingTop: "56.25%",
-                      borderRadius: 12,
-                      overflow: "hidden",
-                      border: "2px solid #e5e7eb",
-                      marginTop: 20,
-                    }}
-                  >
-                    <iframe
-                      src={`https://www.youtube.com/embed/${s.videoId}`}
-                      title={s.title}
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        width: "100%",
-                        height: "100%",
-                        border: 0,
-                      }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
+                      {s.videoId && (
+                        <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-slate-100 mt-auto">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${s.videoId}`}
+                            title={s.title}
+                            className="absolute inset-0 w-full h-full"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                )}
-              </div>
-            </section>
-          ))}
+                </section>
+              </FadeInSection>
+            ))}
+          </div>
         </main>
 
-        {/* ===== RIGHT: TOC ===== */}
-        <aside
-          style={{
-            position: "sticky",
-            top: 90,
-            alignSelf: "start",
-          }}
-        >
-          <p
-            style={{
-              fontSize: 12,
-              fontWeight: 700,
-              marginBottom: 16,
-              color: "#64748b",
-              textTransform: "uppercase",
-              letterSpacing: 1,
-              margin: "0 0 16px 0",
-            }}
-          >
-            บริษัท
-          </p>
 
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {sections.map((s) => (
-              <li key={s.id} style={{ marginBottom: 12 }}>
-                <a
-                  href={`#${s.id}`}
-                  style={{
-                    fontSize: 14,
-                    color: "#475569",
-                    textDecoration: "none",
-                    display: "block",
-                    padding: "8px 12px",
-                    borderRadius: 8,
-                    transition: "all 0.3s ease",
-                    borderLeft: "3px solid transparent",
-                    fontWeight: 500,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "rgba(11, 57, 240, 0.08)";
-                    e.currentTarget.style.borderLeftColor = "#0b39f0";
-                    e.currentTarget.style.color = "#0b39f0";
-                    e.currentTarget.style.paddingLeft = "16px";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.borderLeftColor = "transparent";
-                    e.currentTarget.style.color = "#475569";
-                    e.currentTarget.style.paddingLeft = "12px";
-                  }}
-                >
-                  {s.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+        {/* ===== RIGHT: TOC ===== */}
+        <aside className="hidden lg:block relative">
+          <div className="sticky top-24 pt-4 border-l border-slate-100 pl-8">
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+              รายชื่อลูกค้า
+            </p>
+
+            <ul className="space-y-4">
+              {sections.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className="group flex items-center text-sm text-slate-500 hover:text-[#0e9aef] transition-all duration-300"
+                  >
+                    <span
+                      className="w-0 h-[2px] mr-0 group-hover:w-4 group-hover:mr-3 transition-all duration-300"
+                      style={{ backgroundColor: brandBlue }}
+                    ></span>
+                    <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">
+                      {s.title}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </aside>
 
-        <style>{`
-        html { scroll-behavior: smooth; }
-      `}</style>
+        <style jsx global>{`
+          html { scroll-behavior: smooth; }
+        `}</style>
       </div>
     </div>
-
   );
 }

@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import PageWrapper from "./components/PageWrapper";
 import CookieModal from "./components/CookieModal";
+import CustomCursor from "./components/CustomCursor";
 
 const kanit = Kanit({
   subsets: ["thai", "latin"],
@@ -27,7 +28,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th" className={kanit.variable}>
-      <body className="font-kanit" style={{ backgroundColor: "#fff" }}>
+      <body className="font-kanit flex flex-col min-h-screen" style={{ backgroundColor: "#fff" }}>
+        <CustomCursor />
         <Navbar />
         <PageWrapper>{children}</PageWrapper>
         <ScrollToTop />

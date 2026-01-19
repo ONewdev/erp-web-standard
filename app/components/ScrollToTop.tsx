@@ -30,7 +30,7 @@ export default function ScrollToTop() {
       style={{
         position: "fixed",
         right: 18,
-        bottom: 18,
+        bottom: 80,
         width: 44,
         height: 44,
         borderRadius: 999,
@@ -41,6 +41,8 @@ export default function ScrollToTop() {
         display: "grid",
         placeItems: "center",
         zIndex: 9999,
+        color: "#0e9aef",
+        fontFamily: "var(--font-kanit)",
       }}
     >
       {/* ไอคอนลูกศรขึ้น (SVG) */}

@@ -9,9 +9,6 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
     return (
         <main
             className={isHome ? "w-full p-0" : "flex-1 p-6 pt-[120px]"}
-            style={{
-                minHeight: "80vh",
-            }}
         >
             {children}
         </main>

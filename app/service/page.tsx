@@ -2,25 +2,31 @@
 
 import { useState } from "react";
 import {
-  Search,
-  Settings,
-  GraduationCap,
-  Users,
-  Handshake,
-  BarChart3,
-  Eye,
-  ShieldCheck,
+  Zap,
+  Shield,
+  Calendar,
+  Star,
+  Briefcase,
+  Camera,
+  AlertTriangle,
   Wrench,
-  Timer,
-  Bot,
+  Gauge,
   Headphones,
-  Network,
-  Code2,
+  Code,
   ChevronDown,
   Globe,
-  Zap
+  Network,
 } from "lucide-react";
 import FadeInSection from "../components/FadeInSection";
+
+const PowerBIIcon = ({ className }: { className?: string }) => (
+  <svg height="30" viewBox=".8 0 32.3 34" width="30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className={className}>
+    <g fill="currentColor">
+      <path d="m11.1 27.3c0 1.1-.9 2.1-2.1 2.1s-2.1-.9-2.1-2.1v-9c0-1.1.9-2.1 2.1-2.1s2.1.9 2.1 2.1zm6 2.4c0 1.1-.9 2.1-2.1 2.1s-2-.9-2-2.1v-13.7c0-1.1.9-2.1 2.1-2.1s2.1.9 2.1 2.1v13.7zm-12.1-4.4c0 1.1-.9 2.1-2.1 2.1s-2.1-.9-2.1-2.1v-4.9c0-1.1.9-2.1 2.1-2.1s2.1 1 2.1 2.1zm18.1 6.6c0 1.1-.9 2.1-2.1 2.1-1.1 0-2-1-2-2.1v-18.2c0-1.1.9-2.1 2.1-2.1 1.1 0 2.1.9 2.1 2.1v18.2z" />
+      <path d="m29.7 31c-.4 0-.7-.1-1.1-.2l-2.5-.8c-.4-.1-.7-.6-.5-1 .1-.4.6-.7 1-.5l2.6.8c.5.2 1.1.1 1.6-.3.5-.3.7-.9.7-1.4v-16.7c0-.8-.5-1.5-1.2-1.7l-24.5-7.4c-.5-.2-1.1-.1-1.6.2-.4.4-.7.9-.7 1.5v11.5c0 .5-.4.8-.8.8-.5 0-.8-.4-.8-.8v-11.5c0-1.1.5-2.1 1.4-2.7.9-.7 2-.8 3-.5l24.4 7.4c1.4.4 2.4 1.8 2.4 3.3v16.7c0 1.1-.5 2.1-1.4 2.8-.6.2-1.3.5-2 .5" />
+    </g>
+  </svg>
+);
 
 type SectionBlock = {
   heading: string;
@@ -47,32 +53,32 @@ export default function ServicePage() {
       subtitle: "บริการทั่วไปและที่ปรึกษาด้านซอฟต์แวร์",
       children: [
         {
-          icon: <Search className="w-6 h-6" />,
+          icon: <Zap className="w-6 h-6" />,
           label: "อบรมการใช้งานโปรแกรม Q.Soft",
           desc: "คือ การอบรมการใช้งานโปรแกรม (In House Training) ให้กับองค์กรที่ใช้ Software ของเรา เพื่อให้สามารถใช้งานโปรแกรมได้อย่างมีประสิทธิภาพ ตอบข้อซักถามต่างๆ รวมถึงการสาธิต Users ผู้ทำงานให้มีความเข้าใจในการทำงานมากที่สุด",
         },
         {
-          icon: <Settings className="w-6 h-6" />,
+          icon: <Shield className="w-6 h-6" />,
           label: "Implement โปรแกรม Q.Soft",
           desc: "คือ การวางระบบการทำงานขององค์กรโดยใช้โปรแกรม Q.Soft ของเราเป็นพื้นฐาน เพื่อวิเคราะห์และปรับปรุงประสิทธิภาพการทำงาน และทำให้ใช้งานโปรแกรมได้อย่างเต็มประสิทธิภาพ ประกอบไปด้วยการวิเคราะห์ระบบ, อบรมการใช้งาน, ดูแลการใช้งานจริง",
         },
         {
-          icon: <GraduationCap className="w-6 h-6" />,
+          icon: <Calendar className="w-6 h-6" />,
           label: "Implement โปรแกรมบัญชี-การเงินชั้นนำ",
           desc: "จากประสบการณ์การวางระบบบัญชีด้วยโปรแกรมชั้นนำกว่า 7 ปี ทำให้เรามีความชำนาญการวางระบบบัญชี-การเงินด้วยซอฟแวร์ชั้นนำ และยังสามารถให้คำแนะนำในการวิเคราะห์และปรับปรุงระบบ, ฝึกอบรม และดูแลการใช้งานจนทุกฝ่ายที่เกี่ยวข้องทำงานได้สะดวกรวดเร็ว",
         },
         {
-          icon: <Users className="w-6 h-6" />,
+          icon: <Star className="w-6 h-6" />,
           label: "อบรมการใช้งานโปรแกรมบัญชีชั้นนำ",
           desc: "การอบรมการใช้งานโปรแกรม (In House Training) ให้กับองค์กรที่ใช้ Software ของเรา เพื่อให้สามารถใช้งานโปรแกรมได้อย่างมีประสิทธิภาพ ตอบข้อซักถามต่างๆ และสาธิตการใช้งาน โดยประกบติดกับ Users ให้เข้าใจการทำงานมากที่สุด",
         },
         {
-          icon: <Handshake className="w-6 h-6" />,
+          icon: <Briefcase className="w-6 h-6" />,
           label: "ให้คำปรึกษาในการวางระบบบริหารการผลิตและบัญชี",
           desc: "จากประสบการณ์ในการ Implement ของเรา เพื่อให้สามารถใช้งาน Software ได้จริงและมีประสิทธิภาพ ทำให้การให้คำปรึกษาอยู่บนพื้นฐานของการใช้งานจริงของ Users เป็นหลัก พร้อมผลลัพธ์ที่ถูกต้องตามต้องการ",
         },
         {
-          icon: <BarChart3 className="w-6 h-6" />,
+          icon: <PowerBIIcon className="w-6 h-6" />,
           label: "หลักสูตร Power BI",
           desc: "จากประสบการณ์ในการ Implement ของเรา เพื่อให้ลูกค้าสามารถใช้งาน Software ได้จริง และมีประสิทธิภาพ ทำให้คำปรึกษาอยู่บนพื้นฐานการใช้งานจริงของ Users พร้อมผลลัพธ์ที่ถูกต้องตามผู้บริหารต้องการ",
         },
@@ -83,12 +89,12 @@ export default function ServicePage() {
       subtitle: "ยกระดับการผลิตด้วยเทคโนโลยีปัญญาประดิษฐ์",
       children: [
         {
-          icon: <Eye className="w-6 h-6" />,
+          icon: <Camera className="w-6 h-6" />,
           label: "Vision Inspection System",
           desc: "ระบบ AI Vision ที่ช่วยตรวจจับข้อบกพร่องได้อย่างแม่นยำจากภาพในทุกขั้นตอนการผลิต รับประกันคุณภาพงานอย่างสม่ำเสมอ พร้อมยกระดับประสิทธิภาพและลดความสูญเสียในกระบวนการผลิต",
         },
         {
-          icon: <ShieldCheck className="w-6 h-6" />,
+          icon: <AlertTriangle className="w-6 h-6" />,
           label: "Monitoring for Safety",
           desc: "ระบบ AI ตรวจสอบความปลอดภัยที่สามารถระบุความเสี่ยงและพฤติกรรมไม่ปลอดภัยได้ทันที ลดโอกาสเกิดอุบัติเหตุ และสร้างสภาพแวดล้อมการทำงานที่ปลอดภัยและยั่งยืนมากขึ้น",
         },
@@ -98,12 +104,12 @@ export default function ServicePage() {
           desc: "ใช้ AI วิเคราะห์ข้อมูลจากเครื่องจักรเพื่อคาดการณ์ปัญหาล่วงหน้า ช่วยวางแผนบำรุงรักษาเชิงรุก ลดเวลาหยุดเครื่อง และเพิ่มความต่อเนื่องในการผลิต",
         },
         {
-          icon: <Timer className="w-6 h-6" />,
+          icon: <Gauge className="w-6 h-6" />,
           label: "Real-Time Throughput Bottleneck Detection",
           desc: "โซลูชัน AI สำหรับตรวจจับและจัดการจุดคอขวดในกระบวนการผลิตแบบเรียลไทม์ ใช้การวิเคราะห์ข้อมูลเพื่อระบุปัญหาทันที พร้อมแจ้งเตือนให้ผู้ใช้งานปรับแผน/การทำงาน เพื่อให้การผลิตราบรื่นและมีประสิทธิภาพมากขึ้น",
         },
         {
-          icon: <Bot className="w-6 h-6" />,
+          icon: <Briefcase className="w-6 h-6" />,
           label: "Sales Enablement",
           desc: "ผู้ช่วยอัจฉริยะสำหรับทีมขาย (LLM-Powered Sales Assistant) ช่วยให้ทีมขายเข้าถึงข้อมูลกำลังการผลิตและข้อจำกัดของระบบได้ทันที ลดความเสี่ยงในการรับคำสั่งซื้อเกินศักยภาพจริง",
           sections: [
@@ -162,7 +168,7 @@ export default function ServicePage() {
           desc: "สำหรับองค์กรขนาดเล็กที่ยังไม่พร้อมมีผู้ดูแลระบบ Network ภายในองค์กร ทางบริษัทฯ สามารถช่วยออกแบบและดูแล Network ให้มีเสถียรภาพและความปลอดภัย",
         },
         {
-          icon: <Code2 className="w-6 h-6" />,
+          icon: <Code className="w-6 h-6" />,
           label: "รับเขียนโปรแกรม และจัดทำ Web Application",
           desc: "รับจัดทำ/พัฒนาโปรแกรมทั้งในรูปแบบ Web Application หรือจัดทำ Web Service ตามความต้องการของลูกค้า",
         },
@@ -183,24 +189,23 @@ export default function ServicePage() {
   };
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pb-20">
+    <div className="bg-[#f8fafc] min-h-screen pb-20 font-kanit">
       {/* Hero Header */}
       <div className="bg-white border-b mb-10 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 transform origin-top-right"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
           <FadeInSection>
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-200">
+              <div className="p-3 bg-[#0e9aef] rounded-xl text-white shadow-lg shadow-blue-200">
                 <Globe className="w-8 h-8" />
               </div>
               <div className="h-px flex-1 bg-slate-200"></div>
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#111827] mb-4">
-              Services <span className="text-blue-600">Center</span>
+              Services <span style={{ color: "#0e9aef" }}>Center</span>
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl leading-relaxed">
-              เราพร้อมส่งมอบบริการที่ปรึกษา และโซลูชันด้านเทคโนโลยีที่ทันสมัย
-              เพื่อขับเคลื่อนธุรกิจของคุณให้ก้าวไกลในยุคดิจิทัล
+              บริการของพวกเรา
             </p>
           </FadeInSection>
         </div>
@@ -212,11 +217,11 @@ export default function ServicePage() {
             <FadeInSection delay={sIdx * 0.1}>
               <button
                 onClick={() => toggleSection(section.title)}
-                className="w-full text-left flex items-center justify-between group py-4 border-b-2 border-slate-200 hover:border-blue-400 transition-all mb-8"
+                className="w-full text-left flex items-center justify-between group py-4 border-b-2 border-slate-200 hover:border-brand transition-all mb-8"
               >
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-[#1e293b] flex items-center gap-3">
-                    <span className="w-2 h-8 bg-blue-600 rounded-full"></span>
+                    <span className="w-2 h-8 rounded-full" style={{ backgroundColor: "#0e9aef" }}></span>
                     {section.title}
                   </h2>
                   <p className="text-slate-500 mt-1 ml-5 font-medium">{section.subtitle}</p>
@@ -234,15 +239,20 @@ export default function ServicePage() {
                       className="group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
                     >
                       <div className="mb-6 flex items-start justify-between">
-                        <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-inner">
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-inner group-hover:text-white"
+                          style={{
+                            backgroundColor: "rgba(14, 154, 239, 0.1)",
+                            color: "#0e9aef"
+                          }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#0e9aef"}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(14, 154, 239, 0.1)"}
+                        >
                           {service.icon}
-                        </div>
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Zap className="w-5 h-5 text-blue-400 fill-blue-400" />
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-[#1e293b] mb-3 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[#0e9aef]">
                         {service.label}
                       </h3>
 
@@ -260,7 +270,7 @@ export default function ServicePage() {
                               <ul className="space-y-1.5 text-xs text-slate-500">
                                 {s.bullets.map((b) => (
                                   <li key={b} className="flex items-start gap-2">
-                                    <span className="w-1 h-1 rounded-full bg-blue-400 mt-1.5 shrink-0"></span>
+                                    <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "#0e9aef" }}></span>
                                     {b}
                                   </li>
                                 ))}

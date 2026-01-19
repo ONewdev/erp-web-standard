@@ -3,6 +3,20 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  BarChart3,
+  FileDown,
+  FileText,
+  ImageOff,
+  Files,
+  Cloud,
+  ArrowUpCircle,
+  FileSearch,
+  BookOpen,
+  Users,
+} from "lucide-react";
+import FadeInSection from "../components/FadeInSection";
 
 
 interface Document {
@@ -29,10 +43,10 @@ const documents: DocumentSection[] = [
   {
     title: "Documents",
     items: [
-      { name: "Q.Soft MRP", th: "ดาวน์โหลด", en: "ดาวน์โหลด",  thUrl: "/doc/Q-Soft_MRP_THV3.pdf", enUrl: "/doc/Q-Soft_MRP_ENGV3.pdf",created: "29.07.2025 10:19" },
+      { name: "Q.Soft MRP", th: "ดาวน์โหลด", en: "ดาวน์โหลด", thUrl: "/doc/Q-Soft_MRP_THV3.pdf", enUrl: "/doc/Q-Soft_MRP_ENGV3.pdf", created: "29.07.2025 10:19" },
       { name: "Q.Soft APS", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/APS_new.pdf", created: "14.08.2014 02:51" },
       { name: "Q.Soft WMS", th: "-", en: "-", created: "14.08.2014 02:51" },
-      { name: "Q.Soft PM", th: "ดาวน์โหลด", en: "-",  thUrl: "/doc/Q.Soft_PM_V3Brochue(thai).pdf", created: "29.07.2025 10:19" },
+      { name: "Q.Soft PM", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/Q.Soft_PM_V3Brochue(thai).pdf", created: "29.07.2025 10:19" },
       { name: "Q.Soft POS", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/Q_Soft_POS_V3Brochue(thai)600305.pdf", created: "29.07.2025 10:19" },
     ],
   },
@@ -116,277 +130,245 @@ export default function DocumentPage() {
 
   return (
     <div className="font-kanit min-h-screen bg-gray-50">
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <Link href="/" className="text-blue-600 hover:text-blue-700">
-            ← กลับไปหน้าหลัก
-          </Link>
-        </div>
-      </div>
+      {/* Hero Header Section - Clean & White like other pages */}
+      <FadeInSection>
+        <div className="bg-white border-b overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
 
-      {/* Hero Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Left Section - Image & Title */}
-            <div className="lg:col-span-1">
-              <div className="mb-6">
-                <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                  <Image
-                    src="/img/download_from_cloud.png"
-                    alt="Download"
-                    fill
-                    className="object-contain p-4"
-                  />
-                </div>
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                  Documents Download Center
-                </h1>
-                <h3 className="text-lg font-semibold text-gray-700 mb-4">
-                  คู่มือการใช้งานโปรแกรม Q.Soft
-                </h3>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <strong className="text-blue-900 block mb-3">
-                    คำแนะนำในการดาวน์โหลดแบบพิมพ์
-                  </strong>
-                  <ul className="text-sm text-blue-800 space-y-2">
-                    <li>• สำหรับผู้ที่จะทำการดาวน์โหลดแบบพิมพ์ จำเป็นจะต้องทำการติดตั้งโปรแกรม Adobe Reader ลงในเครื่องคอมพิวเตอร์ก่อน</li>
-                    <li>• ขอแนะนำให้ใช้ Adobe Reader เวอร์ชั่น 5.0.5 ขึ้นไป</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle Section - Stats */}
-            <div className="lg:col-span-1">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 h-full flex flex-col justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-6">
-                    <span className="mr-2">📊</span>สถิติไฟล์
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-blue-600">39</span>
-                      <span className="text-gray-700">ไฟล์ทั้งหมด</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-green-600">11</span>
-                      <span className="text-gray-700">เอกสาร</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-purple-600">23</span>
-                      <span className="text-gray-700">โบรชัวร์</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-orange-600">5</span>
-                      <span className="text-gray-700">เอกสารอื่น</span>
-                    </div>
+          <div className="max-w-7xl mx-auto px-6 py-12 md:py-24 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left Section - Image & Title */}
+              <div className="flex flex-col md:flex-row gap-10 items-center">
+                <div className="relative group flex-shrink-0">
+                  <div className="absolute inset-0 bg-[#0e9aef]/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+                  <div className="relative w-48 h-48 bg-slate-50 rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-slate-100 shadow-sm transition-transform duration-500 group-hover:-rotate-3">
+                    <Image
+                      src="/img/download_from_cloud.png"
+                      alt="Download"
+                      width={140}
+                      height={140}
+                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+                    />
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Right Section - Status */}
-            <div className="lg:col-span-1">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 h-full flex flex-col justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-6">
-                    <span className="mr-2">📶</span>สถานะไฟล์
-                  </h3>
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="text-4xl font-bold text-green-600">⬆️</span>
-                    <div>
-                      <p className="text-xl font-bold text-gray-900">ปกติ</p>
-                      <p className="text-sm text-gray-600">พร้อมใช้งาน</p>
-                    </div>
+                <div className="text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-[#0e9aef] rounded-full text-xs font-bold mb-4">
+                    <BookOpen className="w-3 h-3" /> RESOURCES
                   </div>
-                  <p className="text-xs text-gray-500">
-                    อัปเดตล่าสุด: 14.08.2014 02:51
+                  <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                    Document <span style={{ color: "#0e9aef" }}>Center</span>
+                  </h1>
+                  <p className="text-lg text-slate-500 font-medium max-w-md leading-relaxed">
+                    ศูนย์รวมคู่มือการใช้งานและโบรชัวร์ผลิตภัณฑ์ BCI สำหรับผู้ใช้งานและองค์กร
                   </p>
                 </div>
               </div>
+
+              {/* Right Section - Stats Card & Info Overlay */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
+                <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="p-2.5 bg-blue-50 rounded-xl">
+                        <BarChart3 className="w-5 h-5 text-[#0e9aef]" />
+                      </div>
+                      <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">Overview</span>
+                    </div>
+
+                    <div className="space-y-5">
+                      {[
+                        { label: "ไฟล์ทั้งหมด", count: 39, color: "#0e9aef", icon: FileDown },
+                        { label: "เอกสารคู่มือ", count: 11, color: "#10b981", icon: FileText },
+                        { label: "โบรชัวร์", count: 23, color: "#8b5cf6", icon: ImageOff },
+                      ].map((stat) => (
+                        <div key={stat.label} className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className={`p-1.5 rounded-lg bg-slate-50`}>
+                              <stat.icon className="w-4 h-4" style={{ color: stat.color }} />
+                            </div>
+                            <span className="text-sm font-semibold text-slate-600">{stat.label}</span>
+                          </div>
+                          <span className="text-lg font-bold text-slate-800">{stat.count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-[#0e9aef] p-8 rounded-[2.5rem] shadow-xl shadow-blue-200/50 text-white flex flex-col justify-between relative overflow-hidden group">
+                  <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+
+                  <div className="relative z-10 flex items-center gap-2 mb-6 text-sm font-bold opacity-80 italic">
+                    <ArrowUpCircle className="w-4 h-4" /> Recommended
+                  </div>
+
+                  <div className="relative z-10 mb-8">
+                    <p className="text-sm opacity-90 leading-relaxed font-light italic">
+                      "สำหรับการดาวน์โหลดแบบพิมพ์ จำเป็นต้องติดตั้ง Adobe Reader 5.0.5 ขึ้นไป"
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 pt-4 border-t border-white/20 text-[10px] tracking-widest uppercase opacity-60">
+                    Last Updated: {new Date().toLocaleDateString("th-TH")}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </FadeInSection>
 
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          {/* Tabs */}
-          <div className="border-b border-gray-200 flex flex-wrap">
-            {documents.map((section) => (
-              <button
-                key={section.title}
-                onClick={() => setActiveTab(section.title)}
-                className={`px-6 py-4 font-semibold border-b-2 transition text-sm sm:text-base ${activeTab === section.title
-                    ? "border-blue-600 text-blue-600 bg-blue-50"
-                    : "border-transparent text-gray-600 hover:text-gray-900"
-                  }`}
-              >
-                {section.title}
-              </button>
-            ))}
-          </div>
+      <FadeInSection delay={0.2}>
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
+            {/* Tabs - Premium Horizontal Scroll */}
+            <div className="border-b border-slate-100 bg-slate-50/50 p-2">
+              <div className="flex flex-wrap gap-2">
+                {documents.map((section) => (
+                  <button
+                    key={section.title}
+                    onClick={() => setActiveTab(section.title)}
+                    className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm flex items-center gap-2 ${activeTab === section.title
+                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
+                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                      }`}
+                  >
+                    {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
+                    {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
+                    {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
+                    {section.title === "HRMI" && <Users className="w-4 h-4 text-orange-500" />}
+                    {section.title === "CRM" && <BarChart3 className="w-4 h-4 text-green-500" />}
+                    {section.title === "Support & Other" && <Files className="w-4 h-4 text-purple-500" />}
+                    {section.title}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          {/* Info Message */}
-          <div className="bg-blue-50 border-b border-blue-200 px-6 py-4">
-            <p className="text-sm text-blue-900">
-              <span className="font-semibold"><span className="mr-2">💡</span>ข้อมูล:</span> หากไม่ได้ติดตั้งโปรแกรมอ่านไฟล์ PDF สามารถเปิดอ่านผ่าน Web Browser ได้เช่นกัน
-            </p>
-          </div>
+            {/* Info Message */}
+            <div className="bg-[#0e9aef]/5 px-6 py-4 flex items-center gap-3">
+              <div className="p-2 bg-white rounded-lg shadow-sm">
+                <BookOpen className="w-4 h-4 text-[#0e9aef]" />
+              </div>
+              <p className="text-sm text-slate-600">
+                <span className="font-bold text-slate-800">Pro Tip:</span> ไฟล์ PDF สามารถเปิดอ่านผ่าน Web Browser ได้ทันทีโดยไม่ต้องติดตั้งซอฟต์แวร์เพิ่มเติม
+              </p>
+            </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-900">
-                    {isBrochure ? (
+            {/* Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-100">
+                    <th className="px-8 py-5 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      {activeTab} Name
+                    </th>
+                    <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">TH</th>
+                    <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">EN</th>
+                    {isBrochure && (
                       <>
-                        <span className="mr-2">📋</span>Brochure
-                      </>
-                    ) : (
-                      <>
-                        <span className="mr-2">📄</span>{activeTab}
+                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">CN</th>
+                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">KR</th>
+                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">JP</th>
                       </>
                     )}
-                  </th>
-                  <th className="px-6 py-4 text-center font-semibold text-gray-900">
-                    <span className="bg-blue-200 px-2 py-1 rounded text-xs font-mono">th</span>
-                  </th>
-                  <th className="px-6 py-4 text-center font-semibold text-gray-900">
-                    <span className="bg-purple-200 px-2 py-1 rounded text-xs font-mono">en</span>
-                  </th>
-                  {isBrochure && (
-                    <>
-                      <th className="px-6 py-4 text-center font-semibold text-gray-900">
-                        <span className="bg-red-200 px-2 py-1 rounded text-xs font-mono">cn</span>
-                      </th>
-                      <th className="px-6 py-4 text-center font-semibold text-gray-900">
-                        <span className="bg-green-200 px-2 py-1 rounded text-xs font-mono">kr</span>
-                      </th>
-                      <th className="px-6 py-4 text-center font-semibold text-gray-900">
-                        <span className="bg-yellow-200 px-2 py-1 rounded text-xs font-mono">jp</span>
-                      </th>
-                    </>
-                  )}
-                  <th className="px-6 py-4 text-left font-semibold text-gray-900">
-                    <span className="mr-2">📅</span>วันที่
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {documents
-                  .find((doc) => doc.title === activeTab)
-                  ?.items.map((item, index) => (
-                    <tr
-                      key={index}
-                      className={`border-b border-gray-200 hover:bg-blue-50 transition ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                        }`}
-                    >
-                      <td className="px-6 py-4 text-gray-900 font-medium">
-                        {item.name}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        {item.thUrl ? (
-                          <a
-                            href={item.thUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-                          >
-                            {item.th}
-                          </a>
-                        ) : (
-                          <span className="text-gray-400">-</span>
+                    <th className="px-8 py-5 text-right text-xs font-bold text-slate-400 uppercase tracking-wider">
+                      Release Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-50">
+                  {documents
+                    .find((doc) => doc.title === activeTab)
+                    ?.items.map((item, index) => (
+                      <motion.tr
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        key={index}
+                        className="hover:bg-slate-50/50 transition-colors group"
+                      >
+                        <td className="px-8 py-5">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-[#0e9aef]/10 flex items-center justify-center text-[#0e9aef] group-hover:scale-110 transition-transform">
+                              <FileText className="w-4 h-4" />
+                            </div>
+                            <span className="text-slate-700 font-semibold group-hover:text-[#0e9aef] transition-colors">{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-5 text-center">
+                          {item.thUrl ? (
+                            <a
+                              href={item.thUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                            >
+                              Download
+                            </a>
+                          ) : (
+                            <span className="text-slate-300 text-xs">N/A</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-5 text-center">
+                          {item.enUrl ? (
+                            <a
+                              href={item.enUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold hover:bg-purple-600 hover:text-white transition-all shadow-sm"
+                            >
+                              Download
+                            </a>
+                          ) : (
+                            <span className="text-slate-300 text-xs">N/A</span>
+                          )}
+                        </td>
+                        {isBrochure && (
+                          <>
+                            {[
+                              { url: item.cnUrl, text: item.cn, lang: "cn" },
+                              { url: item.krUrl, text: item.kr, lang: "kr" },
+                              { url: item.jpUrl, text: item.jp, lang: "jp" },
+                            ].map((langData, idx) => {
+                              const colors: Record<string, string> = {
+                                cn: "bg-red-50 text-red-600 hover:bg-red-600",
+                                kr: "bg-green-50 text-green-600 hover:bg-green-600",
+                                jp: "bg-yellow-50 text-yellow-600 hover:bg-yellow-600"
+                              };
+                              return (
+                                <td key={idx} className="px-6 py-5 text-center">
+                                  {langData.url ? (
+                                    <a
+                                      href={langData.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-bold hover:text-white transition-all shadow-sm ${colors[langData.lang]}`}
+                                    >
+                                      Download
+                                    </a>
+                                  ) : (
+                                    <span className="text-slate-300 text-xs">N/A</span>
+                                  )}
+                                </td>
+                              );
+                            })}
+                          </>
                         )}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        {item.enUrl ? (
-                          <a
-                            href={item.enUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-                          >
-                            {item.en}
-                          </a>
-                        ) : (
-                          <span className="text-gray-400">-</span>
-                        )}
-                      </td>
-                      {isBrochure && (
-                        <>
-                          <td className="px-6 py-4 text-center">
-                            {item.cnUrl ? (
-                              <a
-                                href={item.cnUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-                              >
-                                {item.cn}
-                              </a>
-                            ) : (
-                              <span className="text-gray-400">{item.cn || "-"}</span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            {item.krUrl ? (
-                              <a
-                                href={item.krUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-                              >
-                                {item.kr}
-                              </a>
-                            ) : (
-                              <span className="text-gray-400">{item.kr || "-"}</span>
-                            )}
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            {item.jpUrl ? (
-                              <a
-                                href={item.jpUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-800 hover:underline font-semibold"
-                              >
-                                {item.jp}
-                              </a>
-                            ) : (
-                              <span className="text-gray-400">{item.jp || "-"}</span>
-                            )}
-                          </td>
-                        </>
-                      )}
-                      <td className="px-6 py-4 text-gray-600 text-xs font-mono">
-                        {item.created}
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
+                        <td className="px-8 py-5 text-right">
+                          <span className="text-xs font-medium text-slate-400 font-mono">{item.created}</span>
+                        </td>
+                      </motion.tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-
-        {/* Notice */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
-          <div className="text-center">
-            <p className="text-gray-800 mb-2">
-              <strong><span className="mr-2">📞</span>สำหรับข้อมูลเพิ่มเติม</strong>
-            </p>
-            <p className="text-blue-600 font-semibold">
-              โปรดติดต่อเราได้ที่ <a href="mailto:contact@bci.co.th" className="hover:underline">contact@bci.co.th</a>
-            </p>
-          </div>
-        </div>
-      </div>
+      </FadeInSection>
     </div>
   );
 }

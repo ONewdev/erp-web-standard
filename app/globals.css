@@ -7,51 +7,79 @@
 :root {
   /* สีพื้นหลังหลัก - ขาว */
   --background: #ffffff;
-  --foreground: #1e293b;         /* slate-800 */
-  
+  --foreground: #1e293b;
+  /* slate-800 */
+
   /* สีหลัก (Primary) - น้ำเงินเข้ม */
-  --primary: #1e40af;            /* blue-800 - น้ำเงินเข้ม */
-  --primary-hover: #1e3a8a;      /* blue-900 - น้ำเงินเข้มกว่าเมื่อ hover */
-  --primary-light: #dbeafe;      /* blue-100 - น้ำเงินอ่อน */
-  --primary-text: #1e40af;       /* blue-800 - น้ำเงินเข้มสำหรับข้อความ */
-  
+  --primary: #1e40af;
+  /* blue-800 - น้ำเงินเข้ม */
+  --primary-hover: #1e3a8a;
+  /* blue-900 - น้ำเงินเข้มกว่าเมื่อ hover */
+  --primary-light: #dbeafe;
+  /* blue-100 - น้ำเงินอ่อน */
+  --primary-text: #1e40af;
+  /* blue-800 - น้ำเงินเข้มสำหรับข้อความ */
+  --brand-blue: #0e9aef;
+  /* brand color - ฟ้าสว่าง */
+
   /* สีรอง (Secondary) - เทา */
-  --secondary: #64748b;          /* slate-500 - เทากลาง */
-  --secondary-light: #f1f5f9;    /* slate-100 - เทาอ่อน */
-  --secondary-text: #475569;     /* slate-600 - เทาเข้มสำหรับข้อความ */
-  
+  --secondary: #64748b;
+  /* slate-500 - เทากลาง */
+  --secondary-light: #f1f5f9;
+  /* slate-100 - เทาอ่อน */
+  --secondary-text: #475569;
+  /* slate-600 - เทาเข้มสำหรับข้อความ */
+
   /* สีฟ้า (Accent) - สำหรับ highlight และ effects */
-  --accent: #3b82f6;             /* blue-500 - ฟ้าสดใส */
-  --accent-light: #60a5fa;       /* blue-400 - ฟ้าอ่อน */
-  --accent-dark: #2563eb;        /* blue-600 - ฟ้าเข้ม */
-  
+  --accent: #3b82f6;
+  /* blue-500 - ฟ้าสดใส */
+  --accent-light: #60a5fa;
+  /* blue-400 - ฟ้าอ่อน */
+  --accent-dark: #2563eb;
+  /* blue-600 - ฟ้าเข้ม */
+
   /* สีพื้นหลัง - ขาวและเทาอ่อน */
-  --bg-white: #ffffff;           /* ขาว */
-  --bg-gray-50: #f8fafc;         /* slate-50 - เทาอ่อนมาก */
-  --bg-gray-100: #f1f5f9;        /* slate-100 - เทาอ่อน */
-  --bg-gray-200: #e2e8f0;        /* slate-200 - เทากลางอ่อน */
-  
+  --bg-white: #ffffff;
+  /* ขาว */
+  --bg-gray-50: #f8fafc;
+  /* slate-50 - เทาอ่อนมาก */
+  --bg-gray-100: #f1f5f9;
+  /* slate-100 - เทาอ่อน */
+  --bg-gray-200: #e2e8f0;
+  /* slate-200 - เทากลางอ่อน */
+
   /* สีเส้นขอบ - เทา */
-  --border: #cbd5e1;             /* slate-300 - เทาเส้นขอบ */
-  --border-light: #e2e8f0;       /* slate-200 - เทาเส้นขอบอ่อน */
-  --border-dark: #94a3b8;        /* slate-400 - เทาเส้นขอบเข้ม */
-  
+  --border: #cbd5e1;
+  /* slate-300 - เทาเส้นขอบ */
+  --border-light: #e2e8f0;
+  /* slate-200 - เทาเส้นขอบอ่อน */
+  --border-dark: #94a3b8;
+  /* slate-400 - เทาเส้นขอบเข้ม */
+
   /* สีข้อความ */
-  --text-primary: #1e293b;       /* slate-800 - เทาเข้มสำหรับข้อความหลัก */
-  --text-secondary: #475569;    /* slate-600 - เทากลางสำหรับข้อความรอง */
-  --text-muted: #64748b;         /* slate-500 - เทาอ่อนสำหรับข้อความจาง */
-  --text-white: #ffffff;         /* ขาวสำหรับข้อความบนพื้นสีเข้ม */
-  
+  --text-primary: #1e293b;
+  /* slate-800 - เทาเข้มสำหรับข้อความหลัก */
+  --text-secondary: #475569;
+  /* slate-600 - เทากลางสำหรับข้อความรอง */
+  --text-muted: #64748b;
+  /* slate-500 - เทาอ่อนสำหรับข้อความจาง */
+  --text-white: #ffffff;
+  /* ขาวสำหรับข้อความบนพื้นสีเข้ม */
+
   /* สีพิเศษ */
-  --success: #10b981;            /* emerald-500 */
-  --warning: #f59e0b;            /* amber-500 */
-  --error: #ef4444;              /* red-500 */
-  
+  --success: #10b981;
+  /* emerald-500 */
+  --warning: #f59e0b;
+  /* amber-500 */
+  --error: #ef4444;
+  /* red-500 */
+
   /* Shadow */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  --shadow-blue: 0 4px 14px 0 rgba(30, 64, 175, 0.15); /* shadow สีน้ำเงิน */
+  --shadow-blue: 0 4px 14px 0 rgba(30, 64, 175, 0.15);
+  /* shadow สีน้ำเงิน */
 }
 
 /* Dark Mode Theme (ถ้าต้องการ) */

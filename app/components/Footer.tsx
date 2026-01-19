@@ -1,53 +1,39 @@
 export default function Footer() {
   return (
     <footer
+      className="font-kanit bg-white border-t border-slate-100"
       style={{
-        padding: "16px 24px",
-        borderTop: "1px solid #e5e7eb",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: 12,
-        opacity: 0.85,
+        padding: "24px 0",
+        marginTop: "auto",
       }}
     >
-      {/* ซ้าย */}
-      <div>
-        <strong>Copyright</strong> Business Competitive Intelligence Co., Ltd. ©
-        2014–{new Date().getFullYear()}
-      </div>
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        {/* Left */}
+        <div className="text-slate-500 text-sm">
+          <span className="font-semibold text-slate-700">Copyright © 2014–{new Date().getFullYear()}</span>
+          <span className="hidden md:inline mx-2">•</span>
+          <span className="block md:inline">Business Competitive Intelligence Co., Ltd.</span>
+        </div>
 
-      {/* ขวา */}
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <a
-          href="/privacypolicy"
-          style={{ fontWeight: 600, textDecoration: "none" }}
-        >
-          Privacy Policy
-        </a>
+        {/* Right */}
+        <div className="flex items-center gap-8">
+          <a
+            href="/privacypolicy"
+            className="text-slate-500 hover:text-[#0e9aef] text-sm font-medium transition-colors"
+          >
+            Privacy Policy
+          </a>
 
-        <a
-          href="https://www.facebook.com/q.soft/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 28,
-            height: 28,
-            borderRadius: "50%",
-            border: "1px solid #e5e7eb",
-            textDecoration: "none",
-          }}
-          aria-label="Facebook"
-        >
-          {/* ใช้ Font Awesome ได้ถ้ามี */}
-          <i className="fa fa-facebook" />
-          {/* หรือใช้ emoji แทนถ้ายังไม่ลง FA */}
-          {/* 📘 */}
-        </a>
+          <a
+            href="https://www.facebook.com/q.soft/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#0e9aef] hover:border-[#0e9aef] transition-all duration-300"
+            aria-label="Facebook"
+          >
+            <i className="fa fa-facebook" />
+          </a>
+        </div>
       </div>
     </footer>
   );

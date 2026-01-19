@@ -112,7 +112,7 @@ export default function Navbar() {
                  ${isTransparent ? "px-3 pt-[25px] pb-[15px] text-white" : "px-3 py-[20px] text-[#676a6c]"}
                  `}
               >
-                หน้าหลัก
+                กลับหน้าหลัก
               </Link>
             )}
 
