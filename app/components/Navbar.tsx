@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import FadeInSection from "./FadeInSection";
 
 const navItems = [
   { label: "คุณสมบัติ", href: "/#features" },
@@ -60,7 +61,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out ${navbarClasses}`}
     >
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <FadeInSection className="mx-auto max-w-7xl px-4 lg:px-6" viewport={{ once: true, margin: "0px" }}>
         <div className="flex items-start justify-between">
           {/* Logo - Hanging Tab Style with Animation */}
           <div className="navbar-header">
@@ -219,7 +220,7 @@ export default function Navbar() {
             </nav>
           </div>
         )}
-      </div>
+      </FadeInSection>
     </header>
   );
 }
