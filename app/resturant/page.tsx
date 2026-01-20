@@ -6,14 +6,6 @@ import Link from "next/link";
 export default function RestaurantPage() {
   return (
     <div className="font-kanit min-h-screen bg-gradient-to-b from-red-400 to-white">
-      {/* ===== Breadcrumb / Navigation ===== */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <Link href="/" className="text-blue-600 hover:text-blue-700">
-            ← กลับไปหน้าหลัก
-          </Link>
-        </div>
-      </div>
 
       {/* ===== Main Content ===== */}
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -63,25 +55,25 @@ export default function RestaurantPage() {
               <div className="border-t border-gray-200 pt-6">
                 <div className="space-y-3 text-slate-600">
                   <p>
-                    <strong>1. จัดการข้อมูลเมนูอาหารและเครื่องดื่ม</strong> ได้อย่างง่ายดาย
+                    <strong>1. สามารถจัดการข้อมูลเมนูอาหารและเครื่องดื่ม</strong> 
                   </p>
                   <p>
-                    <strong>2. กำหนดราคาอาหาร เครื่องดื่ม</strong> ตามโซนการให้บริการที่แตกต่างกัน
+                    <strong>2. สามารถกำหนดราคาอาหาร เครื่องดื่ม กำหนดราคาอาหาร เครื่องดื่มตามโซน</strong> 
                   </p>
                   <p>
-                    <strong>3. จัดการข้อมูลพนักงาน</strong> แบ่งตามตำแหน่งของพนักงาน
+                    <strong>3. สามารถจัดการข้อมูลพนักงาน</strong> แบ่งตามตำแหน่งของพนักงาน
                   </p>
                   <p>
-                    <strong>4. สร้างโซนการให้บริการ</strong> กำหนดราคาค่าบริการต่างๆ ตามโซน
+                    <strong>4. สามารถสร้างโซนการให้บริการ</strong> กำหนดราคาค่าบริการต่างๆ ตามโซน
                   </p>
                   <p>
-                    <strong>5. กำหนดค่าคอมมิชชั่น</strong> ให้กับพนักงานได้อย่างยืดหยุ่น
+                    <strong>5. สามารถกำหนดค่าคอมมิชชั่น</strong> ให้กับพนักงานได้
                   </p>
                   <p>
-                    <strong>6. ระบบสมาชิก คูปอง ส่วนลด</strong> เพื่อเพิ่มความจงรักภักษ์ของลูกค้า
+                    <strong>6. ระบบสมาชิก คูปอง ส่วนลด</strong> 
                   </p>
                   <p>
-                    <strong>7. รายงานสรุปยอดต่างๆ</strong> สำหรับการวิเคราะห์ผลประกอบการ
+                    <strong>7. รายงานสรุปยอดต่างๆ</strong> 
                   </p>
                   <p>
                     <strong>8. รองรับการแสดงผล</strong> ทั้ง Desktop Tablet และ Mobile
@@ -89,26 +81,7 @@ export default function RestaurantPage() {
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
-                  ประโยชน์ที่ได้รับจากโปรแกรม
-                </h3>
-                <div className="space-y-2 text-slate-600 text-sm">
-                  <div className="space-y-2">
-                    <p>✓ เพิ่มรายได้ผลตอบแทนต่อโต๊ะอาหารสูงขึ้น</p>
-                    <p>✓ บริหารร้านอาหารได้อย่างง่ายดาย</p>
-                    <p>✓ เพิ่มประสิทธิภาพในการจัดการแม่บ้าน</p>
-                    <p>✓ เก็บข้อมูลเมนูและราคาอย่างเป็นระบบ</p>
-                    <p>✓ จัดการพนักงานและสิทธิ์ของพนักงาน</p>
-                    <p>✓ รองรับหลายโซนการให้บริการ</p>
-                    <p>✓ คำนวณค่าคอมมิชชั่นอัตโนมัติ</p>
-                    <p>✓ ระบบสมาชิกเพื่อเก็บข้อมูลลูกค้า</p>
-                    <p>✓ จัดการคูปองและส่วนลดได้</p>
-                    <p>✓ ดูรายงานผลประกอบการแบบรealtime</p>
-                    <p>✓ ใช้งานได้บนอุปกรณ์ต่างๆ (Desktop/Tablet/Mobile)</p>
-                  </div>
-                </div>
-              </div>
+
 
               {/* ===== Documents Download ===== */}
               <div className="border-t border-gray-200 pt-6">
@@ -133,20 +106,7 @@ export default function RestaurantPage() {
                 </div>
               </div>
 
-              {/* ===== CTA ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <div className="bg-blue-50 rounded-lg p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    สนใจใช้งานระบบ Q.Soft POS for Restaurant?
-                  </h3>
-                  <Link
-                    href="/#contact"
-                    className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
-                  >
-                    ติดต่อเราเลย
-                  </Link>
-                </div>
-              </div>
+
 
               {/* ===== Related Products ===== */}
               <div className="border-t border-gray-200 pt-6">

@@ -6,15 +6,6 @@ import Link from "next/link";
 export default function PageAPS() {
   return (
     <div className="font-kanit min-h-screen bg-gradient-to-b from-cyan-400 to-white">
-      {/* ===== Breadcrumb / Navigation ===== */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <Link href="/" className="text-blue-600 hover:text-blue-700">
-            ← กลับไปหน้าหลัก
-          </Link>
-        </div>
-      </div>
-
       {/* ===== Main Content ===== */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -36,17 +27,13 @@ export default function PageAPS() {
                 <div>
                   <h5 className="font-bold text-gray-800 mb-2">Q.Soft APS</h5>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    เป็นโปรแกรมบริหารตารางการผลิตเพื่อเพิ่มความรวดเร็วในการจัดการแผนการผลิต
-                    หลายสินค้าที่มีความซ้ำซ้อนทั้งในกระบวนการการผลิต,
-                    หลายหน่วยผลิต (Resources) ให้อยู่ในรูปของ Graphic
+                    เป็นโปรแกรมบริหารตารางการผลิตเพื่อเพิ่มความรวดเร็วในการจัดการแผนการผลิต หลายสินค้าที่มีความซ้ำซ้อนทั้งในกระบวนการการผลิต, หลายหน่วยผลิต(Resources) ให้อยู่ในรูปของ Graphic เพื่อง่ายในการบริหารจัดการ
                   </p>
                 </div>
                 <div>
                   <h5 className="font-bold text-gray-800 mb-2">จุดมุ่งหมายของโปรแกรมนี้</h5>
                   <p className="text-sm text-slate-600 leading-relaxed">
-                    ให้ผู้ประกอบการภาคอุตสาหกรรมที่กำลังมองหาโปรแกรมบริหารและวางแผนการผลิต
-                    (APS) ที่มีคุณภาพ ใช้งานง่าย และราคาไม่สูงจนเกินไป
-                    เพื่อให้รับรู้ต้นทุนที่แท้จริง
+                    คือ ให้ผู้ประกอบการภาคอุตสาหกรรมที่กำลังมองหาโปรแกรมบริหารและวางแผนการผลิต (MRP) ที่มีคุณภาพ ใช้งานง่าย และราคาไม่สูงจนเกินไปเมื่อเทียบกับความสามารถที่ได้รับ เพื่อให้รับรู้ต้นทุนที่แท้จริง (Actual Cost) อันจะนำไปสู่การพัฒนาศักยภาพในการแข่งขันขององค์กร และพัฒนาระบบการทำงานให้เจริญเติบโตอย่างต่อเนื่อง เพื่อให้เกิดผลกำไรสูงสุด
                   </p>
                 </div>
               </div>
@@ -99,11 +86,11 @@ export default function PageAPS() {
                   </p>
                   <p>
                     <strong>10. Customize เพื่อเชื่อมต่อโปรแกรม MRP</strong> ใดๆ ก็ได้
-                    เพื่อเพิ่มประสิทธิภาพการทำงาน
+                    เพื่อเพิ่มประสิทธิภาพการทำงานของโปรแกรมนั้น
                   </p>
                   <p>
                     <strong>11. ดูรายละเอียดของงาน</strong> (Order - Instruction)
-                    ที่ออกไปเพื่อลดความผิดพลาดในการกระจายงาน
+                    ที่ออกไปเพื่อลดความผิดพลาดในการกระจายงานได้
                   </p>
                 </div>
               </div>
@@ -114,19 +101,19 @@ export default function PageAPS() {
                 </h3>
                 <div className="space-y-3 text-slate-600 text-sm">
                   <p>
-                    ✓ สามารถแบ่งกำลังการผลิตแยกหน่วยผลิตในกระบวนการเดียวกัน
+                    1. สามารถแบ่งกำลังการผลิตแยกหน่วยผลิตในกระบวนการเดียวกัน
                   </p>
                   <p>
-                    ✓ รายงานสำหรับประเมินผล (Report Evaluation) ที่ครบถ้วน
+                    2. รายงานสำหรับประเมินผล (Report Evaluation) ที่ครบถ้วน
                   </p>
                   <p>
-                    ✓ Drill Down ไปยังเอกสารเพื่อปรับปรุง หรือเปลี่ยนแปลงข้อมูลได้ทันที
+                    3. Drill Down ไปยังเอกสารเพื่อปรับปรุง หรือเปลี่ยนแปลงข้อมูลได้ทันที
                   </p>
                   <p>
-                    ✓ สามารถ Export ข้อมูลไป MS Project หรือ MS Excel ได้
+                    4. สามารถ Export ข้อมูลไป MS Project หรือ MS Excel ได้
                   </p>
                   <p>
-                    ✓ Friendly Graphic User Interface ที่ใช้งานได้ง่าย
+                    5. Friendly Graphic User Interface 
                   </p>
                 </div>
               </div>
@@ -164,20 +151,6 @@ export default function PageAPS() {
                 </div>
               </div>
 
-              {/* ===== CTA ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <div className="bg-blue-50 rounded-lg p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    สนใจใช้งานระบบ Q.Soft APS?
-                  </h3>
-                  <Link
-                    href="/#contact"
-                    className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
-                  >
-                    ติดต่อเราเลย
-                  </Link>
-                </div>
-              </div>
 
               {/* ===== Related Products ===== */}
               <div className="border-t border-gray-200 pt-6">

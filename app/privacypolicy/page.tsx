@@ -1,26 +1,44 @@
+"use client";
 import { ShieldCheck, Mail, Phone, MapPin, ChevronRight, Info, ExternalLink } from "lucide-react";
+import React from "react";
 
 export default function PrivacyPolicy() {
     const brandBlue = "#0e9aef";
 
     const tableOfContents = [
-        "สิทธิเกี่ยวกับข้อมูลส่วนบุคคล",
-        "การจัดเก็บข้อมูลส่วนบุคคล",
-        "จุดประสงค์การใช้และการเปิดเผยข้อมูล",
-        "ข้อจำกัดในการใช้และเปิดเผยข้อมูล",
-        "การเปลี่ยนแปลงหรือลบข้อมูล",
-        "การโอนข้อมูลไปยังต่างประเทศ",
-        "คุกกี้ พิกเซล ไอพี แอดเดรส",
-        "ระยะเวลาในการเก็บข้อมูล",
-        "การคุ้มครองข้อมูลการเงิน",
-        "ความปลอดภัยของข้อมูลส่วนบุคคล",
-        "การเปลี่ยนแปลงนโยบาย",
-        "เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล",
-        "ช่องทางการติดต่อบริษัท",
+        { title: "สิทธิเกี่ยวกับข้อมูลส่วนบุคคล", id: "section-1" },
+        { title: "การจัดเก็บข้อมูลส่วนบุคคล", id: "section-2" },
+        { title: "จุดประสงค์การใช้และการเปิดเผยข้อมูล", id: "section-3" },
+        { title: "ข้อจำกัดในการใช้และเปิดเผยข้อมูล", id: "section-4" },
+        { title: "การเปลี่ยนแปลงหรือลบข้อมูล", id: "section-5" },
+        { title: "การโอนข้อมูลไปยังต่างประเทศ", id: "section-6" },
+        { title: "คุกกี้ พิกเซล ไอพี แอดเดรส", id: "section-7" },
+        { title: "ระยะเวลาในการเก็บข้อมูล", id: "section-8" },
+        { title: "การคุ้มครองข้อมูลการเงิน", id: "section-9" },
+        { title: "ความปลอดภัยของข้อมูลส่วนบุคคล", id: "section-10" },
+        { title: "การเปลี่ยนแปลงนโยบาย", id: "section-11" },
+        { title: "เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล", id: "section-12" },
+        { title: "ช่องทางการติดต่อบริษัท", id: "section-13" },
     ];
 
     return (
         <div className="font-kanit bg-[#f8fafc] min-h-screen">
+            <style jsx global>{`
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 4px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: #f1f5f9;
+                    border-radius: 10px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: #cbd5e1;
+                    border-radius: 10px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: #0e9aef;
+                }
+            `}</style>
             {/* Hero Header */}
             <div className="bg-slate-900 pt-32 pb-20 px-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/10 blur-3xl rounded-full -mr-20"></div>
@@ -40,12 +58,12 @@ export default function PrivacyPolicy() {
                 </div>
             </div>
 
-            <div className="max-w-5xl mx-auto px-6 -mt-10 pb-24 relative z-20">
-                <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 -mt-10 pb-24 relative z-20 flex flex-col lg:flex-row gap-8 items-start">
+                <div className="flex-1 bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
                     {/* Introduction */}
                     <div className="p-8 md:p-16 border-b border-slate-50 bg-gradient-to-b from-blue-50/20 to-transparent">
                         <h2 className="text-2xl font-bold text-slate-800 mb-8 flex items-center gap-3">
-                            <div className="w-1 h-8 bg-[#0e9aef] rounded-full"></div>
+                            <span className="w-1 h-8 bg-[#0e9aef] rounded-full inline-block"></span>
                             บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด
                         </h2>
                         <div className="space-y-6 text-slate-600 leading-loose text-lg font-medium opacity-90">
@@ -63,28 +81,32 @@ export default function PrivacyPolicy() {
                         </div>
                     </div>
 
-                    {/* Table of Contents */}
-                    <div className="p-8 md:p-12 bg-slate-50/50">
+                    {/* Mobile Table of Contents - Hidden on lg */}
+                    <div className="p-8 md:p-12 bg-slate-50/50 lg:hidden">
                         <div className="inline-flex items-center gap-2 mb-8 text-slate-400 font-bold text-sm tracking-widest uppercase">
                             <Info className="w-4 h-4" /> สารบัญเนื้อหา
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {tableOfContents.map((item, index) => (
-                                <div key={index} className="flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-[#0e9aef]/30 hover:shadow-md transition-all group cursor-default">
+                                <a
+                                    key={index}
+                                    href={`#${item.id}`}
+                                    className="flex items-center gap-4 p-4 bg-white rounded-xl border border-slate-100 hover:border-[#0e9aef]/30 hover:shadow-md hover:translate-x-1 transition-all group decoration-transparent"
+                                >
                                     <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-slate-100 text-slate-400 group-hover:bg-[#0e9aef]/10 group-hover:text-[#0e9aef] flex items-center justify-center text-xs font-black transition-colors">
                                         {String(index + 1).padStart(2, '0')}
                                     </span>
-                                    <span className="text-slate-700 font-bold text-[13px] leading-tight">{item}</span>
+                                    <span className="text-slate-700 font-bold text-[13px] leading-tight">{item.title}</span>
                                     <ChevronRight className="w-4 h-4 ml-auto text-slate-200 group-hover:text-[#0e9aef] transition-colors" />
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </div>
 
                     {/* Main Content Sections */}
-                    <div className="p-8 md:p-16 space-y-20">
+                    <div className="p-8 md:p-16 space-y-20 scroll-smooth">
                         {/* Section 1 */}
-                        <section>
+                        <section id="section-1" className="scroll-mt-24">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-12 h-12 bg-[#0e9aef] rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">1</div>
                                 <h3 className="text-2xl font-extrabold text-slate-800">สิทธิเกี่ยวกับข้อมูลส่วนบุคคลของท่าน</h3>
@@ -131,7 +153,7 @@ export default function PrivacyPolicy() {
                         </section>
 
                         {/* Section 2 */}
-                        <section>
+                        <section id="section-2" className="scroll-mt-24">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-12 h-12 bg-[#0e9aef] rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">2</div>
                                 <h3 className="text-2xl font-extrabold text-slate-800">การจัดเก็บข้อมูลส่วนบุคคลของท่าน</h3>
@@ -148,9 +170,9 @@ export default function PrivacyPolicy() {
                                     ))}
                                 </div>
                                 <div className="p-8 bg-slate-900 rounded-[2rem] text-white">
-                                    <p className="font-bold text-[#0e9aef] mb-4 uppercase tracking-widest text-xs flex items-center gap-2">
+                                    <div className="font-bold text-[#0e9aef] mb-4 uppercase tracking-widest text-xs flex items-center gap-2">
                                         <div className="w-1.5 h-1.5 rounded-full bg-[#0e9aef]"></div> Financial Data / ข้อมูลทางการเงิน
-                                    </p>
+                                    </div>
                                     <p className="text-slate-400 text-base mb-6 leading-relaxed">ในกรณีที่ท่านทำธุรกรรมกับทางบริษัท จะมีการจัดเก็บข้อมูลทางการเงินเพิ่มเติม เช่น:</p>
                                     <div className="flex flex-wrap gap-4">
                                         <div className="px-5 py-3 bg-white/5 rounded-xl border border-white/10 flex items-center gap-3">
@@ -178,7 +200,7 @@ export default function PrivacyPolicy() {
                         </section>
 
                         {/* Section 3 */}
-                        <section>
+                        <section id="section-3" className="scroll-mt-24">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-12 h-12 bg-[#0e9aef] rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">3</div>
                                 <h3 className="text-2xl font-extrabold text-slate-800">จุดประสงค์การใช้และการเปิดเผยข้อมูล</h3>
@@ -218,7 +240,7 @@ export default function PrivacyPolicy() {
                         </section>
 
                         {/* Section 4 */}
-                        <section>
+                        <section id="section-4" className="scroll-mt-24">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-12 h-12 bg-[#0e9aef] rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-200">4</div>
                                 <h3 className="text-2xl font-extrabold text-slate-800">ข้อจำกัดในการใช้และ/หรือเปิดเผยข้อมูลส่วนบุคคล</h3>
@@ -247,7 +269,7 @@ export default function PrivacyPolicy() {
 
                         {/* Section 5, 6 Grid */}
                         <div className="grid md:grid-cols-2 gap-8">
-                            <section className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all hover:shadow-lg">
+                            <section id="section-5" className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all hover:shadow-lg scroll-mt-24">
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-10 h-10 bg-[#0e9aef]/10 text-[#0e9aef] rounded-xl flex items-center justify-center font-bold">5</div>
                                     <h3 className="text-xl font-extrabold text-slate-800">การเปลี่ยนแปลงหรือลบข้อมูล</h3>
@@ -260,7 +282,7 @@ export default function PrivacyPolicy() {
                                 </div>
                             </section>
 
-                            <section className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all hover:shadow-lg">
+                            <section id="section-6" className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-sm transition-all hover:shadow-lg scroll-mt-24">
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-10 h-10 bg-[#0e9aef]/10 text-[#0e9aef] rounded-xl flex items-center justify-center font-bold">6</div>
                                     <h3 className="text-xl font-extrabold text-slate-800">การโอนข้อมูลไปยังต่างประเทศ</h3>
@@ -272,7 +294,7 @@ export default function PrivacyPolicy() {
                         </div>
 
                         {/* Section 7 - Cookies Expanded */}
-                        <section className="bg-slate-900 p-8 md:p-16 rounded-[3rem] text-white relative overflow-hidden">
+                        <section id="section-7" className="bg-slate-900 p-8 md:p-16 rounded-[3rem] text-white relative overflow-hidden scroll-mt-24">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#0e9aef]/10 blur-3xl rounded-full -mr-32 -mt-32"></div>
                             <div className="relative z-10 space-y-8">
                                 <div className="flex items-center gap-4 mb-8">
@@ -324,7 +346,7 @@ export default function PrivacyPolicy() {
                                 { n: 11, t: "การเปลี่ยนแปลงนโยบาย", c: "บริษัทอาจแก้ไขเพิ่มเติมนโยบายคุ้มครองข้อมูลส่วนบุคคลฉบับนี้ได้ทุกเวลา โดยเผยแพร่ประกาศการแก้ไขเพิ่มเติมบนเว็บไซต์ การใช้บริการอย่างต่อเนื่องถือเป็นการยอมรับข้อกำหนดของการแก้ไขแต่ละครั้ง" },
                                 { n: 12, t: "เจ้าหน้าที่คุ้มครองข้อมูล", c: "เราแต่งตั้ง Data Protection Office (DPO) เพื่อตรวจสอบการดำเนินการเกี่ยวกับการจัดเก็บ ใช้ และเปิดเผยข้อมูลให้สอดคล้องกับพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 รวมถึงกฎหมายความมั่นคงปลอดภัยไซเบอร์ที่เกี่ยวข้อง" }
                             ].map((item, i) => (
-                                <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                                <div key={i} id={`section-${item.n}`} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm scroll-mt-24">
                                     <div className="flex items-center gap-4 mb-4">
                                         <div className="w-10 h-10 bg-[#0e9aef] text-white rounded-xl flex items-center justify-center font-bold">{item.n}</div>
                                         <h3 className="text-lg font-extrabold text-slate-800">{item.t}</h3>
@@ -335,7 +357,7 @@ export default function PrivacyPolicy() {
                         </div>
 
                         {/* Section 10 - Security Detailed */}
-                        <section className="bg-blue-50 p-8 md:p-12 rounded-[3rem] border border-blue-100 shadow-inner">
+                        <section id="section-10" className="bg-blue-50 p-8 md:p-12 rounded-[3rem] border border-blue-100 shadow-inner scroll-mt-24">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg">10</div>
                                 <h3 className="text-2xl font-extrabold text-slate-800">ความปลอดภัยของข้อมูลส่วนบุคคลของท่าน</h3>
@@ -357,7 +379,7 @@ export default function PrivacyPolicy() {
                         </section>
 
                         {/* Footer Contact - Section 13 */}
-                        <div className="pt-20 border-t border-slate-100">
+                        <div id="section-13" className="pt-20 border-t border-slate-100 scroll-mt-24">
                             <div className="flex items-center gap-4 mb-12">
                                 <div className="w-14 h-14 bg-slate-200 rounded-2xl flex items-center justify-center text-slate-900 font-bold text-2xl">13</div>
                                 <div>
@@ -401,6 +423,32 @@ export default function PrivacyPolicy() {
                         </div>
                     </div>
                 </div>
+
+                {/* Sidebar Table of Contents - Desktop Only */}
+                <aside className="hidden lg:block w-80 sticky top-32 shrink-0">
+                    <div className="bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/30 border border-slate-100">
+                        <div className="inline-flex items-center gap-2 mb-6 text-[#0e9aef] font-bold text-xs tracking-widest uppercase">
+                            <Info className="w-4 h-4" /> สารบัญเนื้อหา
+                        </div>
+                        <div className="max-h-[340px] overflow-y-auto pr-2 custom-scrollbar">
+                            <nav className="space-y-1">
+                                {tableOfContents.map((item, index) => (
+                                    <a
+                                        key={index}
+                                        href={`#${item.id}`}
+                                        className="flex items-center gap-3 p-2.5 text-slate-500 hover:text-[#0e9aef] hover:bg-blue-50/50 rounded-xl transition-all group text-sm font-medium decoration-transparent"
+                                    >
+                                        <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-slate-100 text-slate-400 group-hover:bg-[#0e9aef] group-hover:text-white flex items-center justify-center text-[10px] font-black transition-colors">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </span>
+                                        <span className="truncate">{item.title}</span>
+                                    </a>
+                                ))}
+                            </nav>
+                        </div>
+
+                    </div>
+                </aside>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, MapPin, Phone, Mail, Youtube, Facebook, Send, Building2, Settings, BarChart3, Truck } from "lucide-react";
+import { motion } from "framer-motion";
 import FadeInSection from "@/app/components/FadeInSection";
 
 export default function Home() {
@@ -119,8 +120,8 @@ export default function Home() {
           {/* Fixed Laptop Image logic: No unmounting */}
           <div
             className={`hidden lg:flex flex-1 justify-center items-center relative h-full w-full max-h-[350px] transition-all duration-700 ease-out transform ${!isTransitioning && slides[index].showLaptop
-                ? "opacity-100 scale-100 translate-x-0"
-                : "opacity-0 scale-90 translate-x-10 pointer-events-none"
+              ? "opacity-100 scale-100 translate-x-0"
+              : "opacity-0 scale-90 translate-x-10 pointer-events-none"
               }`}
           >
             <div className="relative w-full h-full max-w-[500px]">
@@ -315,30 +316,22 @@ export default function Home() {
         {/* ===== Contact Us Section ===== */}
         <section
           id="contact"
-          className="scroll-mt-24 pt-24 pb-24 bg-slate-50 relative overflow-hidden"
+          className="scroll-mt-24 pt-24 pb-24 relative overflow-hidden"
         >
-          {/* Subtle Background Pattern */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-              <path d="M100 0H0V100H100V0ZM99 1V99H1V1H99Z" fill="currentColor" />
-              <circle cx="50" cy="50" r="1" fill="currentColor" />
-            </svg>
-          </div>
-
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             {/* Header */}
             <FadeInSection>
-              <div className="text-center mb-20">
-                <div className="inline-block px-4 py-1.5 mb-4 text-[11px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+              <div className="text-left mb-20">
+                <div className="inline-block px-4 py-1.5 mb-4 text-[11px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100 ml-10">
                   Contact Us
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-10 pl-10">
                   ติดต่อเรา
                 </h1>
-                <p className="text-slate-500 text-lg max-w-2xl mx-auto font-light">
+                <p className="text-slate-500 text-lg max-w-2xl font-light pl-10">
                   เรามีความเชื่อมั่นว่าเราจะสามารถแก้ปัญหาให้ท่านได้อย่างตรงจุด ภายในระยะเวลาอันสั้น
                 </p>
-                <div className="w-24 h-1.5 bg-[#0e9aef] mx-auto mt-8 rounded-full"></div>
+                <div className="w-24 h-1.5 bg-[#0e9aef] mt-8 rounded-full ml-10"></div>
               </div>
             </FadeInSection>
 
@@ -346,24 +339,44 @@ export default function Home() {
               {/* ===== Left: Contact Info (5 Cols) ===== */}
               <div className="lg:col-span-5 space-y-8">
                 <FadeInSection delay={0.1}>
-                  <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-blue-50 text-[#0e9aef] rounded-xl flex items-center justify-center mb-6">
+                  <motion.div
+                    whileHover={{
+                      y: -10,
+                      backgroundColor: "rgba(239, 246, 255, 0.5)",
+                      borderColor: "rgba(14, 154, 239, 0.3)",
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
+                    }}
+                    className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300"
+                  >
+                    <div className="w-12 h-12 bg-blue-100 text-[#0e9aef] rounded-xl flex items-center justify-center mb-6 shadow-inner">
                       <MapPin className="w-6 h-6" />
                     </div>
                     <h3 className="text-xl font-bold text-slate-800 mb-4">ที่อยู่สำนักงาน</h3>
                     <address className="not-italic text-slate-600 leading-relaxed font-light text-[15px]">
+                      <p className="mb-4 text-slate-500 leading-relaxed">
+                        บริการให้คำปรึกษา การเพิ่มประสิทธิภาพภาคการผลิต <br />
+                        <span className="font-medium text-slate-700">Q. Soft</span> เป็น Software ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลาย ผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application (โปรแกรมที่มีระบบการจัดเก็บฐานข้อมูลจำนวนมาก)
+                      </p>
                       <strong className="block mb-2 text-[#0e9aef] text-[17px]">บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด</strong>
                       59/69 หมู่ 1 ซ.ติวานนท์ - ปากเกร็ด 56 ต.บ้านใหม่ <br />
                       อ.ปากเกร็ด จ.นนทบุรี 11120 <br />
                       หมายเลขประจำตัวของผู้เสียภาษี 0105545127622
                     </address>
-                  </div>
+                  </motion.div>
                 </FadeInSection>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FadeInSection delay={0.2}>
-                    <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-shadow h-full">
-                      <div className="w-10 h-10 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center mb-6">
+                  <FadeInSection delay={0.2} className="h-full">
+                    <motion.div
+                      whileHover={{
+                        y: -8,
+                        backgroundColor: "rgba(239, 246, 255, 0.5)",
+                        borderColor: "rgba(14, 154, 239, 0.3)",
+                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
+                      }}
+                      className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300 h-full"
+                    >
+                      <div className="w-10 h-10 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center mb-6 shadow-inner">
                         <Phone className="w-5 h-5" />
                       </div>
                       <h4 className="text-lg font-bold text-slate-800 mb-3">ฝ่ายขาย</h4>
@@ -372,12 +385,20 @@ export default function Home() {
                         <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0917623838">091-762-3838</a></li>
                         <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0863950364">086-395-0364</a></li>
                       </ul>
-                    </div>
+                    </motion.div>
                   </FadeInSection>
 
-                  <FadeInSection delay={0.3}>
-                    <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-shadow h-full">
-                      <div className="w-10 h-10 bg-green-50 text-green-500 rounded-xl flex items-center justify-center mb-6">
+                  <FadeInSection delay={0.3} className="h-full">
+                    <motion.div
+                      whileHover={{
+                        y: -8,
+                        backgroundColor: "rgba(239, 246, 255, 0.5)",
+                        borderColor: "rgba(14, 154, 239, 0.3)",
+                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
+                      }}
+                      className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300 h-full"
+                    >
+                      <div className="w-10 h-10 bg-green-100 text-green-500 rounded-xl flex items-center justify-center mb-6 shadow-inner">
                         <Phone className="w-5 h-5" />
                       </div>
                       <h4 className="text-lg font-bold text-slate-800 mb-3">ฝ่าย Support</h4>
@@ -386,25 +407,25 @@ export default function Home() {
                         <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0917623838">091-762-3838</a></li>
                         <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0863213874">086-321-3874</a></li>
                       </ul>
-                    </div>
+                    </motion.div>
                   </FadeInSection>
                 </div>
 
                 <FadeInSection delay={0.4}>
-                  <div className="flex flex-col sm:flex-row items-center gap-6 pt-4">
+                  <div className="flex flex-col items-center gap-6 pt-8 border-t border-slate-200 mt-4">
                     <a
                       href="mailto:chopaka_m@q-softthai.com;nurng.t072@gmail.com;chopaka1817@gmail.com"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0e9aef] text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-blue-600 transition-all duration-300 hover:scale-105"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0e9aef] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all duration-300 hover:scale-105"
                     >
                       <Mail className="w-5 h-5" />
                       ส่งอีเมลถึงเรา
                     </a>
-                    <div className="flex gap-4">
-                      <a href="https://www.facebook.com/q.soft/" target="_blank" className="w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all duration-300 shadow-sm">
-                        <Facebook className="w-6 h-6" />
+                    <div className="flex gap-6 justify-center">
+                      <a href="https://www.facebook.com/q.soft/" target="_blank" className="w-14 h-14 bg-white border border-slate-200 rounded-2xl flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all duration-300 shadow-sm group">
+                        <Facebook className="w-7 h-7" />
                       </a>
-                      <a href="https://www.youtube.com/user/qsoftthai/" target="_blank" className="w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all duration-300 shadow-sm">
-                        <Youtube className="w-6 h-6" />
+                      <a href="https://www.youtube.com/user/qsoftthai/" target="_blank" className="w-14 h-14 bg-white border border-slate-200 rounded-2xl flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000] hover:text-white transition-all duration-300 shadow-sm group">
+                        <Youtube className="w-7 h-7" />
                       </a>
                     </div>
                   </div>
@@ -414,7 +435,15 @@ export default function Home() {
               {/* ===== Right: Modern Form (7 Cols) ===== */}
               <div className="lg:col-span-7">
                 <FadeInSection delay={0.2}>
-                  <div className="bg-white p-10 md:p-14 rounded-[3rem] shadow-2xl border border-slate-100 relative">
+                  <motion.div
+                    whileHover={{
+                      y: -5,
+                      backgroundColor: "rgba(239, 246, 255, 0.3)",
+                      borderColor: "rgba(14, 154, 239, 0.4)",
+                      boxShadow: "0 25px 50px -12px rgba(14, 154, 239, 0.15)"
+                    }}
+                    className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-slate-50 relative transition-all duration-500"
+                  >
                     <div className="absolute top-0 right-10 -translate-y-1/2 w-20 h-20 bg-blue-100 rounded-3xl rotate-12 -z-10 opacity-20"></div>
 
                     <h2 className="text-2xl font-bold text-slate-800 mb-10">ติดต่อผู้เชี่ยวชาญของเรา</h2>
@@ -542,6 +571,21 @@ export default function Home() {
                         </button>
                       </div>
                     </form>
+                  </motion.div>
+                </FadeInSection>
+
+                {/* Separate Google Maps Card */}
+                <FadeInSection delay={0.3}>
+                  <div className="mt-8 rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl h-[400px] relative bg-white p-4">
+                    <div className="absolute inset-4 rounded-[2rem] overflow-hidden">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21904.272143554408!2d100.56008115037825!3d13.948788647682154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2836299299ac5%3A0xffd24ce376fe4efe!2z4Lia4LiI4LiBLiDguJrguLTguKrguIvguLTguYDguJnguKog4LiE4Lit4Lih4LmA4Lie4LmH4LiU4LiX4Li04LiX4Li14LifIOC4reC4tOC4meC5gOC4l-C4peC4peC4tOC5gOC4iOC4meC4i-C5jA!5e0!3m2!1sth!2sth!4v1768884936985!5m2!1sth!2sth"
+                        className="absolute inset-0 w-full h-full border-0"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
                   </div>
                 </FadeInSection>
               </div>
@@ -549,7 +593,7 @@ export default function Home() {
 
             {/* Bottom Slogan Section */}
             <FadeInSection delay={0.5}>
-              <div className="mt-24 text-center border-t border-slate-200 pt-16">
+              <div className="mt-12 text-center border-t border-slate-200 pt-16">
                 <p className="text-slate-400 font-light text-[15px] italic">
                   "เราจะพาคุณไปสู่การพัฒนาศักยภาพในการแข่งขันขององค์กร พัฒนาระบบการทำงานให้เจริญเติบโตอย่างต่อเนื่องและยั่งยืน"
                 </p>

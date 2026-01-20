@@ -104,159 +104,50 @@ export default function PageMyAccount() {
 
   return (
     <div className="font-kanit min-h-screen bg-gray-50">
-      {/* ===== Breadcrumb / Navigation ===== */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-3">
-          <Link href="/" className="text-blue-600 hover:text-blue-700">
-            ← กลับไปหน้าหลัก
-          </Link>
-        </div>
-      </div>
 
       {/* ===== Main Content ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* ===== Left Sidebar ===== */}
-          <div className="md:col-span-1">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="border-b border-gray-200 p-6">
-                <h5 className="text-xl font-bold text-gray-800">myAccount</h5>
-              </div>
-              <div className="relative h-48 mb-4">
-                <Image
-                  src="/img/feature/qsoft_account_big.png"
-                  alt="myAccount"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 space-y-4">
-                <div>
-                  <h5 className="font-bold text-gray-800 mb-2">myAccount</h5>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    โปรแกรมบัญชีสำหรับธุรกิจ SMEs
-                    ที่ครอบคลุมด้วยระบบการทำงานถึง 20 ระบบ
-                    ที่เปี่ยมด้วยประสิทธิภาพ
-                  </p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-gray-800 mb-2">จุดเด่น</h5>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    ✓ ระบบเชื่อมโยงครบวงจร
-                    <br />✓ ลดความซ้ำซ้อนในการทำงาน
-                    <br />✓ บันทึกแบบ Real Time
-                    <br />✓ รายงานเป็นไปตามหลักการบัญชี
-                    <br />✓ สมุดขนาดเล็กถึงบริษัทใหญ่
-                  </p>
-                </div>
-              </div>
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              myAccount
+            </h2>
+            <div className="text-slate-600 space-y-4">
+              <p>
+                โปรแกรมบัญชีสำหรับธุรกิจ SMEs
+                ที่ครอบคลุมด้วยระบบการทำงานถึง 20 ระบบ
+                ที่เปี่ยมด้วยประสิทธิภาพลดขั้นตอนการทำงานที่ยุ่งยาก
+              </p>
+              <p>
+                ทั้งระบบเชื่อมโยงถึงกันช่วยลดการ ทำงานที่ซ้ำซ้อน
+                สามารถตรวจสอบทางเดินเอกสาร รวมถึงการ Drill Down Daily
+                Report ดู สถานะและประวัติของเอกสารได้
+              </p>
+              <p>
+                การบันทึกข้อมูลแบบ Real Time
+                โดยหลังการบันทึกซื้อ-ขายสินค้าจะมีผลกับระบบ สต๊อกสินค้า
+                และระบบการเงินบัญชี ซึ่งมีรายงานที่หลากหลายทั้งภายในและภายนอก
+                ตรงตามหลักสรรพากรและหลักการบัญชี
+              </p>
             </div>
           </div>
 
-          {/* ===== Right Content ===== */}
-          <div className="md:col-span-2">
-            <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  myAccount - ระบบบัญชีสำหรับธุรกิจ SMEs
-                </h2>
-                <div className="text-slate-600 space-y-4">
-                  <p>
-                    โปรแกรมบัญชีสำหรับธุรกิจ SMEs
-                    ที่ครอบคลุมด้วยระบบการทำงานถึง 20 ระบบ
-                    ที่เปี่ยมด้วยประสิทธิภาพลดขั้นตอนการทำงานที่ยุ่งยาก
-                  </p>
-                  <p>
-                    ทั้งระบบเชื่อมโยงถึงกันช่วยลดการ ทำงานที่ซ้ำซ้อน
-                    สามารถตรวจสอบทางเดินเอกสาร รวมถึงการ Drill Down Daily
-                    Report ดู สถานะและประวัติของเอกสารได้
-                  </p>
-                  <p>
-                    การบันทึกข้อมูลแบบ Real Time
-                    โดยหลังการบันทึกซื้อ-ขายสินค้าจะมีผลกับระบบ สต๊อกสินค้า
-                    และระบบการเงินบัญชี ซึ่งมีรายงานที่หลากหลายทั้งภายในและภายนอก
-                    ตรงตามหลักสรรพากรและหลักการบัญชี
+          {/* ===== Features ===== */}
+          <div className="border-t border-gray-200 pt-6">
+            <h3 className="text-lg font-bold text-gray-800 mb-6">
+              ประกอบไปด้วย Feature การทำงานหลักๆ ดังนี้
+            </h3>
+            <div className="space-y-4">
+              {features.map((feature, idx) => (
+                <div key={idx} className="border-l-4 border-blue-600 pl-4 py-2">
+                  <h4 className="font-bold text-gray-800">
+                    {feature.number}. {feature.title}
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                    {feature.description}
                   </p>
                 </div>
-              </div>
-
-              {/* ===== Features ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-6">
-                  ประกอบไปด้วย Feature การทำงานหลักๆ ดังนี้
-                </h3>
-                <div className="space-y-4">
-                  {features.map((feature, idx) => (
-                    <div key={idx} className="border-l-4 border-blue-600 pl-4 py-2">
-                      <h4 className="font-bold text-gray-800">
-                        {feature.number}. {feature.title}
-                      </h4>
-                      <p className="text-sm text-slate-600 mt-1 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* ===== Key Benefits ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
-                  ความสามารถเพิ่มเติม
-                </h3>
-                <div className="space-y-3 text-slate-600 text-sm">
-                  <p>✓ รองรับสินค้าประเภทหน่วยนับขนาน</p>
-                  <p>✓ สินค้าที่ใช้ Barcode</p>
-                  <p>✓ คำนวณต้นทุนสินค้าแบบ FIFO หรือ Average</p>
-                  <p>✓ บันทึกข้อมูลแบบ Real Time อัตโนมัติ</p>
-                  <p>✓ จัดสั่งพิมพ์แบบฟอร์มเป็นหลักฐาน</p>
-                  <p>✓ ตรวจสอบทางเดินเอกสารได้</p>
-                  <p>✓ รองรับการทำงานแบบ Multi Company, Multi Branch</p>
-                  <p>✓ มีรายงานรองรับเกือบ 50 รายงาน</p>
-                </div>
-              </div>
-
-              {/* ===== CTA ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <div className="bg-blue-50 rounded-lg p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    สนใจใช้งานระบบ myAccount?
-                  </h3>
-                  <Link
-                    href="/#contact"
-                    className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
-                  >
-                    ติดต่อเราเลย
-                  </Link>
-                </div>
-              </div>
-
-              {/* ===== Related Products ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
-                  🔗 โปรแกรมที่เกี่ยวข้อง
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {[
-                    { label: "MRP", href: "/mrp" },
-                    { label: "WINSpeed", href: "/winspeed" },
-                    { label: "APS", href: "/aps" },
-                    { label: "WMS", href: "/wms" },
-                    { label: "POS", href: "/pos" },
-                    { label: "Service", href: "/service" },
-                  ].map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="text-center p-3 bg-gray-100 rounded hover:bg-blue-100 transition"
-                    >
-                      <span className="text-sm font-semibold text-blue-600">
-                        {item.label}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

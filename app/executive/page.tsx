@@ -2,11 +2,24 @@
 
 import { executiveData } from "./executiveData";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 
 export default function ExecutivePage() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 font-kanit">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back to Courses Button */}
+        <div className="mb-8">
+          <Link
+            href="/course"
+            className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            <span>กลับไปหน้า Course อบรม</span>
+          </Link>
+        </div>
+
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row gap-8 mb-12">
           <div className="flex-1">
