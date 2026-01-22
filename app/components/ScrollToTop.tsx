@@ -8,7 +8,7 @@ export default function ScrollToTop() {
   useEffect(() => {
     const onScroll = () => {
       // ปรับ 200 ได้ตามใจ: เลื่อนลงเกินเท่านี้ค่อยโชว์ปุ่ม
-      setShow(window.scrollY > 1000);
+      setShow(window.scrollY > 800);
     };
 
     onScroll();

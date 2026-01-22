@@ -70,8 +70,8 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className={`flex items-center justify-center bg-[#0e9aef] text-white font-bold font-kanit hover:bg-[#64BAEE] transition-all duration-300 ease-in-out shadow-sm
                 ${isTransparent
-                  ? "px-5 py-4 text-sm rounded-b-md"
-                  : "mt-[15px] px-3 py-2 text-xs rounded-md"
+                  ? "px-5 py-4 text-sm rounded-b-md scale-100"
+                  : "mt-[10px] px-4 py-3 text-sm rounded-md scale-130"
                 }
               `}
             >

@@ -193,7 +193,7 @@ export default function ServicePage() {
       {/* Hero Header */}
       <div className="bg-white border-b mb-10 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:py-8 relative z-10">
           <FadeInSection>
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 bg-[#0e9aef] rounded-xl text-white shadow-lg shadow-blue-200">
@@ -231,7 +231,9 @@ export default function ServicePage() {
                 </div>
               </button>
 
-              {openSections.includes(section.title) && (
+              <div
+                className={` overflow-hidden transition-all duration-500 ease-in-out ${openSections.includes(section.title)? "max-h-[2000px] opacity-100 translate-y-0": "max-h-0 opacity-0 -translate-y-2"}`}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-top-4 duration-500">
                   {section.children.map((service, cIdx) => (
                     <div
@@ -264,8 +266,14 @@ export default function ServicePage() {
                         <div className="space-y-4 pt-4 border-t border-slate-50 mt-auto">
                           {service.sections.map((s) => (
                             <div key={s.heading}>
-                              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
-                                {s.heading}
+                              <div className="flex items-center gap-2 mb-2">
+                                <span
+                                  className="w-1 h-4 rounded-full"
+                                  style={{ backgroundColor: "#0e9aef" }}
+                                />
+                                <div className="text-sm font-extrabold text-slate-700 tracking-wide">
+                                  {s.heading}
+                                </div>
                               </div>
                               <ul className="space-y-1.5 text-xs text-slate-500">
                                 {s.bullets.map((b) => (
@@ -282,7 +290,7 @@ export default function ServicePage() {
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
             </FadeInSection>
           </div>
         ))}

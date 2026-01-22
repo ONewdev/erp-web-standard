@@ -15,9 +15,12 @@ import {
   FileSearch,
   BookOpen,
   Users,
+  Layers,
 } from "lucide-react";
 import FadeInSection from "../components/FadeInSection";
 
+// Fix for TypeScript error with motion.tr properties
+const MotionTr = motion.tr as any;
 
 interface Document {
   name: string;
@@ -124,9 +127,15 @@ const documents: DocumentSection[] = [
 ];
 
 export default function DocumentPage() {
-  const [activeTab, setActiveTab] = useState<string>("Documents");
+  const [activeTab, setActiveTab] = useState<string>("All");
 
-  const isBrochure = activeTab === "Brochure";
+  const showExtraLanguages = activeTab === "Brochure" || activeTab === "All";
+
+  // Compute items to display
+  const itemsToDisplay =
+    activeTab === "All"
+      ? documents.flatMap((section) => section.items)
+      : documents.find((doc) => doc.title === activeTab)?.items || [];
 
   return (
     <div className="font-kanit min-h-screen bg-gray-50">
@@ -135,7 +144,7 @@ export default function DocumentPage() {
         <div className="bg-white border-b overflow-hidden relative">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
 
-          <div className="max-w-7xl mx-auto px-6 py-12 md:py-24 relative z-10">
+          <div className="max-w-7xl mx-auto px-6 py-8 md:py-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Section - Image & Title */}
               <div className="flex flex-col md:flex-row gap-10 items-center">
@@ -227,13 +236,26 @@ export default function DocumentPage() {
             {/* Tabs - Premium Horizontal Scroll */}
             <div className="border-b border-slate-100 bg-slate-50/50 p-2">
               <div className="flex flex-wrap gap-2">
+                {/* All Button */}
+                <button
+                  onClick={() => setActiveTab("All")}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm flex items-center gap-2 ${activeTab === "All"
+                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
+                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                    }`}
+                >
+                  <Layers className="w-4 h-4" />
+                  All
+                </button>
+
+                {/* Dynamic Buttons */}
                 {documents.map((section) => (
                   <button
                     key={section.title}
                     onClick={() => setActiveTab(section.title)}
                     className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm flex items-center gap-2 ${activeTab === section.title
-                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
-                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                        ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
+                        : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
                       }`}
                   >
                     {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
@@ -264,11 +286,11 @@ export default function DocumentPage() {
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-100">
                     <th className="px-8 py-5 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">
-                      {activeTab} Name
+                      Flie
                     </th>
                     <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">TH</th>
                     <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">EN</th>
-                    {isBrochure && (
+                    {showExtraLanguages && (
                       <>
                         <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">CN</th>
                         <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">KR</th>
@@ -281,88 +303,86 @@ export default function DocumentPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
-                  {documents
-                    .find((doc) => doc.title === activeTab)
-                    ?.items.map((item, index) => (
-                      <motion.tr
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                        key={index}
-                        className="hover:bg-slate-50/50 transition-colors group"
-                      >
-                        <td className="px-8 py-5">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-[#0e9aef]/10 flex items-center justify-center text-[#0e9aef] group-hover:scale-110 transition-transform">
-                              <FileText className="w-4 h-4" />
-                            </div>
-                            <span className="text-slate-700 font-semibold group-hover:text-[#0e9aef] transition-colors">{item.name}</span>
+                  {itemsToDisplay.map((item, index) => (
+                    <MotionTr
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.02 }} // Faster stagger for long lists
+                      key={`${item.name}-${index}`}
+                      className="hover:bg-slate-50/50 transition-colors group"
+                    >
+                      <td className="px-8 py-5">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#0e9aef]/10 flex items-center justify-center text-[#0e9aef] group-hover:scale-110 transition-transform">
+                            <FileText className="w-4 h-4" />
                           </div>
-                        </td>
-                        <td className="px-6 py-5 text-center">
-                          {item.thUrl ? (
-                            <a
-                              href={item.thUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                            >
-                              Download
-                            </a>
-                          ) : (
-                            <span className="text-slate-300 text-xs">N/A</span>
-                          )}
-                        </td>
-                        <td className="px-6 py-5 text-center">
-                          {item.enUrl ? (
-                            <a
-                              href={item.enUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold hover:bg-purple-600 hover:text-white transition-all shadow-sm"
-                            >
-                              Download
-                            </a>
-                          ) : (
-                            <span className="text-slate-300 text-xs">N/A</span>
-                          )}
-                        </td>
-                        {isBrochure && (
-                          <>
-                            {[
-                              { url: item.cnUrl, text: item.cn, lang: "cn" },
-                              { url: item.krUrl, text: item.kr, lang: "kr" },
-                              { url: item.jpUrl, text: item.jp, lang: "jp" },
-                            ].map((langData, idx) => {
-                              const colors: Record<string, string> = {
-                                cn: "bg-red-50 text-red-600 hover:bg-red-600",
-                                kr: "bg-green-50 text-green-600 hover:bg-green-600",
-                                jp: "bg-yellow-50 text-yellow-600 hover:bg-yellow-600"
-                              };
-                              return (
-                                <td key={idx} className="px-6 py-5 text-center">
-                                  {langData.url ? (
-                                    <a
-                                      href={langData.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-bold hover:text-white transition-all shadow-sm ${colors[langData.lang]}`}
-                                    >
-                                      Download
-                                    </a>
-                                  ) : (
-                                    <span className="text-slate-300 text-xs">N/A</span>
-                                  )}
-                                </td>
-                              );
-                            })}
-                          </>
+                          <span className="text-slate-700 font-semibold group-hover:text-[#0e9aef] transition-colors">{item.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5 text-center">
+                        {item.thUrl ? (
+                          <a
+                            href={item.thUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                          >
+                            Download
+                          </a>
+                        ) : (
+                          <span className="text-slate-300 text-xs">N/A</span>
                         )}
-                        <td className="px-8 py-5 text-right">
-                          <span className="text-xs font-medium text-slate-400 font-mono">{item.created}</span>
-                        </td>
-                      </motion.tr>
-                    ))}
+                      </td>
+                      <td className="px-6 py-5 text-center">
+                        {item.enUrl ? (
+                          <a
+                            href={item.enUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold hover:bg-purple-600 hover:text-white transition-all shadow-sm"
+                          >
+                            Download
+                          </a>
+                        ) : (
+                          <span className="text-slate-300 text-xs">N/A</span>
+                        )}
+                      </td>
+                      {showExtraLanguages && (
+                        <>
+                          {[
+                            { url: item.cnUrl, text: item.cn, lang: "cn" },
+                            { url: item.krUrl, text: item.kr, lang: "kr" },
+                            { url: item.jpUrl, text: item.jp, lang: "jp" },
+                          ].map((langData, idx) => {
+                            const colors: Record<string, string> = {
+                              cn: "bg-red-50 text-red-600 hover:bg-red-600",
+                              kr: "bg-green-50 text-green-600 hover:bg-green-600",
+                              jp: "bg-yellow-50 text-yellow-600 hover:bg-yellow-600"
+                            };
+                            return (
+                              <td key={idx} className="px-6 py-5 text-center">
+                                {langData.url ? (
+                                  <a
+                                    href={langData.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-bold hover:text-white transition-all shadow-sm ${colors[langData.lang]}`}
+                                  >
+                                    Download
+                                  </a>
+                                ) : (
+                                  <span className="text-slate-300 text-xs">N/A</span>
+                                )}
+                              </td>
+                            );
+                          })}
+                        </>
+                      )}
+                      <td className="px-8 py-5 text-right">
+                        <span className="text-xs font-medium text-slate-400 font-mono">{item.created}</span>
+                      </td>
+                    </MotionTr>
+                  ))}
                 </tbody>
               </table>
             </div>

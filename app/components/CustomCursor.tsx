@@ -4,104 +4,145 @@ import { useEffect, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
-    const [mounted, setMounted] = useState(false);
-    const [isHovering, setIsHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [ripples, setRipples] = useState<
+    { id: number; x: number; y: number }[]
+  >([]);
 
-    // Mouse coordinates
-    const cursorX = useMotionValue(-100);
-    const cursorY = useMotionValue(-100);
+  // Mouse position
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
 
-    // Aura Spring: Slow and "Liquid" for a beautiful trail
-    const auraSpringConfig = { damping: 30, stiffness: 80, mass: 0.8 };
-    const auraX = useSpring(cursorX, auraSpringConfig);
-    const auraY = useSpring(cursorY, auraSpringConfig);
+  // Aura (ช้ากว่า มี trail)
+  const auraSpringConfig = { damping: 25, stiffness: 160, mass: 0.6 };
+  const auraX = useSpring(cursorX, auraSpringConfig);
+  const auraY = useSpring(cursorY, auraSpringConfig);
 
-    // Main Dot Spring: Very fast but smooth (no teleporting)
-    const dotSpringConfig = { damping: 40, stiffness: 1000 };
-    const dotX = useSpring(cursorX, dotSpringConfig);
-    const dotY = useSpring(cursorY, dotSpringConfig);
+  // Dot / Ring (เร็ว ติดเมาส์)
+  const dotSpringConfig = { damping: 30, stiffness: 1800, mass: 0.4 };
+  const dotX = useSpring(cursorX, dotSpringConfig);
+  const dotY = useSpring(cursorY, dotSpringConfig);
 
-    useEffect(() => {
-        setMounted(true);
+  const [hideCursor, setHideCursor] = useState(false);
 
-        const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX);
-            cursorY.set(e.clientY);
-        };
+  useEffect(() => {
+    setMounted(true);
 
-        const handleMouseOver = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            const isClickable =
-                target.tagName === 'A' ||
-                target.tagName === 'BUTTON' ||
-                target.closest('a') ||
-                target.closest('button') ||
-                target.classList.contains('cursor-pointer') ||
-                target.getAttribute('role') === 'button';
+    const moveCursor = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    };
 
-            setIsHovering(!!isClickable);
-        };
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
 
-        window.addEventListener("mousemove", moveCursor, { passive: true });
-        window.addEventListener("mouseover", handleMouseOver);
+      // ซ่อน cursor บน map / iframe
+      setHideCursor(!!target.closest("[data-hide-cursor]"));
 
-        return () => {
-            window.removeEventListener("mousemove", moveCursor);
-            window.removeEventListener("mouseover", handleMouseOver);
-        };
-    }, []);
+      const isClickable =
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.closest("a") ||
+        target.closest("button") ||
+        target.classList.contains("cursor-pointer") ||
+        target.getAttribute("role") === "button";
 
-    if (!mounted) return null;
+      setIsHovering(!!isClickable);
+    };
 
-    return (
-        <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden">
-            {/* 1. Large Light Aura (The Glow Trail) */}
-            <motion.div
-                style={{
-                    translateX: auraX,
-                    translateY: auraY,
-                    x: "-50%",
-                    y: "-50%",
-                }}
-                className="fixed top-0 left-0 w-[500px] h-[500px]"
-            >
-                <div
-                    className={`w-full h-full bg-[#0e9aef] rounded-full blur-[120px] transition-opacity duration-1000
-            ${isHovering ? "opacity-25" : "opacity-15"}
-          `}
-                />
-            </motion.div>
 
-            {/* 2. Interactive Outer Ring */}
-            <motion.div
-                style={{
-                    translateX: auraX,
-                    translateY: auraY,
-                    x: "-50%",
-                    y: "-50%",
-                }}
-                animate={{
-                    scale: isHovering ? 1.5 : 1,
-                    borderColor: isHovering ? "rgba(14, 154, 239, 0.6)" : "rgba(14, 154, 239, 0.2)",
-                    borderWidth: isHovering ? 1 : 1.5,
-                }}
-                className="fixed top-0 left-0 w-8 h-8 rounded-full border-solid flex items-center justify-center transition-colors duration-500"
-            />
 
-            {/* 3. The Central Precision Dot (Now with slight spring for smoothness) */}
-            <motion.div
-                style={{
-                    translateX: dotX,
-                    translateY: dotY,
-                    x: "-50%",
-                    y: "-50%",
-                }}
-                animate={{
-                    scale: isHovering ? 0.5 : 1,
-                    backgroundColor: isHovering ? "#0e9aef" : "#0e9aef",
-                }}
-                className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full shadow-[0_0_15px_rgba(14,154,239,0.8)]"
-            />
-        </div>
-    );
+    const handleClick = (e: MouseEvent) => {
+      const id = Date.now();
+      setRipples((prev) => [...prev, { id, x: e.clientX, y: e.clientY }]);
+
+      setTimeout(() => {
+        setRipples((prev) => prev.filter((r) => r.id !== id));
+      }, 600);
+    };
+
+    window.addEventListener("mousemove", moveCursor, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousedown", handleClick);
+
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
+
+  if (!mounted) return null;
+
+
+
+  return (
+    <div className={`fixed inset-0 pointer-events-none z-[99999] overflow-hidden
+    transition-opacity duration-300
+    ${hideCursor ? "opacity-0" : "opacity-100"}`} >
+      {/* 🌊 Ripple Effect */}
+      {ripples.map((ripple) => (
+        <motion.span
+          key={ripple.id}
+          initial={{ scale: 0, opacity: 0.6 }}
+          animate={{ scale: 6, opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ left: ripple.x, top: ripple.y }}
+          className="fixed w-6 h-6 -translate-x-1/2 -translate-y-1/2
+            rounded-full border border-[rgba(14,154,239,0.6)]
+            pointer-events-none"
+        />
+      ))}
+
+      {/* 💠 Aura Glow */}
+      <motion.div
+        style={{
+          translateX: auraX,
+          translateY: auraY,
+          x: "-50%",
+          y: "-50%",
+        }}
+        className="fixed top-0 left-0 w-[280px] h-[280px]"
+      >
+        <div
+          className={`w-full h-full bg-[#0e9aef] rounded-full 
+          blur-[70px] transition-opacity duration-1000
+          ${isHovering ? "opacity-18" : "opacity-10"}`}
+        />
+      </motion.div>
+
+      {/* ⭕ Outer Ring */}
+      <motion.div
+        style={{
+          translateX: dotX,
+          translateY: dotY,
+          x: "-50%",
+          y: "-50%",
+        }}
+        animate={{
+          scale: isHovering ? 1.5 : 1,
+          borderColor: isHovering
+            ? "rgba(14,154,239,0.6)"
+            : "rgba(14,154,239,0.25)",
+        }}
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border
+          transition-colors duration-300"
+      />
+
+      {/* 🎯 Center Dot */}
+      <motion.div
+        style={{
+          translateX: dotX,
+          translateY: dotY,
+          x: "-50%",
+          y: "-50%",
+        }}
+        animate={{ scale: isHovering ? 0.5 : 1 }}
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full
+          bg-[#0e9aef]
+          shadow-[0_0_15px_rgba(14,154,239,0.8)]"
+      />
+    </div>
+  );
 }

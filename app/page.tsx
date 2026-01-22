@@ -313,10 +313,15 @@ export default function Home() {
           </FadeInSection>
         </section>
 
+        {/* ===== Divider Before Contact ===== */}
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent my-24"></div>
+        </div>
+
         {/* ===== Contact Us Section ===== */}
         <section
           id="contact"
-          className="scroll-mt-24 pt-24 pb-24 relative overflow-hidden"
+          className="scroll-mt-24 pb-24 relative overflow-hidden"
         >
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             {/* Header */}
@@ -577,7 +582,7 @@ export default function Home() {
                 {/* Separate Google Maps Card */}
                 <FadeInSection delay={0.3}>
                   <div className="mt-8 rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-xl h-[400px] relative bg-white p-4">
-                    <div className="absolute inset-4 rounded-[2rem] overflow-hidden">
+                    <div data-hide-cursor className="absolute inset-4 rounded-[2rem] overflow-hidden">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21904.272143554408!2d100.56008115037825!3d13.948788647682154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2836299299ac5%3A0xffd24ce376fe4efe!2z4Lia4LiI4LiBLiDguJrguLTguKrguIvguLTguYDguJnguKog4LiE4Lit4Lih4LmA4Lie4LmH4LiU4LiX4Li04LiX4Li14LifIOC4reC4tOC4meC5gOC4l-C4peC4peC4tOC5gOC4iOC4meC4i-C5jA!5e0!3m2!1sth!2sth!4v1768884936985!5m2!1sth!2sth"
                         className="absolute inset-0 w-full h-full border-0"

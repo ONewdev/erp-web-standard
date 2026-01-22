@@ -227,29 +227,62 @@ export default function SitePage() {
   return (
     <div className="font-kanit bg-gray-50/50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Header & Stats Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-start mb-12 gap-8">
+        {/* Header + Sticky Navbar + Stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-12 items-start">
+          {/* LEFT : Title + Sticky Navbar */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col md:flex-row items-center md:items-start gap-6"
+            className="flex flex-col gap-4"
           >
-            <div className="relative w-24 h-24 flex-shrink-0">
-              <Image
-                src="/img/best_seller.png"
-                alt="Business Client Groups"
-                fill
-                className="object-contain"
-              />
+            {/* Title */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+              <div className="relative w-24 h-24 flex-shrink-0">
+                <Image
+                  src="/img/best_seller.png"
+                  alt="Business Client Groups"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="w-16 h-1 bg-[#0e9aef] rounded-full mb-4 hidden md:block" />
+                <h1 className="text-3xl md:text-5xl font-bold text-slate-800 leading-tight">
+                  กลุ่มลูกค้าที่ใช้บริการ
+                  <span className="text-[#0e9aef]">โปรแกรม</span>
+                </h1>
+                <p className="text-slate-500 text-lg font-light">
+                  Q.Soft, WINSpeed, HRM, AI และผลิตภัณฑ์ชั้นนำอื่น ๆ
+                </p>
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="w-16 h-1 bg-[#0e9aef] rounded-full mb-4 hidden md:block" />
-              <h1 className="text-3xl md:text-5xl font-bold text-slate-800 leading-tight">
-                กลุ่มลูกค้าที่ใช้บริการ<span className="text-[#0e9aef]">โปรแกรม</span>
-              </h1>
-              <p className="text-slate-500 text-lg font-light">
-                Q.Soft, WINSpeed, HRM, AI และผลิตภัณฑ์ชั้นนำอื่น ๆ
-              </p>
+
+            {/* ✅ Sticky Navbar ใต้หัวข้อ */}
+            <div className="sticky top-20 mt-15 z-40">
+              <div className="bg-white/80 backdrop-blur-xl p-2 rounded-2xl shadow-lg border border-white/50 inline-flex flex-wrap gap-1">
+                {navItems.map((item) => {
+                  const isActive = active === item.key;
+                  return (
+                    <button
+                      key={item.key}
+                      onClick={() => {
+                        setActive(item.key);
+                        window.scrollTo({ top: 20, behavior: "smooth" });
+                      }}
+                      className={`
+                px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-500
+                ${isActive
+                          ? "bg-[#0e9aef] text-white shadow-lg shadow-blue-200"
+                          : "text-slate-500 hover:bg-slate-50 hover:text-[#0e9aef]"
+                        }
+              `}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
 
@@ -285,29 +318,6 @@ export default function SitePage() {
           </motion.div>
         </div>
 
-        {/* Navbar - Sticky */}
-        <div className="sticky top-20 z-40 mb-10">
-          <div className="bg-white/80 backdrop-blur-xl p-2 rounded-2xl shadow-lg border border-white/50 inline-flex flex-wrap gap-1">
-            {navItems.map((item) => {
-              const isActive = active === item.key;
-              return (
-                <button
-                  key={item.key}
-                  onClick={() => setActive(item.key)}
-                  className={`
-                    px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-500
-                    ${isActive
-                      ? "bg-[#0e9aef] text-white shadow-lg shadow-blue-200 scale-100"
-                      : "text-slate-500 hover:bg-slate-50 hover:text-[#0e9aef]"
-                    }
-                  `}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         {/* Legend for Q.soft - Animates in */}
         <AnimatePresence>
@@ -341,7 +351,7 @@ export default function SitePage() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
           >
             {displayClients.length > 0 ? (
               displayClients.map((company, idx) => (
@@ -351,9 +361,7 @@ export default function SitePage() {
                   className="group flex flex-col items-center"
                 >
                   <motion.div
-                    variants={cardVariants}
-                    whileHover="hover"
-                    className="relative w-full aspect-[4/3] bg-white rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center justify-center p-10 cursor-pointer overflow-hidden transition-all duration-500 hover:border-blue-100"
+                    className="relative w-full aspect-[4/3] bg-transparent flex items-center justify-center p-10 cursor-pointer overflow-hidden transition-all duration-500 hover:border-blue-100"
                   >
                     {/* Background Detail */}
                     <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-50/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
