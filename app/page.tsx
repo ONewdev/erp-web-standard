@@ -340,84 +340,112 @@ export default function Home() {
               </div>
             </FadeInSection>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
               {/* ===== Left: Contact Info (5 Cols) ===== */}
-              <div className="lg:col-span-5 space-y-8">
+              <div className="lg:col-span-5 flex flex-col space-y-12">
+
+                {/* ===== Office Address (NO BOX) ===== */}
                 <FadeInSection delay={0.1}>
-                  <motion.div
-                    whileHover={{
-                      y: -10,
-                      backgroundColor: "rgba(239, 246, 255, 0.5)",
-                      borderColor: "rgba(14, 154, 239, 0.3)",
-                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
-                    }}
-                    className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300"
-                  >
-                    <div className="w-12 h-12 bg-blue-100 text-[#0e9aef] rounded-xl flex items-center justify-center mb-6 shadow-inner">
-                      <MapPin className="w-6 h-6" />
+                  <div>
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="w-12 h-12 bg-blue-100 text-[#0e9aef] rounded-xl flex items-center justify-center">
+                        <MapPin className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800">
+                        ที่อยู่สำนักงาน
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-4">ที่อยู่สำนักงาน</h3>
-                    <address className="not-italic text-slate-600 leading-relaxed font-light text-[15px]">
+
+                    <address className="not-italic text-slate-600 leading-relaxed font-light text-[15px] pl-16">
                       <p className="mb-4 text-slate-500 leading-relaxed">
                         บริการให้คำปรึกษา การเพิ่มประสิทธิภาพภาคการผลิต <br />
-                        <span className="font-medium text-slate-700">Q. Soft</span> เป็น Software ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลาย ผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application (โปรแกรมที่มีระบบการจัดเก็บฐานข้อมูลจำนวนมาก)
+                        <span className="font-medium text-slate-700">Q. Soft</span> เป็น Software
+                        ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลาย
                       </p>
-                      <strong className="block mb-2 text-[#0e9aef] text-[17px]">บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด</strong>
+
+                      <strong className="block mb-2 text-[#0e9aef] text-[17px]">
+                        บริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด
+                      </strong>
+
                       59/69 หมู่ 1 ซ.ติวานนท์ - ปากเกร็ด 56 ต.บ้านใหม่ <br />
                       อ.ปากเกร็ด จ.นนทบุรี 11120 <br />
                       หมายเลขประจำตัวของผู้เสียภาษี 0105545127622
                     </address>
-                  </motion.div>
+                  </div>
                 </FadeInSection>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FadeInSection delay={0.2} className="h-full">
-                    <motion.div
-                      whileHover={{
-                        y: -8,
-                        backgroundColor: "rgba(239, 246, 255, 0.5)",
-                        borderColor: "rgba(14, 154, 239, 0.3)",
-                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
-                      }}
-                      className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300 h-full"
-                    >
-                      <div className="w-10 h-10 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center mb-6 shadow-inner">
-                        <Phone className="w-5 h-5" />
+
+                {/* ===== Sales & Support (NO BOX) ===== */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+
+                  {/* ===== Sales ===== */}
+                  <FadeInSection delay={0.2}>
+                    <div>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center">
+                          <Phone className="w-5 h-5" />
+                        </div>
+                        <h4 className="text-xl font-bold text-slate-800">
+                          ฝ่ายขาย
+                        </h4>
                       </div>
-                      <h4 className="text-lg font-bold text-slate-800 mb-3">ฝ่ายขาย</h4>
-                      <ul className="space-y-2 text-slate-600 font-light text-sm">
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:025822110">02-582-2110</a></li>
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0917623838">091-762-3838</a></li>
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0863950364">086-395-0364</a></li>
+
+                      <ul className="space-y-2 text-slate-600 font-light text-sm pl-14">
+                        <li>
+                          <a href="tel:025822110" className="hover:text-[#0e9aef] transition-colors">
+                            02-582-2110
+                          </a>
+                        </li>
+                        <li>
+                          <a href="tel:0917623838" className="hover:text-[#0e9aef] transition-colors">
+                            091-762-3838
+                          </a>
+                        </li>
+                        <li>
+                          <a href="tel:0863950364" className="hover:text-[#0e9aef] transition-colors">
+                            086-395-0364
+                          </a>
+                        </li>
                       </ul>
-                    </motion.div>
+                    </div>
                   </FadeInSection>
 
-                  <FadeInSection delay={0.3} className="h-full">
-                    <motion.div
-                      whileHover={{
-                        y: -8,
-                        backgroundColor: "rgba(239, 246, 255, 0.5)",
-                        borderColor: "rgba(14, 154, 239, 0.3)",
-                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)"
-                      }}
-                      className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 transition-colors duration-300 h-full"
-                    >
-                      <div className="w-10 h-10 bg-green-100 text-green-500 rounded-xl flex items-center justify-center mb-6 shadow-inner">
-                        <Phone className="w-5 h-5" />
+                  {/* ===== Support ===== */}
+                  <FadeInSection delay={0.3}>
+                    <div>
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-10 bg-green-100 text-green-500 rounded-xl flex items-center justify-center">
+                          <Phone className="w-5 h-5" />
+                        </div>
+                        <h4 className="text-xl font-bold text-slate-800">
+                          ฝ่าย Support
+                        </h4>
                       </div>
-                      <h4 className="text-lg font-bold text-slate-800 mb-3">ฝ่าย Support</h4>
-                      <ul className="space-y-2 text-slate-600 font-light text-sm">
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0831226349">083-122-6349</a></li>
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0917623838">091-762-3838</a></li>
-                        <li className="flex items-center gap-2 hover:text-[#0e9aef] transition-colors"><a href="tel:0863213874">086-321-3874</a></li>
+
+                      <ul className="space-y-2 text-slate-600 font-light text-sm pl-14">
+                        <li>
+                          <a href="tel:0831226349" className="hover:text-[#0e9aef] transition-colors">
+                            083-122-6349
+                          </a>
+                        </li>
+                        <li>
+                          <a href="tel:0917623838" className="hover:text-[#0e9aef] transition-colors">
+                            091-762-3838
+                          </a>
+                        </li>
+                        <li>
+                          <a href="tel:0863213874" className="hover:text-[#0e9aef] transition-colors">
+                            086-321-3874
+                          </a>
+                        </li>
                       </ul>
-                    </motion.div>
+                    </div>
                   </FadeInSection>
+
                 </div>
 
                 <FadeInSection delay={0.4}>
-                  <div className="flex flex-col items-center gap-6 pt-8 border-t border-slate-200 mt-4">
+                  <div className="flex flex-col items-center gap-6 pt-30 border-t border-slate-200 mt-8">
                     <a
                       href="mailto:chopaka_m@q-softthai.com;nurng.t072@gmail.com;chopaka1817@gmail.com"
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0e9aef] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all duration-300 hover:scale-105"
@@ -449,7 +477,14 @@ export default function Home() {
                     }}
                     className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-slate-50 relative transition-all duration-500"
                   >
-                    <div className="absolute top-0 right-10 -translate-y-1/2 w-20 h-20 bg-blue-100 rounded-3xl rotate-12 -z-10 opacity-20"></div>
+                    {/* Overlay Watermark */}
+                    <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden rounded-[2.5rem]">
+                      {/* Top Right Shape */}
+                      <div className="absolute -top-6 -right-6 w-28 h-28 bg-blue-500/10 rounded-3xl rotate-12"></div>
+                      {/* Bottom Left Shape */}
+                      <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-sky-400/10 rounded-2xl rotate-[-12deg]"></div>
+                    </div>
+
 
                     <h2 className="text-2xl font-bold text-slate-800 mb-10">ติดต่อผู้เชี่ยวชาญของเรา</h2>
 

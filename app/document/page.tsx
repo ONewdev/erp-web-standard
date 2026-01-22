@@ -147,7 +147,8 @@ export default function DocumentPage() {
           <div className="max-w-7xl mx-auto px-6 py-8 md:py-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left Section - Image & Title */}
-              <div className="flex flex-col md:flex-row gap-10 items-center">
+              <div className="flex flex-col md:flex-row gap-10 items-center ">
+
                 <div className="relative group flex-shrink-0">
                   <div className="absolute inset-0 bg-[#0e9aef]/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
                   <div className="relative w-48 h-48 bg-slate-50 rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-slate-100 shadow-sm transition-transform duration-500 group-hover:-rotate-3">
@@ -176,7 +177,7 @@ export default function DocumentPage() {
               {/* Right Section - Stats Card & Info Overlay */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
                 <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
+
 
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">
@@ -238,10 +239,10 @@ export default function DocumentPage() {
               <div className="flex flex-wrap gap-2">
                 {/* All Button */}
                 <button
-                  onClick={() => setActiveTab("All")}
-                  className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm flex items-center gap-2 ${activeTab === "All"
-                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
-                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                  onClick={(e) => { e.currentTarget.blur(); setActiveTab("All"); }}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === "All"
+                    ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
+                    : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
                     }`}
                 >
                   <Layers className="w-4 h-4" />
@@ -252,10 +253,10 @@ export default function DocumentPage() {
                 {documents.map((section) => (
                   <button
                     key={section.title}
-                    onClick={() => setActiveTab(section.title)}
-                    className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm flex items-center gap-2 ${activeTab === section.title
-                        ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
-                        : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                    onClick={(e) => { e.currentTarget.blur(); setActiveTab(section.title); }}
+                    className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === section.title
+                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
+                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
                       }`}
                   >
                     {section.title === "Documents" && <FileSearch className="w-4 h-4" />}

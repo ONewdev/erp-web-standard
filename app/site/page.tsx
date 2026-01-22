@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Briefcase, Package, Sparkles, Star, Users, Zap } from "lucide-react";
 
 const navItems = [
   { label: "Q.soft", key: "qsoft" },
@@ -260,9 +261,23 @@ export default function SitePage() {
 
             {/* ✅ Sticky Navbar ใต้หัวข้อ */}
             <div className="sticky top-20 mt-15 z-40">
-              <div className="bg-white/80 backdrop-blur-xl p-2 rounded-2xl shadow-lg border border-white/50 inline-flex flex-wrap gap-1">
+              <div className="inline-flex flex-wrap gap-3">
                 {navItems.map((item) => {
                   const isActive = active === item.key;
+
+                  // กำหนดไอคอนสำหรับแต่ละปุ่ม
+                  const Icon = () => {
+                    switch (item.key) {
+                      case 'qsoft': return <Package className="w-4 h-4" />;
+                      case 'winspeed': return <Zap className="w-4 h-4" />;
+                      case 'hrm': return <Users className="w-4 h-4" />;
+                      case 'ai': return <Sparkles className="w-4 h-4" />;
+                      case 'consulting': return <Briefcase className="w-4 h-4" />;
+                      case 'others': return <Star className="w-4 h-4" />;
+                      default: return null;
+                    }
+                  };
+
                   return (
                     <button
                       key={item.key}
@@ -271,13 +286,15 @@ export default function SitePage() {
                         window.scrollTo({ top: 20, behavior: "smooth" });
                       }}
                       className={`
-                px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-500
+                flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold 
+                transition-all duration-300 border-2
                 ${isActive
-                          ? "bg-[#0e9aef] text-white shadow-lg shadow-blue-200"
-                          : "text-slate-500 hover:bg-slate-50 hover:text-[#0e9aef]"
+                          ? "bg-[#0e9aef] text-white border-[#0e9aef] shadow-lg shadow-blue-200/50"
+                          : "bg-white text-slate-600 border-slate-200 hover:border-[#0e9aef] hover:text-[#0e9aef] hover:shadow-md"
                         }
               `}
                     >
+                      <Icon />
                       {item.label}
                     </button>
                   );
