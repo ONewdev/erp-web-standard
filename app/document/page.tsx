@@ -235,14 +235,14 @@ export default function DocumentPage() {
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
             {/* Tabs - Premium Horizontal Scroll */}
-            <div className="border-b border-slate-100 bg-slate-50/50 p-2">
+            <div className="border-b border-b bg-white/80 backdrop-blur p-3 top-24 z-30">
               <div className="flex flex-wrap gap-2">
                 {/* All Button */}
                 <button
                   onClick={(e) => { e.currentTarget.blur(); setActiveTab("All"); }}
-                  className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === "All"
-                    ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
-                    : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                  className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === "All"
+                    ? "bg-[#0e9aef] text-white shadow-lg border border-[#0e9aef]"
+                    : "text-slate-500 hover:text-[#0e9aef] hover:bg-white"
                     }`}
                 >
                   <Layers className="w-4 h-4" />
@@ -254,17 +254,17 @@ export default function DocumentPage() {
                   <button
                     key={section.title}
                     onClick={(e) => { e.currentTarget.blur(); setActiveTab(section.title); }}
-                    className={`px-6 py-3 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === section.title
-                      ? "bg-white text-[#0e9aef] shadow-sm border border-slate-100"
-                      : "text-slate-500 hover:text-slate-800 hover:bg-white/50"
+                    className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === section.title
+                      ? "bg-[#0e9aef] text-white shadow-lg border border-[#0e9aef]"
+                      : "text-slate-500 hover:text-[#0e9aef] hover:bg-white"
                       }`}
                   >
                     {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
                     {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
                     {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
-                    {section.title === "HRMI" && <Users className="w-4 h-4 text-orange-500" />}
-                    {section.title === "CRM" && <BarChart3 className="w-4 h-4 text-green-500" />}
-                    {section.title === "Support & Other" && <Files className="w-4 h-4 text-purple-500" />}
+                    {section.title === "HRMI" && <Users className="w-4 h-4" />}
+                    {section.title === "CRM" && <BarChart3 className="w-4 h-4" />}
+                    {section.title === "Support & Other" && <Files className="w-4 h-4" />}
                     {section.title}
                   </button>
                 ))}
