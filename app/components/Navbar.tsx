@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import FadeInSection from "./FadeInSection";
+import FloatingIcons from "./FloatingIcons";
 
 const navItems = [
   { label: "คุณสมบัติ", href: "/#features" },
@@ -63,12 +64,13 @@ export default function Navbar() {
     >
       <FadeInSection className="mx-auto max-w-7xl px-4 lg:px-6" viewport={{ once: true, margin: "0px" }}>
         <div className="flex items-start justify-between">
+          <FloatingIcons />
           {/* Logo - Hanging Tab Style with Animation */}
           <div className="navbar-header">
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className={`flex items-center justify-center bg-[#0e9aef] text-white font-bold font-kanit hover:bg-[#64BAEE] transition-all duration-300 ease-in-out shadow-sm
+              className={`flex items-center justify-center bg-[var(--brand-blue)] text-white font-bold font-kanit hover:bg-[var(--brand-blue)] transition-all duration-300 ease-in-out shadow-sm
                 ${isTransparent
                   ? "px-5 py-4 text-sm rounded-b-md scale-100"
                   : "mt-[10px] px-4 py-3 text-sm rounded-md scale-130"
@@ -94,11 +96,11 @@ export default function Navbar() {
                       className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] transition-all duration-300 ease-in-out
                         ${isTransparent ? "px-3 pt-[25px] pb-[15px]" : "px-3 py-[20px]"}
                         ${isActive
-                          ? "border-[#0e9aef] bg-transparent"
-                          : "border-transparent hover:text-[#0e9aef]"
+                          ? "border-[var(--brand-blue)] bg-transparent"
+                          : "border-transparent hover:text-[var(--brand-blue)]"
                         }
                         ${!isTransparent && !isActive && "text-[#676a6c]"}
-                        ${isTransparent && !isActive && "text-white hover:text-[#0e9aef]"}
+                        ${isTransparent && !isActive && "text-white hover:text-[var(--brand-blue)]"}
                       `}
                     >
                       {item.label}
@@ -109,7 +111,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/"
-                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent hover:text-[#0e9aef] transition-all duration-300 ease-in-out
+                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent hover:text-[var(--brand-blue)] transition-all duration-300 ease-in-out
                  ${isTransparent ? "px-3 pt-[25px] pb-[15px] text-white" : "px-3 py-[20px] text-[#676a6c]"}
                  `}
               >
@@ -126,11 +128,11 @@ export default function Navbar() {
                   className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] transition-all duration-300 ease-in-out
                     ${isTransparent ? "px-3 pt-[25px] pb-[15px]" : "px-3 py-[20px]"}
                     ${isActive
-                      ? "border-[#0e9aef] bg-transparent"
-                      : "border-transparent hover:text-[#0e9aef]"
+                      ? "border-[var(--brand-blue)] bg-transparent"
+                      : "border-transparent hover:text-[var(--brand-blue)]"
                     }
                      ${!isTransparent && !isActive && "text-[#676a6c]"}
-                     ${isTransparent && !isActive && "text-white hover:text-[#0e9aef]"}
+                     ${isTransparent && !isActive && "text-white hover:text-[var(--brand-blue)]"}
                   `}
                 >
                   {item.label}
@@ -142,7 +144,7 @@ export default function Navbar() {
             <div className="relative group">
               <button
                 onClick={() => setDropdownOpen((v) => !v)}
-                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent transition-all duration-300 ease-in-out hover:text-[#0e9aef] outline-none
+                className={`text-sm font-medium font-kanit uppercase tracking-wider border-t-[6px] border-transparent transition-all duration-300 ease-in-out hover:text-[var(--brand-blue)] outline-none
                  ${isTransparent ? "px-3 pt-[25px] pb-[15px] text-white" : "px-3 py-[20px] text-[#676a6c]"}
                  `}
               >
@@ -166,9 +168,9 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setDropdownOpen(false)}
                       className={`block px-4 py-3 text-sm font-kanit border-l-4
-                        hover:bg-slate-50 hover:text-[#0e9aef] hover:border-[#0e9aef]
+                        hover:bg-slate-50 hover:text-[var(--brand-blue)] hover:border-[var(--brand-blue)]
                         ${isActive
-                          ? "bg-blue-50 text-[#0e9aef] border-[#0e9aef]"
+                          ? "bg-blue-50 text-[var(--brand-blue)] border-[var(--brand-blue)]"
                           : "text-[#676a6c] border-transparent"
                         }`}
                     >
@@ -207,9 +209,9 @@ export default function Navbar() {
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className={`rounded-lg px-4 py-3 text-sm font-medium font-kanit
-                      hover:bg-slate-50 hover:text-[#0e9aef]
+                      hover:bg-slate-50 hover:text-[var(--brand-blue)]
                       ${isActive
-                        ? "bg-blue-50 text-[#0e9aef] font-bold"
+                        ? "bg-[var(--brand-blue)]/50 text-[var(--brand-blue)] font-bold"
                         : "text-[#676a6c]"
                       }`}
                   >

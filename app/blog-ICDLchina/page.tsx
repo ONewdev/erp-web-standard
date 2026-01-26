@@ -16,7 +16,7 @@ export default function BlogICDLChinaPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -31,7 +31,7 @@ export default function BlogICDLChinaPage() {
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             International Conference
                         </div>
 
@@ -42,7 +42,7 @@ export default function BlogICDLChinaPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -87,7 +87,7 @@ export default function BlogICDLChinaPage() {
 
                             <p className="text-slate-600 leading-relaxed mb-10 text-lg font-light">
                                 ภายในงาน คุณธนพลได้ขึ้นบรรยายในหัวข้อ
-                                <span className="text-[#0e9aef] font-semibold"> “Standards · Skills · Mobility: A Trilateral Agenda for Digital Literacy Collaboration — China-Singapore-Thailand” </span>
+                                <span className="text-[var(--brand-blue)] font-semibold"> “Standards · Skills · Mobility: A Trilateral Agenda for Digital Literacy Collaboration — China-Singapore-Thailand” </span>
                                 โดยนำเสนอแนวคิดการพัฒนาและยกระดับทักษะดิจิทัลในระดับภูมิภาค ผ่านความร่วมมือด้านมาตรฐาน (Standards)
                                 การพัฒนาทักษะ (Skills) และการเคลื่อนย้ายแรงงานอย่างมีคุณภาพ (Mobility) เพื่อสนับสนุนเศรษฐกิจดิจิทัลในภูมิภาคเอเชีย
                             </p>
@@ -121,13 +121,13 @@ export default function BlogICDLChinaPage() {
                                     เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
                                 </video>
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover/video:opacity-0 transition-opacity">
-                                    <div className="w-20 h-20 bg-[#0e9aef] rounded-full flex items-center justify-center text-white shadow-2xl shadow-blue-500/50">
+                                    <div className="w-20 h-20 bg-[var(--brand-blue)] rounded-full flex items-center justify-center text-white shadow-2xl shadow-blue-500/50">
                                         <Play className="w-8 h-8 fill-current ml-1" />
                                     </div>
                                 </div>
                             </div>
 
-                            <p className="text-slate-600 leading-relaxed mb-12 text-lg font-light italic border-l-4 border-[#0e9aef] pl-6">
+                            <p className="text-slate-600 leading-relaxed mb-12 text-lg font-light italic border-l-4 border-[var(--brand-blue)] pl-6">
                                 "การเข้าร่วมของ BCI ในครั้งนี้สะท้อนถึงบทบาทของบริษัทในฐานะผู้นำด้าน Digital Transformation
                                 และผู้สนับสนุนการพัฒนา สมรรถนะดิจิทัล (Digital Competency) ให้กับบุคลากรไทย ก้าวสู่มาตรฐานสากลในยุคเศรษฐกิจดิจิทัล"
                             </p>
@@ -154,7 +154,7 @@ export default function BlogICDLChinaPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

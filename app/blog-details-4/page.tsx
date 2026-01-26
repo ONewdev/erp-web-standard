@@ -61,7 +61,7 @@ export default function BlogIIoTAdvantagesPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -75,7 +75,7 @@ export default function BlogIIoTAdvantagesPage() {
                 {/* Article Header */}
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             Industrial IoT & Smart Industry
                         </div>
 
@@ -86,7 +86,7 @@ export default function BlogIIoTAdvantagesPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -137,11 +137,11 @@ export default function BlogIIoTAdvantagesPage() {
                                     <div
                                         key={adv.id}
                                         className={`p-8 rounded-[2rem] border transition-all duration-300 ${adv.id === 6
-                                            ? "bg-[#0e9aef] border-[#0e9aef] text-white shadow-xl shadow-blue-100 md:col-span-2"
-                                            : "bg-slate-50 border-slate-100 text-slate-800 hover:bg-white hover:border-[#0e9aef]/30 hover:shadow-lg"
+                                            ? "bg-[var(--brand-blue)] border-[var(--brand-blue)] text-white shadow-xl shadow-blue-100 md:col-span-2"
+                                            : "bg-slate-50 border-slate-100 text-slate-800 hover:bg-white hover:border-[var(--brand-blue)]/30 hover:shadow-lg"
                                             }`}
                                     >
-                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${adv.id === 6 ? "bg-white/20 text-white" : "bg-[#0e9aef]/10 text-[#0e9aef]"
+                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${adv.id === 6 ? "bg-white/20 text-white" : "bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]"
                                             }`}>
                                             {adv.icon}
                                         </div>
@@ -156,7 +156,7 @@ export default function BlogIIoTAdvantagesPage() {
 
                             {/* Special Section: Predictive Maintenance */}
                             <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 mb-20 text-white overflow-hidden relative">
-                                <div className="absolute top-0 right-0 w-80 h-80 bg-[#0e9aef] opacity-10 rounded-full blur-3xl -mr-40 -mt-40"></div>
+                                <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--brand-blue)] opacity-10 rounded-full blur-3xl -mr-40 -mt-40"></div>
 
                                 <div className="flex flex-col lg:flex-row gap-12 items-center relative z-10">
                                     <div className="flex-1">

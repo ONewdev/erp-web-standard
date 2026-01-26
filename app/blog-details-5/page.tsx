@@ -49,7 +49,7 @@ export default function BlogAIRoboticsPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -65,7 +65,7 @@ export default function BlogAIRoboticsPage() {
                     <FadeInSection>
 
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             Robotics & Artificial Intelligence
                         </div>
 
@@ -76,7 +76,7 @@ export default function BlogAIRoboticsPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -119,18 +119,18 @@ export default function BlogAIRoboticsPage() {
                                 />
                             </div>
 
-                            <h2 className="text-2xl font-bold text-slate-800 mb-8 border-l-4 border-[#0e9aef] pl-4">
+                            <h2 className="text-2xl font-bold text-slate-800 mb-8 border-l-4 border-[var(--brand-blue)] pl-4">
                                 หุ่นยนต์ฉลาดขึ้นด้วยระบบ AI
                             </h2>
                             <p className="text-slate-600 mb-12">
-                                การนำระบบ AI เข้ามาใช้ในหุ่นยนต์ <span className="text-[#0e9aef] font-semibold">Cobot (Collaborative Robot)</span> ช่วยยกระดับให้เครื่องจักรเหล่านี้เป็นได้มากกว่าหุ่นยนต์ที่ทำงานอันตรายหรืองานซ้ำซากจำเจ แต่กลายเป็นคู่หูอัจฉริยะที่พร้อมเรียนรู้และเติบโตไปกับสายการผลิต
+                                การนำระบบ AI เข้ามาใช้ในหุ่นยนต์ <span className="text-[var(--brand-blue)] font-semibold">Cobot (Collaborative Robot)</span> ช่วยยกระดับให้เครื่องจักรเหล่านี้เป็นได้มากกว่าหุ่นยนต์ที่ทำงานอันตรายหรืองานซ้ำซากจำเจ แต่กลายเป็นคู่หูอัจฉริยะที่พร้อมเรียนรู้และเติบโตไปกับสายการผลิต
                             </p>
 
                             {/* Cognitive Features Grid */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
                                 {features.map((feat, idx) => (
-                                    <div key={idx} className="group p-8 bg-slate-50 rounded-[2rem] border border-transparent hover:border-[#0e9aef]/20 hover:bg-white hover:shadow-xl transition-all duration-500">
-                                        <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-[#0e9aef] mb-6 shadow-sm group-hover:bg-[#0e9aef] group-hover:text-white transition-colors">
+                                    <div key={idx} className="group p-8 bg-slate-50 rounded-[2rem] border border-transparent hover:border-[var(--brand-blue)]/20 hover:bg-white hover:shadow-xl transition-all duration-500">
+                                        <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-[var(--brand-blue)] mb-6 shadow-sm group-hover:bg-[var(--brand-blue)] group-hover:text-white transition-colors">
                                             {feat.icon}
                                         </div>
                                         <h4 className="text-xl font-bold text-slate-800 mb-3">{feat.title}</h4>
@@ -143,7 +143,7 @@ export default function BlogAIRoboticsPage() {
 
                             {/* Conclusion Section */}
                             <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[3rem] p-10 md:p-16 text-white mb-16 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-[#0e9aef] opacity-10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--brand-blue)] opacity-10 rounded-full blur-3xl -mr-32 -mt-32"></div>
                                 <div className="relative z-10">
                                     <h3 className="text-3xl font-bold mb-6">อนาคตของ Cobot และ AI</h3>
                                     <p className="text-white/70 font-light leading-relaxed mb-10">
@@ -151,19 +151,19 @@ export default function BlogAIRoboticsPage() {
                                     </p>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 font-medium">
                                         <div className="flex items-center gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef]" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)]" />
                                             <span>ลดอุบัติเหตุในโรงงาน</span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef]" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)]" />
                                             <span>เพิ่มความเร็วการผลิต</span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef]" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)]" />
                                             <span>ลดความซับซ้อนของคำสั่ง</span>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef]" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)]" />
                                             <span>วิเคราะห์ปัญหาได้แม่นยำ</span>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@ export default function BlogAIRoboticsPage() {
                                 <p>อ้างอิงข้อมูล: Techsauce | Tech and Biz Ecosystem Leader</p>
                                 <div className="flex items-center gap-2">
                                     <span>แหล่งที่มา:</span>
-                                    <Link href="https://techsauce.co" target="_blank" className="text-[#0e9aef] hover:underline">techsauce.co</Link>
+                                    <Link href="https://techsauce.co" target="_blank" className="text-[var(--brand-blue)] hover:underline">techsauce.co</Link>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +191,7 @@ export default function BlogAIRoboticsPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

@@ -41,14 +41,14 @@ export default function CoursePage() {
         {/* Header Section */}
         <FadeInSection>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-2xl mb-4">
-              <GraduationCap className="w-8 h-8 text-[#0e9aef]" />
+            <div className="inline-flex items-center justify-center p-3 bg-[var(--brand-blue)]/50 rounded-2xl mb-4">
+              <GraduationCap className="w-8 h-8 text-[var(--brand-blue)]" />
             </div>
             <h1 className="text-4xl font-bold text-slate-800 mb-4 uppercase tracking-tight">Course อบรม</h1>
             <p className="text-slate-500 text-lg max-w-2xl mx-auto">
               ยกระดับศักยภาพบุคลากรและองค์กรของคุณด้วยหลักสูตรอบรมด้านเทคโนโลยีและ AI ที่ออกแบบมาเป็นพิเศษเพื่อการใช้งานจริง
             </p>
-            <div className="w-24 h-1.5 bg-[#0e9aef] mx-auto mt-8 rounded-full"></div>
+            <div className="w-24 h-1.5 bg-[var(--brand-blue)] mx-auto mt-8 rounded-full"></div>
           </div>
         </FadeInSection>
 
@@ -56,7 +56,8 @@ export default function CoursePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map((course, index) => (
             <FadeInSection key={course.title} delay={index * 0.1}>
-              <div className="group bg-white rounded-[2rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col h-full">
+              <a href={course.href}>
+                <div className="group bg-white rounded-[2rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100 flex flex-col h-full cursor-pointer">
                 {/* Image Container */}
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -76,7 +77,7 @@ export default function CoursePage() {
 
                 {/* Content */}
                 <div className="p-8 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-[#0e9aef] transition-colors leading-tight">
+                  <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-[var(--brand-blue)] transition-colors leading-tight">
                     {course.title}
                   </h3>
                   <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1">
@@ -86,24 +87,25 @@ export default function CoursePage() {
                   <div className="pt-6 border-t border-slate-50 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1.5 text-slate-400 text-xs">
-                        <Clock className="w-3.5 h-3.5 text-[#0e9aef]" />
+                        <Clock className="w-3.5 h-3.5 text-[var(--brand-blue)]" />
                         <span>{course.duration}</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-slate-400 text-xs">
-                        <BarChart className="w-3.5 h-3.5 text-[#0e9aef]" />
+                        <BarChart className="w-3.5 h-3.5 text-[var(--brand-blue)]" />
                         <span>{course.level}</span>
                       </div>
                     </div>
 
                     <a
                       href={course.href}
-                      className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-[#0e9aef] group-hover:text-white transition-all duration-300"
+                      className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-[var(--brand-blue)] group-hover:text-white transition-all duration-300"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </a>
                   </div>
                 </div>
               </div>
+              </a>
             </FadeInSection>
           ))}
         </div>

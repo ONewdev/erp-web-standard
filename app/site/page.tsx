@@ -228,15 +228,13 @@ export default function SitePage() {
   return (
     <div className="font-kanit bg-gray-50/50 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Header + Sticky Navbar + Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-12 items-start">
-          {/* LEFT : Title + Sticky Navbar */}
+          {/* LEFT : Title */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex flex-col gap-4"
           >
-            {/* Title */}
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
               <div className="relative w-24 h-24 flex-shrink-0">
                 <Image
@@ -248,71 +246,29 @@ export default function SitePage() {
               </div>
 
               <div className="space-y-2">
-                <div className="w-16 h-1 bg-[#0e9aef] rounded-full mb-4 hidden md:block" />
+                <div className="w-16 h-1 bg-[var(--brand-blue)] rounded-full mb-4 hidden md:block" />
                 <h1 className="text-3xl md:text-5xl font-bold text-slate-800 leading-tight">
                   กลุ่มลูกค้าที่ใช้บริการ
-                  <span className="text-[#0e9aef]">โปรแกรม</span>
+                  <span className="text-[var(--brand-blue)]">โปรแกรม</span>
                 </h1>
                 <p className="text-slate-500 text-lg font-light">
                   Q.Soft, WINSpeed, HRM, AI และผลิตภัณฑ์ชั้นนำอื่น ๆ
                 </p>
               </div>
             </div>
-
-            {/* ✅ Sticky Navbar ใต้หัวข้อ */}
-            <div className="sticky top-20 mt-15 z-40">
-              <div className="inline-flex flex-wrap gap-3">
-                {navItems.map((item) => {
-                  const isActive = active === item.key;
-
-                  // กำหนดไอคอนสำหรับแต่ละปุ่ม
-                  const Icon = () => {
-                    switch (item.key) {
-                      case 'qsoft': return <Package className="w-4 h-4" />;
-                      case 'winspeed': return <Zap className="w-4 h-4" />;
-                      case 'hrm': return <Users className="w-4 h-4" />;
-                      case 'ai': return <Sparkles className="w-4 h-4" />;
-                      case 'consulting': return <Briefcase className="w-4 h-4" />;
-                      case 'others': return <Star className="w-4 h-4" />;
-                      default: return null;
-                    }
-                  };
-
-                  return (
-                    <button
-                      key={item.key}
-                      onClick={() => {
-                        setActive(item.key);
-                        window.scrollTo({ top: 20, behavior: "smooth" });
-                      }}
-                      className={`
-                flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold 
-                transition-all duration-300 border-2
-                ${isActive
-                          ? "bg-[#0e9aef] text-white border-[#0e9aef] shadow-lg shadow-blue-200/50"
-                          : "bg-white text-slate-600 border-slate-200 hover:border-[#0e9aef] hover:text-[#0e9aef] hover:shadow-md"
-                        }
-              `}
-                    >
-                      <Icon />
-                      {item.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
           </motion.div>
 
+          {/* RIGHT : Stats (Moves up in responsive but stays right on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 min-w-[320px] relative overflow-hidden group"
+            className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 min-w-[320px] relative overflow-hidden group lg:row-span-2"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110" />
 
             <div className="relative z-10 grid grid-cols-2 gap-y-4 gap-x-8">
               <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-[#0e9aef] font-bold">Total Sites</span>
+                <span className="text-[10px] uppercase tracking-widest text-[var(--brand-blue)] font-bold">Total Sites</span>
                 <span className="text-2xl font-bold text-slate-800">47</span>
               </div>
               <div className="flex flex-col">
@@ -333,6 +289,52 @@ export default function SitePage() {
               LAST UPDATE: {new Date().toLocaleDateString("th-TH")}
             </div>
           </motion.div>
+
+          {/* ✅ Sticky Navbar - Moved under Total Sites for responsive, but remains on left for desktop */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="sticky top-20 z-40 lg:col-start-1"
+          >
+            <div className="inline-flex flex-wrap gap-3">
+              {navItems.map((item) => {
+                const isActive = active === item.key;
+
+                const Icon = () => {
+                  switch (item.key) {
+                    case 'qsoft': return <Package className="w-4 h-4" />;
+                    case 'winspeed': return <Zap className="w-4 h-4" />;
+                    case 'hrm': return <Users className="w-4 h-4" />;
+                    case 'ai': return <Sparkles className="w-4 h-4" />;
+                    case 'consulting': return <Briefcase className="w-4 h-4" />;
+                    case 'others': return <Star className="w-4 h-4" />;
+                    default: return null;
+                  }
+                };
+
+                return (
+                  <button
+                    key={item.key}
+                    onClick={() => {
+                      setActive(item.key);
+                      window.scrollTo({ top: 20, behavior: "smooth" });
+                    }}
+                    className={`
+                      flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold 
+                      transition-all duration-300 border-2
+                      ${isActive
+                        ? "bg-[var(--brand-blue)] text-white border-[var(--brand-blue)] shadow-lg shadow-blue-200/50"
+                        : "bg-white text-slate-600 border-slate-200 hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)] hover:shadow-md"
+                      }
+                    `}
+                  >
+                    <Icon />
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
 
 
@@ -345,7 +347,7 @@ export default function SitePage() {
               exit={{ opacity: 0, y: -10 }}
               className="flex items-center gap-6 py-4 mb-8 overflow-x-auto whitespace-nowrap border-b border-slate-100"
             >
-              <span className="text-xs font-bold text-[#0e9aef] uppercase tracking-widest">ระบบงานหลัก:</span>
+              <span className="text-xs font-bold text-[var(--brand-blue)] uppercase tracking-widest">ระบบงานหลัก:</span>
               <div className="flex gap-6">
                 {qsoftSubcategories.map((subcat) => (
                   <div key={subcat} className="flex items-center gap-2 group cursor-pointer">
@@ -368,7 +370,7 @@ export default function SitePage() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8"
           >
             {displayClients.length > 0 ? (
               displayClients.map((company, idx) => (
@@ -381,7 +383,7 @@ export default function SitePage() {
                     className="relative w-full aspect-[4/3] bg-transparent flex items-center justify-center p-10 cursor-pointer overflow-hidden transition-all duration-500 hover:border-blue-100"
                   >
                     {/* Background Detail */}
-                    <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-50/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[var(--brand-blue)]/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
                     {company.logo && (
                       <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-110">
@@ -409,7 +411,7 @@ export default function SitePage() {
                         ))}
                       </div>
                     )}
-                    <h3 className="text-sm md:text-base font-bold text-slate-700 group-hover:text-[#0e9aef] transition-colors leading-snug">
+                    <h3 className="text-sm md:text-base font-bold text-slate-700 group-hover:text-[var(--brand-blue)] transition-colors leading-snug">
                       {company.name}
                     </h3>
                   </div>

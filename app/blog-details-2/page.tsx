@@ -16,7 +16,7 @@ export default function BlogAIQualityControlPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -31,7 +31,7 @@ export default function BlogAIQualityControlPage() {
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             AI Technology & Innovation
                         </div>
 
@@ -42,7 +42,7 @@ export default function BlogAIQualityControlPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -71,7 +71,7 @@ export default function BlogAIQualityControlPage() {
                     <FadeInSection delay={0.1}>
                         <div className="prose prose-slate prose-lg max-w-none">
                             <p className="text-slate-600 leading-relaxed indent-10 mb-10 text-lg font-light">
-                                หลายคนคงคิดว่าการนำระบบ <span className="text-[#0e9aef] font-semibold">AI Quality Control</span> เข้ามาใช้งานจะเป็นแค่การติดตั้งกล้องเพื่อตรวจจับข้อบกพร่องในการผลิตเพียงอย่างเดียวเท่านั้น แต่อันที่จริงแล้ว ยังจะเป็นการใช้กล้องเพื่อตรวจจับภาพสินค้าในสายการผลิตและส่งข้อมูลไปยังระบบประมวลผลอัจฉริยะที่แม่นยำกว่าสายตามนุษย์หลายเท่า
+                                หลายคนคงคิดว่าการนำระบบ <span className="text-[var(--brand-blue)] font-semibold">AI Quality Control</span> เข้ามาใช้งานจะเป็นแค่การติดตั้งกล้องเพื่อตรวจจับข้อบกพร่องในการผลิตเพียงอย่างเดียวเท่านั้น แต่อันที่จริงแล้ว ยังจะเป็นการใช้กล้องเพื่อตรวจจับภาพสินค้าในสายการผลิตและส่งข้อมูลไปยังระบบประมวลผลอัจฉริยะที่แม่นยำกว่าสายตามนุษย์หลายเท่า
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -102,12 +102,12 @@ export default function BlogAIQualityControlPage() {
                             {/* Key Benefits of AI QC */}
                             <div className="bg-slate-50 rounded-[3rem] p-10 md:p-16 mb-20 border border-slate-100">
                                 <h3 className="text-3xl font-bold text-slate-800 mb-12 text-center">
-                                    ทำไมต้องนำ <span className="text-[#0e9aef]">AI</span> มาใช้ในสายการผลิต?
+                                    ทำไมต้องนำ <span className="text-[var(--brand-blue)]">AI</span> มาใช้ในสายการผลิต?
                                 </h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                                     <div className="flex flex-col items-center text-center group">
-                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#0e9aef] mb-6 group-hover:bg-[#0e9aef] group-hover:text-white transition-all duration-300 shadow-sm">
+                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[var(--brand-blue)] mb-6 group-hover:bg-[var(--brand-blue)] group-hover:text-white transition-all duration-300 shadow-sm">
                                             <ShieldCheck className="w-8 h-8" />
                                         </div>
                                         <h4 className="text-lg font-bold text-slate-800 mb-4">ความแม่นยำสูงสุด</h4>
@@ -117,7 +117,7 @@ export default function BlogAIQualityControlPage() {
                                     </div>
 
                                     <div className="flex flex-col items-center text-center group">
-                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#0e9aef] mb-6 group-hover:bg-[#0e9aef] group-hover:text-white transition-all duration-300 shadow-sm">
+                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[var(--brand-blue)] mb-6 group-hover:bg-[var(--brand-blue)] group-hover:text-white transition-all duration-300 shadow-sm">
                                             <Zap className="w-8 h-8" />
                                         </div>
                                         <h4 className="text-lg font-bold text-slate-800 mb-4">รวดเร็วและต่อเนื่อง</h4>
@@ -127,7 +127,7 @@ export default function BlogAIQualityControlPage() {
                                     </div>
 
                                     <div className="flex flex-col items-center text-center group">
-                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[#0e9aef] mb-6 group-hover:bg-[#0e9aef] group-hover:text-white transition-all duration-300 shadow-sm">
+                                        <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-[var(--brand-blue)] mb-6 group-hover:bg-[var(--brand-blue)] group-hover:text-white transition-all duration-300 shadow-sm">
                                             <BarChart3 className="w-8 h-8" />
                                         </div>
                                         <h4 className="text-lg font-bold text-slate-800 mb-4">ลดต้นทุนระยะยาว</h4>
@@ -140,7 +140,7 @@ export default function BlogAIQualityControlPage() {
 
                             <div className="mb-16">
                                 <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                    <Search className="w-6 h-6 text-[#0e9aef]" />
+                                    <Search className="w-6 h-6 text-[var(--brand-blue)]" />
                                     หัวใจสำคัญของ AI Quality Control
                                 </h3>
                                 <div className="space-y-6">
@@ -161,7 +161,7 @@ export default function BlogAIQualityControlPage() {
 
                             <div className="pt-8 border-t border-slate-100 flex items-center justify-end gap-2 text-slate-400 text-sm font-light">
                                 <span>ที่มา : คณะสถิติประยุกต์ นิด้า (NIDA)</span>
-                                <Link href="https://as.nida.ac.th/" target="_blank" className="text-[#0e9aef] hover:underline">as.nida.ac.th</Link>
+                                <Link href="https://as.nida.ac.th/" target="_blank" className="text-[var(--brand-blue)] hover:underline">as.nida.ac.th</Link>
                             </div>
                         </div>
                     </FadeInSection>
@@ -177,7 +177,7 @@ export default function BlogAIQualityControlPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

@@ -114,7 +114,8 @@ export default function BlogPage() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50">
+            <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50" style={{backgroundImage: "url('/img/blog/10-ai-instead-human-job.png')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
                 <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
                     <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
                         <path d="M100 0H0V100H100V0ZM99 1V99H1V1H99Z" fill="currentColor" />
@@ -125,16 +126,16 @@ export default function BlogPage() {
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <FadeInSection>
                         <div className="text-center max-w-3xl mx-auto">
-                            <div className="inline-block px-4 py-1.5 mb-6 text-[11px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                            <div className="inline-block px-4 py-1.5 mb-6 text-[11px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                                 Insights & Updates
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
-                                บทความจาก <span className="text-[#0e9aef]">ERP</span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                                บทความจาก <span className="text-[var(--brand-blue)]">ERP</span>
                             </h1>
-                            <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed">
-                                อัพเดตข่าวสาร และบทความดี ๆ กับเรา เพื่อการพัฒนาศักยภาพขององค์กรอย่างยั่งยืน
+                            <p className="text-gray-100 text-lg md:text-xl font-light leading-relaxed">
+                                อัพเดตข่าวสาร และบทความดี ๆ กับเรา
                             </p>
-                            <div className="w-24 h-1.5 bg-[#0e9aef] mx-auto mt-10 rounded-full"></div>
+                            <div className="w-24 h-1.5 bg-[var(--brand-blue)] mx-auto mt-10 rounded-full"></div>
                         </div>
                     </FadeInSection>
                 </div>
@@ -186,7 +187,7 @@ export default function BlogPage() {
                                                 </div>
                                             </div>
 
-                                            <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-[#0e9aef] transition-colors leading-snug">
+                                            <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-[var(--brand-blue)] transition-colors leading-snug">
                                                 {post.title}
                                             </h3>
 
@@ -195,7 +196,7 @@ export default function BlogPage() {
                                             </p>
 
                                             <div className="mt-auto pt-6 border-t border-slate-50">
-                                                <div className="inline-flex items-center gap-2 text-[15px] font-bold text-[#0e9aef] group-hover:text-black transition-colors">
+                                                <div className="inline-flex items-center gap-2 text-[15px] font-bold text-[var(--brand-blue)] group-hover:text-black transition-colors">
                                                     อ่านเพิ่มเติม
                                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                                 </div>

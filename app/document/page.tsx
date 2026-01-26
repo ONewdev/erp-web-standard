@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -35,6 +36,7 @@ interface Document {
   jp?: string;
   jpUrl?: string;
   created: string;
+  category?: string;
 }
 
 interface DocumentSection {
@@ -132,17 +134,14 @@ export default function DocumentPage() {
   const showExtraLanguages = activeTab === "Brochure" || activeTab === "All";
 
   // Compute items to display
-  const itemsToDisplay =
-    activeTab === "All"
-      ? documents.flatMap((section) => section.items)
-      : documents.find((doc) => doc.title === activeTab)?.items || [];
+  const displayData = activeTab === "All" ? documents : [documents.find((doc) => doc.title === activeTab)].filter(Boolean) as DocumentSection[];
 
   return (
     <div className="font-kanit min-h-screen bg-gray-50">
       {/* Hero Header Section - Clean & White like other pages */}
       <FadeInSection>
         <div className="bg-white border-b overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--brand-blue)]/5 -skew-x-12 transform origin-top-right"></div>
 
           <div className="max-w-7xl mx-auto px-6 py-8 md:py-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -150,7 +149,7 @@ export default function DocumentPage() {
               <div className="flex flex-col md:flex-row gap-10 items-center ">
 
                 <div className="relative group flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#0e9aef]/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-[var(--brand-blue)]/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
                   <div className="relative w-48 h-48 bg-slate-50 rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-slate-100 shadow-sm transition-transform duration-500 group-hover:-rotate-3">
                     <Image
                       src="/img/download_from_cloud.png"
@@ -162,11 +161,11 @@ export default function DocumentPage() {
                   </div>
                 </div>
                 <div className="text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-[#0e9aef] rounded-full text-xs font-bold mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-[var(--brand-blue)] rounded-full text-xs font-bold mb-4">
                     <BookOpen className="w-3 h-3" /> RESOURCES
                   </div>
                   <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                    Document <span style={{ color: "#0e9aef" }}>Center</span>
+                    Document <span style={{ color: "var(--brand-blue)" }}>Center</span>
                   </h1>
                   <p className="text-lg text-slate-500 font-medium max-w-md leading-relaxed">
                     ศูนย์รวมคู่มือการใช้งานและโบรชัวร์ผลิตภัณฑ์ BCI สำหรับผู้ใช้งานและองค์กร
@@ -182,7 +181,7 @@ export default function DocumentPage() {
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">
                       <div className="p-2.5 bg-blue-50 rounded-xl">
-                        <BarChart3 className="w-5 h-5 text-[#0e9aef]" />
+                        <BarChart3 className="w-5 h-5 text-[var(--brand-blue)]" />
                       </div>
                       <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">Overview</span>
                     </div>
@@ -207,7 +206,7 @@ export default function DocumentPage() {
                   </div>
                 </div>
 
-                <div className="bg-[#0e9aef] p-8 rounded-[2.5rem] shadow-xl shadow-blue-200/50 text-white flex flex-col justify-between relative overflow-hidden group">
+                <div className="bg-[var(--brand-blue)] p-8 rounded-[2.5rem] shadow-xl shadow-blue-200/50 text-white flex flex-col justify-between relative overflow-hidden group">
                   <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
 
                   <div className="relative z-10 flex items-center gap-2 mb-6 text-sm font-bold opacity-80 italic">
@@ -240,9 +239,9 @@ export default function DocumentPage() {
                 {/* All Button */}
                 <button
                   onClick={(e) => { e.currentTarget.blur(); setActiveTab("All"); }}
-                  className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === "All"
-                    ? "bg-[#0e9aef] text-white shadow-lg border border-[#0e9aef]"
-                    : "text-slate-500 hover:text-[#0e9aef] hover:bg-white"
+                  className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[var(--brand-blue)]/40 flex items-center gap-2 ${activeTab === "All"
+                    ? "bg-[var(--brand-blue)] text-white shadow-lg border border-[var(--brand-blue)]"
+                    : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-white"
                     }`}
                 >
                   <Layers className="w-4 h-4" />
@@ -254,9 +253,9 @@ export default function DocumentPage() {
                   <button
                     key={section.title}
                     onClick={(e) => { e.currentTarget.blur(); setActiveTab(section.title); }}
-                    className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[#0e9aef]/40 flex items-center gap-2 ${activeTab === section.title
-                      ? "bg-[#0e9aef] text-white shadow-lg border border-[#0e9aef]"
-                      : "text-slate-500 hover:text-[#0e9aef] hover:bg-white"
+                    className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[var(--brand-blue)]/40 flex items-center gap-2 ${activeTab === section.title
+                      ? "bg-[var(--brand-blue)] text-white shadow-lg border border-[var(--brand-blue)]"
+                      : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-white"
                       }`}
                   >
                     {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
@@ -272,9 +271,9 @@ export default function DocumentPage() {
             </div>
 
             {/* Info Message */}
-            <div className="bg-[#0e9aef]/5 px-6 py-4 flex items-center gap-3">
+            <div className="bg-[var(--brand-blue)]/5 px-6 py-4 flex items-center gap-3">
               <div className="p-2 bg-white rounded-lg shadow-sm">
-                <BookOpen className="w-4 h-4 text-[#0e9aef]" />
+                <BookOpen className="w-4 h-4 text-[var(--brand-blue)]" />
               </div>
               <p className="text-sm text-slate-600">
                 <span className="font-bold text-slate-800">Pro Tip:</span> ไฟล์ PDF สามารถเปิดอ่านผ่าน Web Browser ได้ทันทีโดยไม่ต้องติดตั้งซอฟต์แวร์เพิ่มเติม
@@ -304,20 +303,42 @@ export default function DocumentPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
-                  {itemsToDisplay.map((item, index) => (
-                    <MotionTr
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.02 }} // Faster stagger for long lists
-                      key={`${item.name}-${index}`}
-                      className="hover:bg-slate-50/50 transition-colors group"
-                    >
-                      <td className="px-8 py-5">
+                  {displayData.map((section) => (
+                    <React.Fragment key={section.title}>
+                      {activeTab === "All" && (
+                        <MotionTr
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="bg-slate-100 hover:bg-slate-100"
+                        >
+                          <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-4">
+                            <div className="flex items-center gap-3">
+                              {section.title === "Documents" && <FileSearch className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              {section.title === "Brochure" && <ImageOff className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              {section.title === "WINSpeed" && <ArrowUpCircle className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              {section.title === "HRMI" && <Users className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              {section.title === "CRM" && <BarChart3 className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              {section.title === "Support & Other" && <Files className="w-5 h-5 text-[var(--brand-blue)]" />}
+                              <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider">{section.title}</h3>
+                            </div>
+                          </td>
+                        </MotionTr>
+                      )}
+                      {section.items.map((item, index) => (
+                        <MotionTr
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.02 }}
+                          key={`${item.name}-${index}`}
+                          className="hover:bg-slate-50/50 transition-colors group"
+                        >
+                          <td className="px-8 py-5">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-[#0e9aef]/10 flex items-center justify-center text-[#0e9aef] group-hover:scale-110 transition-transform">
+                          <div className="w-8 h-8 rounded-lg bg-[var(--brand-blue)]/10 flex items-center justify-center text-[var(--brand-blue)] group-hover:scale-110 transition-transform">
                             <FileText className="w-4 h-4" />
                           </div>
-                          <span className="text-slate-700 font-semibold group-hover:text-[#0e9aef] transition-colors">{item.name}</span>
+                          <span className="text-slate-700 font-semibold group-hover:text-[var(--brand-blue)] transition-colors">{item.name}</span>
                         </div>
                       </td>
                       <td className="px-6 py-5 text-center">
@@ -383,6 +404,8 @@ export default function DocumentPage() {
                         <span className="text-xs font-medium text-slate-400 font-mono">{item.created}</span>
                       </td>
                     </MotionTr>
+                      ))}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>

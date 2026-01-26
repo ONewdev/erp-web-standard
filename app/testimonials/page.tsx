@@ -61,7 +61,6 @@ const sections = [
 import FadeInSection from "../components/FadeInSection";
 
 export default function TestimonialsPage() {
-  const brandBlue = "#0e9aef";
 
   return (
     <div className="font-kanit bg-white">
@@ -71,8 +70,8 @@ export default function TestimonialsPage() {
           <FadeInSection>
             <div className="mb-16">
               <div className="flex items-center gap-6 mb-8">
-                <div className="p-4 rounded-2xl bg-blue-50">
-                  <i style={{ fontSize: 40, color: brandBlue }} className="fa fa-comments-o" />
+                <div className="p-4 rounded-2xl bg-[var(--brand-blue)]/50">
+                  <i style={{ fontSize: 40, color: "var(--brand-blue)" }} className="fa fa-comments-o" />
                 </div>
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
@@ -83,7 +82,7 @@ export default function TestimonialsPage() {
                   </p>
                 </div>
               </div>
-              <div className="h-1 w-20 rounded-full" style={{ backgroundColor: brandBlue }}></div>
+              <div className="h-1 w-20 rounded-full" style={{ backgroundColor: "var(--brand-blue)" }}></div>
             </div>
           </FadeInSection>
 
@@ -106,7 +105,7 @@ export default function TestimonialsPage() {
                         <div className="absolute inset-0 rounded-full border-2 opacity-20 border-slate-300 pointer-events-none"></div>
                       </div>
                       <div className="space-y-1">
-                        <strong className="block text-lg font-bold" style={{ color: brandBlue }}>
+                        <strong className="block text-lg font-bold" style={{ color: "var(--brand-blue)" }}>
                           {s.person}
                         </strong>
                         <p className="text-sm text-slate-500 font-medium">
@@ -118,14 +117,14 @@ export default function TestimonialsPage() {
                     {/* ===== CENTER: CONTENT ===== */}
                     <div className="flex flex-col">
                       <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                        <span className="w-1 h-6 rounded-full" style={{ backgroundColor: brandBlue }}></span>
+                        <span className="w-1 h-6 rounded-full" style={{ backgroundColor: "var(--brand-blue)" }}></span>
                         {s.title}
                       </h2>
 
                       <div className="relative mb-8">
                         <i
                           className="fa fa-quote-left absolute -left-8 -top-4 opacity-10 text-6xl"
-                          style={{ color: brandBlue }}
+                          style={{ color: "var(--brand-blue)" }}
                         ></i>
                         <p className="text-xl text-slate-600 leading-relaxed italic pl-0 md:pl-2 relative z-10">
                           {s.quote}
@@ -164,11 +163,11 @@ export default function TestimonialsPage() {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="group flex items-center text-sm text-slate-500 hover:text-[#0e9aef] transition-all duration-300"
+                    className="group flex items-center text-sm text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300"
                   >
                     <span
                       className="w-0 h-[2px] mr-0 group-hover:w-4 group-hover:mr-3 transition-all duration-300"
-                      style={{ backgroundColor: brandBlue }}
+                      style={{ backgroundColor: "var(--brand-blue)" }}
                     ></span>
                     <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">
                       {s.title}

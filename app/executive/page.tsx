@@ -57,7 +57,7 @@ export default function ExecutivePage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
                 เกี่ยวกับ Course
               </h2>
-              <div className="flex flex-wrap gap-8 justify-between">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                 {executiveData.details.map((detail, index) => (
                   <div
                     key={index}
@@ -69,7 +69,7 @@ export default function ExecutivePage() {
                       width={60}
                       height={60}
                     />
-                    <p className="text-gray-700 text-center">{detail.text}</p>
+                    <p className="text-gray-700 text-center text-sm">{detail.text}</p>
                   </div>
                 ))}
               </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Zap,
   Shield,
@@ -17,6 +18,7 @@ import {
   Globe,
   Network,
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import FadeInSection from "../components/FadeInSection";
 
 const PowerBIIcon = ({ className }: { className?: string }) => (
@@ -192,17 +194,16 @@ export default function ServicePage() {
     <div className="bg-[#f8fafc] min-h-screen pb-20 font-kanit">
       {/* Hero Header */}
       <div className="bg-white border-b mb-10 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#0e9aef]/5 -skew-x-12 transform origin-top-right"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--brand-blue)]/5 -skew-x-12 transform origin-top-right"></div>
         <div className="max-w-7xl mx-auto px-4 py-12 md:py-8 relative z-10">
           <FadeInSection>
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 bg-[#0e9aef] rounded-xl text-white shadow-lg shadow-blue-200">
+              <div className="p-3 bg-[var(--brand-blue)] rounded-xl text-white shadow-lg shadow-blue-200">
                 <Globe className="w-8 h-8" />
               </div>
-              <div className="h-px flex-1 bg-slate-200"></div>
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#111827] mb-4">
-              Services <span style={{ color: "#0e9aef" }}>Center</span>
+              Services <span style={{ color: "var(--brand-blue)" }}>Center</span>
             </h1>
             <p className="text-xl text-slate-500 max-w-2xl leading-relaxed">
               บริการของพวกเรา
@@ -221,7 +222,7 @@ export default function ServicePage() {
               >
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-[#1e293b] flex items-center gap-3">
-                    <span className="w-2 h-8 rounded-full" style={{ backgroundColor: "#0e9aef" }}></span>
+                    <span className="w-2 h-8 rounded-full" style={{ backgroundColor: "var(--brand-blue)" }}></span>
                     {section.title}
                   </h2>
                   <p className="text-slate-500 mt-1 ml-5 font-medium">{section.subtitle}</p>
@@ -244,17 +245,17 @@ export default function ServicePage() {
                         <div
                           className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-inner group-hover:text-white"
                           style={{
-                            backgroundColor: "rgba(14, 154, 239, 0.1)",
-                            color: "#0e9aef"
+                            backgroundColor: "rgba(var(--brand-blue), 0.1)",
+                            color: "var(--brand-blue)"
                           }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#0e9aef"}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(14, 154, 239, 0.1)"}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "var(--brand-blue)"}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(var(--brand-blue), 0.1)"}
                         >
                           {service.icon}
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[#0e9aef]">
+                      <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
                         {service.label}
                       </h3>
 
@@ -269,7 +270,7 @@ export default function ServicePage() {
                               <div className="flex items-center gap-2 mb-2">
                                 <span
                                   className="w-1 h-4 rounded-full"
-                                  style={{ backgroundColor: "#0e9aef" }}
+                                  style={{ backgroundColor: "[var(--brand-blue)]" }}
                                 />
                                 <div className="text-sm font-extrabold text-slate-700 tracking-wide">
                                   {s.heading}
@@ -278,7 +279,7 @@ export default function ServicePage() {
                               <ul className="space-y-1.5 text-xs text-slate-500">
                                 {s.bullets.map((b) => (
                                   <li key={b} className="flex items-start gap-2">
-                                    <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "#0e9aef" }}></span>
+                                    <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "[var(--brand-blue)]" }}></span>
                                     {b}
                                   </li>
                                 ))}

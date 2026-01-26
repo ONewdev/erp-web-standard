@@ -16,7 +16,7 @@ export default function BlogERPSMEPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -31,7 +31,7 @@ export default function BlogERPSMEPage() {
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             SME & Business Transformation
                         </div>
 
@@ -42,7 +42,7 @@ export default function BlogERPSMEPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -84,12 +84,12 @@ export default function BlogERPSMEPage() {
                             </div>
 
                             <p className="text-slate-600 leading-relaxed mb-16 text-lg font-light">
-                                ดังนั้น SME จึงต้องเตรียมความพร้อมด้านกระบวนการทำงาน โดยเฉพาะการนำเอาเทคโนโลยีสารสนเทศเข้ามาช่วยเพิ่มประสิทธิภาพ เช่น <span className="text-[#0e9aef] font-semibold">Enterprise Resource Planning (ERP)</span> หรือระบบสารสนเทศเพื่อการบรูณาการข้อมูล และการวางแผนทรัพยากรทางธุรกิจขององค์กรโดยรวม เพื่อก้าวข้ามขีดจำกัดด้านการจัดการและสร้างความได้เปรียบในเชิงลึก
+                                ดังนั้น SME จึงต้องเตรียมความพร้อมด้านกระบวนการทำงาน โดยเฉพาะการนำเอาเทคโนโลยีสารสนเทศเข้ามาช่วยเพิ่มประสิทธิภาพ เช่น <span className="text-[var(--brand-blue)] font-semibold">Enterprise Resource Planning (ERP)</span> หรือระบบสารสนเทศเพื่อการบรูณาการข้อมูล และการวางแผนทรัพยากรทางธุรกิจขององค์กรโดยรวม เพื่อก้าวข้ามขีดจำกัดด้านการจัดการและสร้างความได้เปรียบในเชิงลึก
                             </p>
 
                             {/* 5 Groups of ERP */}
                             <div className="mb-20">
-                                <h3 className="text-2xl font-bold text-slate-800 mb-8 border-l-4 border-[#0e9aef] pl-4">
+                                <h3 className="text-2xl font-bold text-slate-800 mb-8 border-l-4 border-[var(--brand-blue)] pl-4">
                                     ประเภทของระบบ ERP แบ่งออกเป็น 5 กลุ่มหลัก
                                 </h3>
                                 <div className="grid grid-cols-1 gap-6">
@@ -121,7 +121,7 @@ export default function BlogERPSMEPage() {
                                         }
                                     ].map((item, idx) => (
                                         <div key={idx} className="flex gap-6 p-6 bg-slate-50 rounded-2xl hover:bg-white border border-transparent hover:border-slate-100 hover:shadow-lg transition-all">
-                                            <div className="w-12 h-12 bg-[#0e9aef]/10 rounded-xl flex items-center justify-center text-[#0e9aef] shrink-0">
+                                            <div className="w-12 h-12 bg-[var(--brand-blue)]/10 rounded-xl flex items-center justify-center text-[var(--brand-blue)] shrink-0">
                                                 {item.icon}
                                             </div>
                                             <div>
@@ -135,9 +135,9 @@ export default function BlogERPSMEPage() {
 
                             {/* Features Section */}
                             <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 mb-20 text-white overflow-hidden relative">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-[#0e9aef] opacity-10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--brand-blue)] opacity-10 rounded-full blur-3xl -mr-32 -mt-32"></div>
                                 <h3 className="text-3xl font-bold mb-12 text-center relative z-10">
-                                    คุณสมบัติที่สำคัญของระบบ <span className="text-[#0e9aef]">ERP</span>
+                                    คุณสมบัติที่สำคัญของระบบ <span className="text-[var(--brand-blue)]">ERP</span>
                                 </h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
@@ -149,7 +149,7 @@ export default function BlogERPSMEPage() {
                                         { icon: <ShieldCheck />, title: "Best Practices", desc: "อิงแนวปฏิบัติที่ดีที่สุด มีกระบวนการมาตรฐานที่ปรับแต่งได้" }
                                     ].map((feat, idx) => (
                                         <div key={idx} className="p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
-                                            <div className="text-[#0e9aef] mb-4">{feat.icon}</div>
+                                            <div className="text-[var(--brand-blue)] mb-4">{feat.icon}</div>
                                             <h4 className="font-bold mb-2">{feat.title}</h4>
                                             <p className="text-white/60 font-light text-[13px] leading-relaxed">{feat.desc}</p>
                                         </div>
@@ -159,7 +159,7 @@ export default function BlogERPSMEPage() {
 
                             <div className="pt-8 border-t border-slate-100 flex items-center justify-end gap-2 text-slate-400 text-sm font-light">
                                 <span>ที่มา : สำนักงานส่งเสริมเศรษฐกิจดิจิทัล (DEPA)</span>
-                                <Link href="https://www.depa.or.th/" target="_blank" className="text-[#0e9aef] hover:underline">depa.or.th</Link>
+                                <Link href="https://www.depa.or.th/" target="_blank" className="text-[var(--brand-blue)] hover:underline">depa.or.th</Link>
                             </div>
                         </div>
                     </FadeInSection>
@@ -175,7 +175,7 @@ export default function BlogERPSMEPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

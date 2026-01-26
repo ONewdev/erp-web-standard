@@ -16,7 +16,7 @@ export default function BlogAiCarPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -31,7 +31,7 @@ export default function BlogAiCarPage() {
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             Training & AI Technology
                         </div>
 
@@ -42,7 +42,7 @@ export default function BlogAiCarPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -72,7 +72,7 @@ export default function BlogAiCarPage() {
                         <div className="prose prose-slate prose-lg max-w-none">
                             <p className="text-slate-600 leading-relaxed indent-10 mb-10 text-lg font-light">
                                 เมื่อวันที่ 9 ตุลาคม 2568 คุณธนพล ต่อสิทธิเดชกุล กรรมการผู้จัดการบริษัท บิสซิเนส คอมเพ็ดทิทีฟ อินเทลลิเจนซ์ จำกัด
-                                ได้รับเกียรติเป็นวิทยากรบรรยายในหลักสูตร <span className="text-[#0e9aef] font-semibold">“บทบาทของ AI ในธุรกิจผลิตชิ้นส่วนรถยนต์”</span>
+                                ได้รับเกียรติเป็นวิทยากรบรรยายในหลักสูตร <span className="text-[var(--brand-blue)] font-semibold">“บทบาทของ AI ในธุรกิจผลิตชิ้นส่วนรถยนต์”</span>
                                 ให้กับทีมผู้บริหารและบุคลากรของ บริษัท ซัมมิท โอโต บอดี้ สกิลส์ ดีเวลลอปเม้นท์ เซ็นเตอร์ จำกัด ณ จ.สมุทรปราการ
                             </p>
 
@@ -91,7 +91,7 @@ export default function BlogAiCarPage() {
                                     <Image src="/img/blog/aicar3.jpg" alt="Training Atmosphere" fill className="object-cover" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-[#0e9aef] pl-4">
+                                    <h3 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-[var(--brand-blue)] pl-4">
                                         หัวข้อสำคัญในการอบรม
                                     </h3>
                                     <p className="text-slate-500 font-light mb-6">มุ่งเน้นให้ผู้เข้าร่วมได้เข้าใจแนวโน้มการประยุกต์ใช้เทคโนโลยี AI ในอุตสาหกรรมการผลิตชิ้นส่วนยานยนต์</p>
@@ -102,7 +102,7 @@ export default function BlogAiCarPage() {
                                             "การใช้ Generative AI เพื่อสนับสนุนงานด้านวางแผนและวิเคราะห์ข้อมูล"
                                         ].map((item, idx) => (
                                             <li key={idx} className="flex gap-3 items-start text-slate-600 font-light">
-                                                <CheckCircle2 className="w-5 h-5 text-[#0e9aef] shrink-0 mt-0.5" />
+                                                <CheckCircle2 className="w-5 h-5 text-[var(--brand-blue)] shrink-0 mt-0.5" />
                                                 <span>{item}</span>
                                             </li>
                                         ))}
@@ -112,7 +112,7 @@ export default function BlogAiCarPage() {
 
                             <p className="text-slate-600 leading-relaxed mb-16 text-lg font-light">
                                 บรรยากาศการอบรมเต็มไปด้วยความสนใจและการแลกเปลี่ยนความคิดเห็นอย่างสร้างสรรค์
-                                สะท้อนให้เห็นถึงความมุ่งมั่นของภาคอุตสาหกรรมไทยในการก้าวสู่ <span className="text-[#0e9aef] font-semibold">ยุคการผลิตอัจฉริยะ (Smart Manufacturing)</span>
+                                สะท้อนให้เห็นถึงความมุ่งมั่นของภาคอุตสาหกรรมไทยในการก้าวสู่ <span className="text-[var(--brand-blue)] font-semibold">ยุคการผลิตอัจฉริยะ (Smart Manufacturing)</span>
                                 ด้วยเทคโนโลยี AI ที่ BCI พร้อมให้คำปรึกษาและพัฒนาโซลูชันร่วมกับภาคธุรกิจอย่างต่อเนื่อง
                             </p>
 
@@ -169,7 +169,7 @@ export default function BlogAiCarPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

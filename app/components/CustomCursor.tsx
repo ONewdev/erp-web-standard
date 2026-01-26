@@ -90,7 +90,7 @@ export default function CustomCursor() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           style={{ left: ripple.x, top: ripple.y }}
           className="fixed w-6 h-6 -translate-x-1/2 -translate-y-1/2
-            rounded-full border border-[rgba(14,154,239,0.6)]
+            rounded-full border border-[rgba(var(--brand-blue),0.6)]
             pointer-events-none"
         />
       ))}
@@ -103,11 +103,11 @@ export default function CustomCursor() {
           x: "-50%",
           y: "-50%",
         }}
-        className="fixed top-0 left-0 w-[280px] h-[280px]"
+        className="fixed top-0 left-0 w-[80px] h-[80px]"
       >
         <div
-          className={`w-full h-full bg-[#0e9aef] rounded-full 
-          blur-[70px] transition-opacity duration-1000
+          className={`w-full h-full bg-[var(--brand-blue)] rounded-full 
+          blur-[0px] transition-opacity duration-200
           ${isHovering ? "opacity-18" : "opacity-10"}`}
         />
       </motion.div>
@@ -123,8 +123,8 @@ export default function CustomCursor() {
         animate={{
           scale: isHovering ? 1.5 : 1,
           borderColor: isHovering
-            ? "rgba(14,154,239,0.6)"
-            : "rgba(14,154,239,0.25)",
+            ? "rgba(var(--brand-blue),0.6)"
+            : "rgba(var(--brand-blue), 0.25)",
         }}
         className="fixed top-0 left-0 w-8 h-8 rounded-full border
           transition-colors duration-300"
@@ -140,8 +140,8 @@ export default function CustomCursor() {
         }}
         animate={{ scale: isHovering ? 0.5 : 1 }}
         className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full
-          bg-[#0e9aef]
-          shadow-[0_0_15px_rgba(14,154,239,0.8)]"
+          bg-[var(--brand-blue)]
+          shadow-[0_0_15px_rgba(var(--brand-blue),0.8)]"
       />
     </div>
   );

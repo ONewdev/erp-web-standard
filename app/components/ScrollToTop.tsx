@@ -41,7 +41,7 @@ export default function ScrollToTop() {
         display: "grid",
         placeItems: "center",
         zIndex: 9999,
-        color: "#0e9aef",
+        color: "var(--brand-blue)",
         fontFamily: "var(--font-kanit)",
       }}
     >

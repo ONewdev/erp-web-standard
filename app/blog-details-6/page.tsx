@@ -23,7 +23,7 @@ export default function BlogSmartWarehousePage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -39,7 +39,7 @@ export default function BlogSmartWarehousePage() {
                     <FadeInSection>
 
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             Logistics & Supply Chain
                         </div>
 
@@ -50,7 +50,7 @@ export default function BlogSmartWarehousePage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -81,7 +81,7 @@ export default function BlogSmartWarehousePage() {
                             <p className="text-slate-600 leading-relaxed indent-10 mb-10 text-lg font-light">
                                 ในอุตสาหกรรมและโลจิสติกส์ยุคใหม่ การจัดการบริหารสินค้าคงคลัง (Inventory Management) คือหัวใจสำคัญ
                                 ธุรกิจสามารถประหยัดเงินได้มหาศาลหากสามารถจัดการให้สินค้าอยู่ในจุดที่พอเหมาะที่สุด
-                                หรือที่เรียกว่า <span className="text-[#0e9aef] font-semibold">Inventory Optimization</span> ไม่ให้เกิดภาวะ "ของขาด" หรือ "ของเกิน" จนกลายเป็นต้นทุนจม
+                                หรือที่เรียกว่า <span className="text-[var(--brand-blue)] font-semibold">Inventory Optimization</span> ไม่ให้เกิดภาวะ "ของขาด" หรือ "ของเกิน" จนกลายเป็นต้นทุนจม
                             </p>
 
                             <div className="relative aspect-[16/9] w-full rounded-[2.5rem] overflow-hidden shadow-2xl mb-16">
@@ -93,7 +93,7 @@ export default function BlogSmartWarehousePage() {
                                 />
                             </div>
 
-                            <blockquote className="border-l-4 border-[#0e9aef] pl-6 py-2 my-12 bg-blue-50/50 rounded-r-2xl">
+                            <blockquote className="border-l-4 border-[var(--brand-blue)] pl-6 py-2 my-12 bg-blue-50/50 rounded-r-2xl">
                                 <p className="text-slate-800 font-bold text-xl italic leading-relaxed">
                                     "Be in the right place at the right time"
                                 </p>
@@ -101,11 +101,11 @@ export default function BlogSmartWarehousePage() {
                             </blockquote>
 
                             <h2 className="text-2xl font-bold text-slate-800 mb-8 flex items-center gap-3">
-                                <Warehouse className="text-[#0e9aef]" />
+                                <Warehouse className="text-[var(--brand-blue)]" />
                                 Smart Warehouse คืออะไร?
                             </h2>
                             <p className="text-slate-600 mb-12">
-                                Smart Warehouse คือการจัดการคลังสินค้าในรูปแบบที่ฉลาดล้ำ โดยการนำ <span className="text-[#0e9aef] font-semibold">หุ่นยนต์อัจฉริยะ</span> เข้ามาช่วยในกระบวนการตรวจสอบ เคลื่อนย้าย และกระจายสินค้า เพื่อเป้าหมายคือความแม่นยำสูงสุดและการรายงานผลแบบอัตโนมัติ (Automated Reporting) ที่ช่วยลดความเสี่ยงในการตัดสินใจของผู้บริหาร
+                                Smart Warehouse คือการจัดการคลังสินค้าในรูปแบบที่ฉลาดล้ำ โดยการนำ <span className="text-[var(--brand-blue)] font-semibold">หุ่นยนต์อัจฉริยะ</span> เข้ามาช่วยในกระบวนการตรวจสอบ เคลื่อนย้าย และกระจายสินค้า เพื่อเป้าหมายคือความแม่นยำสูงสุดและการรายงานผลแบบอัตโนมัติ (Automated Reporting) ที่ช่วยลดความเสี่ยงในการตัดสินใจของผู้บริหาร
                             </p>
 
                             {/* Data Analytics Levels */}
@@ -116,7 +116,7 @@ export default function BlogSmartWarehousePage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {analyticsLevels.map((level, idx) => (
                                         <div key={idx} className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300">
-                                            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-[#0e9aef] mb-6">
+                                            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] mb-6">
                                                 {idx === 0 && <PieChart className="w-6 h-6" />}
                                                 {idx === 1 && <Activity className="w-6 h-6" />}
                                                 {idx === 2 && <LineChart className="w-6 h-6" />}
@@ -136,25 +136,25 @@ export default function BlogSmartWarehousePage() {
                                 <div className="flex-1">
                                     <h3 className="text-2xl font-bold text-slate-800 mb-6">ความท้าทายจากข้อมูลมหาศาล (Big Data)</h3>
                                     <p className="text-slate-600 leading-relaxed font-light mb-6">
-                                        Smart Warehouse ขับเคลื่อนด้วยระบบอัตโนมัติที่รายงานผลเป็นข้อมูลมหาศาลและต่อเนื่องไม่หยุดหย่อน (Streaming Data) หากบุคลากรยังคงทำงานด้วยวิธีเดิม อาจส่งผลให้การทำ <span className="text-[#0e9aef] font-semibold">Digital Transformation</span> ขององค์กรต้องสะดุดลง
+                                        Smart Warehouse ขับเคลื่อนด้วยระบบอัตโนมัติที่รายงานผลเป็นข้อมูลมหาศาลและต่อเนื่องไม่หยุดหย่อน (Streaming Data) หากบุคลากรยังคงทำงานด้วยวิธีเดิม อาจส่งผลให้การทำ <span className="text-[var(--brand-blue)] font-semibold">Digital Transformation</span> ขององค์กรต้องสะดุดลง
                                     </p>
                                     <div className="space-y-4">
                                         <div className="flex items-start gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef] mt-1 shrink-0" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)] mt-1 shrink-0" />
                                             <span className="text-slate-700">เปลี่ยนจาก Manual สู่ Automation 100%</span>
                                         </div>
                                         <div className="flex items-start gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef] mt-1 shrink-0" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)] mt-1 shrink-0" />
                                             <span className="text-slate-700">ใช้ประโยชน์จาก Real-time Data Analytics</span>
                                         </div>
                                         <div className="flex items-start gap-3">
-                                            <CheckCircle2 className="text-[#0e9aef] mt-1 shrink-0" />
+                                            <CheckCircle2 className="text-[var(--brand-blue)] mt-1 shrink-0" />
                                             <span className="text-slate-700">ลดช่องโหว่ในห่วงโซ่อุปทานด้วยเทคโนโลยี</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="w-full md:w-1/3 p-10 bg-blue-50 rounded-[3rem] border border-blue-100/50 flex flex-col items-center text-center">
-                                    <FlaskConical className="w-12 h-12 text-[#0e9aef] mb-6" />
+                                    <FlaskConical className="w-12 h-12 text-[var(--brand-blue)] mb-6" />
                                     <h4 className="font-bold text-slate-800 mb-2">Smart Logistics Lab</h4>
                                     <p className="text-xs text-slate-500 font-light leading-relaxed">
                                         นิด้า (LM NIDA) ได้สร้างพื้นที่แห่งนี้เพื่อเป็น d'Lab สำหรับการทดลองวางแผน และออกแบบคลังสินค้าอัจฉริยะในสภาพแวดล้อมจริง
@@ -164,10 +164,10 @@ export default function BlogSmartWarehousePage() {
 
                             {/* Strategic Conclusion */}
                             <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 text-white mb-16 relative overflow-hidden shadow-2xl shadow-blue-900/20">
-                                <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#0e9aef] opacity-5 rounded-full blur-3xl -mb-40 -mr-40"></div>
+                                <div className="absolute bottom-0 right-0 w-80 h-80 bg-[var(--brand-blue)] opacity-5 rounded-full blur-3xl -mb-40 -mr-40"></div>
                                 <div className="relative z-10">
                                     <div className="flex items-center gap-3 mb-8">
-                                        <div className="w-12 h-12 bg-[#0e9aef] rounded-2xl flex items-center justify-center">
+                                        <div className="w-12 h-12 bg-[var(--brand-blue)] rounded-2xl flex items-center justify-center">
                                             <Target className="w-6 h-6 text-white" />
                                         </div>
                                         <h3 className="text-3xl font-bold">การวางแผนเชิงกลยุทธ์ระยะยาว</h3>
@@ -177,11 +177,11 @@ export default function BlogSmartWarehousePage() {
                                     </p>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
                                         <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                                            <h5 className="font-bold text-[#0e9aef] mb-3 uppercase tracking-wider">Efficiency Result</h5>
+                                            <h5 className="font-bold text-[var(--brand-blue)] mb-3 uppercase tracking-wider">Efficiency Result</h5>
                                             <p className="text-white/50 font-light">เพิ่มความเร็วในการกระจายสินค้าและลดข้อผิดพลาดในการจัดเก็บได้มากกว่า 40%</p>
                                         </div>
                                         <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                                            <h5 className="font-bold text-[#0e9aef] mb-3 uppercase tracking-wider">Cost Reduction</h5>
+                                            <h5 className="font-bold text-[var(--brand-blue)] mb-3 uppercase tracking-wider">Cost Reduction</h5>
                                             <p className="text-white/50 font-light">ประหยัดต้นทุนจมจากการจัดการ Inventory ที่ไม่มีประสิทธิภาพได้ในระยะยาว</p>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@ export default function BlogSmartWarehousePage() {
                                 <p>อ้างอิงข้อมูล: คณะสถิติประยุกต์ นิด้า (NIDA) | สาขาการจัดการโลจิสติกส์</p>
                                 <div className="flex items-center gap-2">
                                     <span>แหล่งที่มา:</span>
-                                    <Link href="https://as.nida.ac.th/" target="_blank" className="text-[#0e9aef] hover:underline">as.nida.ac.th</Link>
+                                    <Link href="https://as.nida.ac.th/" target="_blank" className="text-[var(--brand-blue)] hover:underline">as.nida.ac.th</Link>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ export default function BlogSmartWarehousePage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

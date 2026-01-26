@@ -17,7 +17,7 @@ export default function BlogAfricaPage() {
                 <FadeInSection>
                     <Link
                         href="/blog"
-                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[#0e9aef] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[#0e9aef]/20"
+                        className="inline-flex items-center gap-3 text-slate-500 hover:text-[var(--brand-blue)] transition-all duration-300 group bg-white/80 backdrop-blur-md p-2 pr-4 rounded-full border border-slate-100 shadow-sm hover:shadow-md hover:border-[var(--brand-blue)]/20"
                     >
                         <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
                             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
@@ -32,7 +32,7 @@ export default function BlogAfricaPage() {
                 <section className="max-w-4xl mx-auto px-6 mb-12">
                     <FadeInSection>
 
-                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[#0e9aef] uppercase bg-blue-50 rounded-full border border-blue-100">
+                        <div className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold tracking-[0.2em] text-[var(--brand-blue)] uppercase bg-blue-50 rounded-full border border-blue-100">
                             Business & Technology
                         </div>
 
@@ -43,7 +43,7 @@ export default function BlogAfricaPage() {
                         <div className="flex flex-wrap items-center justify-between gap-6 py-8 border-y border-slate-100">
                             <div className="flex items-center gap-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0e9aef]">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[var(--brand-blue)]">
                                         <User className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -90,7 +90,7 @@ export default function BlogAfricaPage() {
 
                             <p className="text-slate-600 leading-relaxed mb-12 text-lg font-light">
                                 การดำเนินงานในครั้งนี้มุ่งเน้นการสนับสนุนผู้ประกอบการซอฟต์แวร์ไทยที่มีศักยภาพด้านระบบ
-                                <span className="text-[#0e9aef] font-semibold"> Cyber Security, FinTech, Manufacturing Execution System (MES), AI, ERP, Hotel Management, Travel Platform, GPS และ IoT Solutions</span>
+                                <span className="text-[var(--brand-blue)] font-semibold"> Cyber Security, FinTech, Manufacturing Execution System (MES), AI, ERP, Hotel Management, Travel Platform, GPS และ IoT Solutions</span>
                                 ให้สามารถเข้าสู่ตลาดแอฟริกาที่กำลังพัฒนาอย่างก้าวกระโดดในด้านโครงสร้างดิจิทัล
                             </p>
 
@@ -100,16 +100,16 @@ export default function BlogAfricaPage() {
                                     <Image src="/img/blog/africa2.jpg" alt="Africa Activity" fill className="object-cover" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-[#0e9aef] pl-4">
+                                    <h3 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-[var(--brand-blue)] pl-4">
                                         ไฮไลต์ของภารกิจ ได้แก่
                                     </h3>
                                     <ul className="space-y-4 text-slate-600 font-light">
                                         <li className="flex gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#0e9aef] mt-2 shrink-0"></div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand-blue)] mt-2 shrink-0"></div>
                                             <span>การแสดงผลงานและแพลตฟอร์มซอฟต์แวร์ของผู้ประกอบการไทยภายในโซน Thailand Pavilion ในงาน Africa Technology Expo 2025</span>
                                         </li>
                                         <li className="flex gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#0e9aef] mt-2 shrink-0"></div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand-blue)] mt-2 shrink-0"></div>
                                             <span>การเจรจาจับคู่ธุรกิจ (Business Matching) กับผู้ประกอบการด้าน ICT และตัวแทนจำหน่ายในไนจีเรียและอียิปต์</span>
                                         </li>
                                     </ul>
@@ -121,11 +121,11 @@ export default function BlogAfricaPage() {
                                 <div className="order-2 md:order-1">
                                     <ul className="space-y-4 text-slate-600 font-light">
                                         <li className="flex gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#0e9aef] mt-2 shrink-0"></div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand-blue)] mt-2 shrink-0"></div>
                                             <span>การรับข้อมูลเชิงลึกเกี่ยวกับตลาดซอฟต์แวร์จากสำนักงานส่งเสริมการค้า/หอการค้าอียิปต์ รวมถึงหน่วยงานสำคัญอื่นๆ</span>
                                         </li>
                                         <li className="flex gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[#0e9aef] mt-2 shrink-0"></div>
+                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand-blue)] mt-2 shrink-0"></div>
                                             <span>การพบปะหารือกับสถานเอกอัครราชทูตไทยประจำกรุงไคโร และการจัดงาน Networking Dinner เพื่อสร้างเครือข่ายความร่วมมือระหว่างผู้ประกอบการ</span>
                                         </li>
                                     </ul>
@@ -174,7 +174,7 @@ export default function BlogAfricaPage() {
                             </div>
                             <Link
                                 href="/blog"
-                                className="inline-flex items-center gap-2 bg-[#0e9aef] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
+                                className="inline-flex items-center gap-2 bg-[var(--brand-blue)] text-white px-8 py-3.5 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-black transition-all hover:scale-105 active:scale-95 shrink-0"
                             >
                                 ดูบทความทั้งหมด
                                 <ArrowLeft className="w-4 h-4 rotate-180" />

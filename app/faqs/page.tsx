@@ -58,103 +58,156 @@ const faqData: FaqItem[] = [
 ];
 
 export default function FaqsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const allTags = Array.from(new Set(faqData.flatMap(faq => faq.tags)));
+
+  const filteredFaqs = faqData.filter(faq => {
+    const matchesSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesTag = !selectedTag || faq.tags.includes(selectedTag);
+    return matchesSearch && matchesTag;
+  });
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-kanit">
       <div className="max-w-4xl mx-auto">
         <FadeInSection>
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center p-3 bg-blue-100 rounded-2xl mb-4">
-              <HelpCircle className="w-8 h-8 text-[#0e9aef]" />
+          <div className="text-left mb-16">
+            <div className="inline-flex items-center justify-center p-3 bg-[var(--brand-blue)]/10 rounded-2xl mb-6">
+              <HelpCircle className="w-8 h-8 text-[var(--brand-blue)]" />
             </div>
-            <h1 className="text-4xl font-bold text-slate-800 mb-2">Frequently Asked Questions</h1>
-            <p className="text-slate-500 text-lg">คำถามที่ถูกถามบ่อยๆ เกี่ยวกับระบบ Q.Soft และการบริหารจัดการโรงงาน</p>
-            <div className="w-20 h-1 bg-[#0e9aef] mx-auto mt-6 rounded-full"></div>
+            <h1 className="text-5xl font-bold text-slate-800 mb-4 tracking-tight">
+              Frequently Asked <span className="text-[var(--brand-blue)]">Questions</span>
+            </h1>
+            <p className="text-slate-500 text-xl max-w-2xl font-light leading-relaxed">
+              คำถามที่ถูกถามบ่อยๆ เกี่ยวกับระบบ Q.Soft และการบริหารจัดการโรงงาน พร้อมคำแนะนำเชิงลึกจากผู้เชี่ยวชาญ
+            </p>
+            <div className="w-24 h-1.5 bg-[var(--brand-blue)] mt-8 rounded-full"></div>
           </div>
         </FadeInSection>
 
         <FadeInSection delay={0.2}>
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-12 p-8 border border-slate-100 flex justify-center">
-            <div className="relative w-full max-w-2xl">
+          <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/50 overflow-hidden mb-12 p-8 md:p-12 border border-slate-100 flex justify-center relative">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full -mr-16 -mt-16"></div>
+            <div className="relative w-full max-w-5xl">
               <img
                 src="/img/Service.drawio.png"
                 alt="Service Diagram"
-                className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
+                className="w-full h-auto object-contain transition-transform duration-700 hover:scale-[1.02]"
               />
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white px-4 py-1 rounded-full shadow-md text-xs text-slate-400 border border-slate-100">
+              <div className="mt-8 flex items-center justify-center gap-2 text-slate-400 text-sm font-medium">
+                <div className="w-2 h-2 rounded-full bg-[var(--brand-blue)] animate-pulse"></div>
                 Service Process Diagram
               </div>
             </div>
           </div>
         </FadeInSection>
 
-        <div className="space-y-4">
-          {faqData.map((faq, index) => (
-            <FadeInSection key={faq.id} delay={0.1 * (index + 3)}>
-              <div className="group border border-slate-200 bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+        {/* Search and Filter */}
+        <FadeInSection delay={0.3}>
+          <div className="mb-12 space-y-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="ค้นหาคำถามหรือหัวข้อที่สนใจ..."
+                className="w-full pl-12 pr-6 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-[var(--brand-blue)]/20 focus:border-[var(--brand-blue)] transition-all outline-none"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <HelpCircle className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedTag(null)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${!selectedTag ? 'bg-[var(--brand-blue)] text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-[var(--brand-blue)]'}`}
+              >
+                ทั้งหมด
+              </button>
+              {allTags.map(tag => (
                 <button
-                  onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                  className="w-full text-left p-6 sm:p-8 flex items-start justify-between gap-4 transition-colors"
+                  key={tag}
+                  onClick={() => setSelectedTag(tag)}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${selectedTag === tag ? 'bg-[var(--brand-blue)] text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-[var(--brand-blue)]'}`}
                 >
-                  <div className="flex-1">
-                    <h3 className={`text-lg font-semibold transition-colors duration-300 ${openFaq === faq.id ? "text-[#0e9aef]" : "text-slate-700 group-hover:text-[#0e9aef]"}`}>
-                      {faq.question}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-slate-400">
-                      <div className="flex items-center gap-1">
-                        <User className="w-3.5 h-3.5" />
-                        <span>{faq.author}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{faq.date}</span>
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
+        </FadeInSection>
+
+        <div className="space-y-16 relative before:absolute before:left-1/2 before:top-0 before:bottom-0 before:w-px before:bg-slate-200 before:hidden md:before:block">
+          {filteredFaqs.map((faq, index) => (
+            <div key={faq.id} className="space-y-6">
+              {/* Question - Customer side (Left) */}
+              <FadeInSection delay={0.1} direction="right">
+                <div className="flex justify-start">
+                  <div className="max-w-[85%] md:max-w-[70%] flex gap-4">
+                    <div className="flex-shrink-0 mt-auto">
+                      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200 shadow-sm">
+                        <User className="w-5 h-5 text-slate-500" />
                       </div>
                     </div>
-                  </div>
-                  <div className={`mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center transition-all duration-500 ${openFaq === faq.id ? "bg-blue-500 text-white rotate-180" : "text-slate-400 group-hover:bg-blue-100 group-hover:text-blue-500"}`}>
-                    <ChevronDown className="w-5 h-5" />
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {openFaq === faq.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                    >
-                      <div className="px-6 pb-8 sm:px-8">
-                        <div className="h-px bg-slate-100 mb-6 w-full"></div>
-                        <div className="prose prose-slate max-w-none">
-                          <p className="text-slate-600 leading-relaxed whitespace-pre-line text-base font-normal">
-                            {faq.answer}
-                          </p>
-                        </div>
-
-                        <div className="mt-8 flex flex-wrap gap-2">
-                          {faq.tags.map((tag) => (
-                            <div
-                              key={tag}
-                              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-[#0e9aef] text-[11px] font-semibold uppercase tracking-wider rounded-lg border border-blue-100"
-                            >
-                              <Tag className="w-3 h-3" />
-                              {tag}
-                            </div>
-                          ))}
-                        </div>
+                    <div className="bg-white border border-slate-200 p-5 rounded-2xl rounded-bl-none shadow-sm relative group transition-all hover:shadow-md">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Question</span>
+                        <div className="w-1 h-1 rounded-full bg-slate-300"></div>
+                        <span className="text-[10px] text-slate-400 font-medium">{faq.date}</span>
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </FadeInSection>
+                      <h3 className="text-slate-800 text-lg font-semibold leading-relaxed">
+                        {faq.question}
+                      </h3>
+                      <div className="absolute top-1/2 -left-2 w-4 h-4 bg-white border-l border-b border-slate-200 rotate-45 -translate-y-1/2 hidden md:block" />
+                    </div>
+                  </div>
+                </div>
+              </FadeInSection>
+
+              {/* Answer - Specialist side (Right) */}
+              <FadeInSection delay={0.3} direction="left">
+                <div className="flex justify-end">
+                  <div className="max-w-[95%] md:max-w-[80%] flex flex-row-reverse gap-4">
+                    <div className="flex-shrink-0 mt-auto">
+                      <div className="w-10 h-10 rounded-full bg-[var(--brand-blue)] flex items-center justify-center border-2 border-white shadow-lg shadow-blue-200">
+                        <HelpCircle className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-br from-white to-slate-50 border border-blue-100 p-6 rounded-2xl rounded-br-none shadow-xl shadow-blue-900/5 relative transition-all hover:shadow-2xl hover:translate-y-[-2px]">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-[10px] font-bold text-[var(--brand-blue)] uppercase tracking-widest leading-none">Specialist Answer</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-[var(--brand-blue)]/20"></div>
+                        <span className="text-[10px] text-slate-400 font-semibold">{faq.author}</span>
+                      </div>
+                      <div className="prose prose-slate max-w-none">
+                        <p className="text-slate-600 leading-relaxed whitespace-pre-line text-[15px] font-normal">
+                          {faq.answer}
+                        </p>
+                      </div>
+
+                      <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-slate-100">
+                        {faq.tags.map((tag) => (
+                          <div
+                            key={tag}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50/50 text-[var(--brand-blue)] text-[9px] font-bold uppercase tracking-wider rounded-md border border-blue-100/50 transition-colors hover:bg-blue-100"
+                          >
+                            <Tag className="w-2.5 h-2.5" />
+                            {tag}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="absolute top-1/2 -right-2 w-4 h-4 bg-white border-r border-t border-blue-50 rotate-45 -translate-y-1/2 hidden md:block" />
+                    </div>
+                  </div>
+                </div>
+              </FadeInSection>
+            </div>
           ))}
         </div>
 
         <FadeInSection delay={0.8}>
-          <div className="mt-16 text-center bg-[#0e9aef] rounded-3xl p-10 text-white shadow-2xl relative overflow-hidden group">
+          <div className="mt-16 text-center bg-[var(--brand-blue)] rounded-3xl p-10 text-white shadow-2xl relative overflow-hidden group">
             {/* Decoration */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all duration-700"></div>
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-blue-400/20 rounded-full blur-2xl"></div>
@@ -163,7 +216,7 @@ export default function FaqsPage() {
             <p className="text-blue-50 mb-8 relative z-10 opacity-90">ทีมงานผู้เชี่ยวชาญของเราพร้อมให้คำปรึกษาและตอบทุกข้อสงสัยของคุณ</p>
             <a
               href="/#contact"
-              className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#0e9aef] font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl relative z-10 shadow-lg"
+              className="inline-flex items-center justify-center px-8 py-3 bg-white text-[var(--brand-blue)] font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl relative z-10 shadow-lg"
             >
               ติดต่อฝ่ายบริการลูกค้า
             </a>

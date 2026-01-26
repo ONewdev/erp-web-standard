@@ -29,16 +29,17 @@ type Props = {
     image: string;
     tags?: string[];
   };
+  index?: number;
 };
 
-export default function CareerCard({ data }: Props) {
+export default function CareerCard({ data, index = 0 }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const brandBlue = "#0e9aef";
+  const isReverse = index % 2 === 1;
 
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all duration-500 group">
-      {/* Top Image Section */}
-      <div className="relative h-64 overflow-hidden bg-slate-50 flex items-center justify-center p-6">
+    <div className={`bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col md:flex-row hover:shadow-xl transition-all duration-500 group ${isReverse ? 'md:flex-row-reverse' : ''}`}>
+      {/* Image Section */}
+      <div className="relative w-full md:w-1/3 h-64 md:h-auto overflow-hidden bg-slate-50 flex items-center justify-center p-6 flex-shrink-0">
         <img
           src={data.image}
           alt={data.title}
@@ -52,7 +53,7 @@ export default function CareerCard({ data }: Props) {
       </div>
 
       {/* Content Section */}
-      <div className="p-8 flex-1 flex flex-col">
+      <div className="p-8 flex-1 flex flex-col md:w-2/3">
         {/* Chips/Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {data.tags?.map((tag) => (
@@ -62,7 +63,7 @@ export default function CareerCard({ data }: Props) {
           ))}
         </div>
 
-        <h3 className="text-2xl font-bold text-slate-800 mb-2 group-hover:text-[#0e9aef] transition-colors">
+        <h3 className="text-2xl font-bold text-slate-800 mb-2 group-hover:text-[var(--brand-blue)] transition-colors">
           {data.title}
         </h3>
 
@@ -99,7 +100,7 @@ export default function CareerCard({ data }: Props) {
                 <div className="space-y-6 py-4 text-sm">
                   <section>
                     <h4 className="flex items-center gap-2 font-bold text-slate-800 mb-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0e9aef]" />
+                      <CheckCircle2 className="w-4 h-4 text-[var(--brand-blue)]" />
                       หน้าที่และความรับผิดชอบ
                     </h4>
                     <p className="text-slate-600 whitespace-pre-line pl-6">
@@ -135,7 +136,7 @@ export default function CareerCard({ data }: Props) {
             <a
               href={`mailto:nurng.t072@gmail.com?subject=สมัครงานตำแหน่ง ${data.title}`}
               className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl text-white font-bold shadow-lg shadow-blue-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ backgroundColor: brandBlue }}
+              style={{ backgroundColor: "var(--brand-blue)" }}
             >
               <Mail className="w-5 h-5" />
               สมัครตำแหน่งนี้
