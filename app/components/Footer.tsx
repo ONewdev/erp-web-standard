@@ -81,7 +81,6 @@ export default function Footer() {
             <span className="uppercase text-slate-500">Business Competitive Intelligence Co., Ltd.</span>
           </div>
 
-          
         </div>
       </div>
     </footer>
