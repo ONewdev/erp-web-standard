@@ -2,159 +2,278 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import {
+  FileDown,
+  FileText,
+  Package,
+  Download,
+  Archive,
+  ChevronRight,
+  CheckCircle2,
+  Layers,
+  Monitor,
+  ShieldCheck,
+  Zap,
+  ArrowRight,
+  ExternalLink,
+  ShoppingCart,
+  Tag,
+  Wrench,
+  Target,
+  Layout
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-export default function POSPage() {
+export default function PagePOS() {
   return (
-    <div className="font-kanit min-h-screen bg-gradient-to-b from-purple-400 to-white">
-    
-      {/* ===== Main Content ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* ===== Left Sidebar ===== */}
-          <div className="md:col-span-1">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="border-b border-gray-200 p-6">
-                <h5 className="text-xl font-bold text-gray-800">Q.Soft POS</h5>
-              </div>
-              <div className="relative h-48 mb-4">
-                <Image
-                  src="/img/feature/qsoft_pos_big.png"
-                  alt="Q.Soft POS"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 space-y-4">
-                <div>
-                  <h5 className="font-bold text-gray-800 mb-2">Q.Soft POS</h5>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    เป็นโปรแกรมที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารร้านสะดวกซื้อ หรือ สำหรับบริษัท ที่มีจุดขายหน้าร้านหลายสาขา ผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application (โปรแกรมที่มีระบบการจัดเก็บฐานข้อมูลจำนวนมาก)
-                  </p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-gray-800 mb-2">จุดมุ่งหมายของโปรแกรมนี้</h5>
-                  <p className="text-sm text-slate-600 leading-relaxed">
-                    คือ ให้ผู้ประกอบการภาคอุตสาหกรรมที่กำลังมองหาโปรแกรมบริหารและวางแผนการผลิต (MRP) ที่มีคุณภาพ ใช้งานง่าย และราคาไม่สูงจนเกินไปเมื่อเทียบกับความสามารถที่ได้รับ เพื่อให้รับรู้ต้นทุนที่แท้จริง(Actual Cost) อันจะนำไปสู่การพัฒนาศักยภาพในการแข่งขันขององค์กร และพัฒนาระบบการทำงานให้เจริญเติบโตอย่างต่อเนื่อง เพื่อให้เกิดผลกำไรสูงสุด
-                  </p>
-                </div>
-              </div>
+    <div className="font-kanit min-h-screen bg-purple-50/10 pb-20">
+      {/* ===== Hero Header / Breadcrumb alternative ===== */}
+      <div className="bg-white border-b border-purple-50 mb-10 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-purple-600/5 -skew-x-12 transform origin-top-right"></div>
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-violet-600/5 rounded-full blur-3xl"></div>
+        <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-[11px] font-black tracking-widest mb-6 uppercase"
+              >
+                <ShoppingCart className="w-3.5 h-3.5" /> POINT OF SALE
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight"
+              >
+                Q.Soft <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-violet-500">POS</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mt-6 text-slate-500 font-medium max-w-xl text-lg leading-relaxed"
+              >
+                Smart Point of Sale - ระบบบริหารจัดการจุดขายอัจฉริยะที่ช่วยเชื่อมต่อคลังสินค้าและสาขาของคุณให้เป็นหนึ่งเดียว
+              </motion.p>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* ===== Right Content ===== */}
-          <div className="md:col-span-2">
-            <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  Q.Soft POS - Point of Sale
-                </h2>
-                <div className="text-slate-600 space-y-2">
-                  <h3 className="text-lg font-semibold text-gray-700">
-                    โปรแกรม Q.Soft POS ประกอบไปด้วย Feature การทำงานหลักๆ ดังนี้
-                  </h3>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+
+          {/* ===== Left Sidebar - Polished ===== */}
+          <div className="lg:col-span-1 lg:sticky lg:top-24">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white rounded-[2.5rem] shadow-2xl shadow-purple-200/20 overflow-hidden border border-slate-100"
+            >
+              <div className="p-8 space-y-8">
+                <div className="relative h-64 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-violet-50 rounded-[2rem] transform group-hover:scale-105 transition-transform duration-700"></div>
+                  <Image
+                    src="/img/feature/qsoft_pos_big.png"
+                    alt="Q.Soft POS"
+                    fill
+                    className="object-contain p-8 relative z-10 drop-shadow-2xl transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-4 flex items-center gap-3">
+                      <ShieldCheck className="w-7 h-7 text-purple-600" />
+                      จุดมุ่งหมาย
+                    </h3>
+                    <p className="text-slate-500 leading-relaxed text-[15px]">
+                      ให้ผู้ประกอบการที่กำลังมองหาโปรแกรมบริหารจุดขายที่มีคุณภาพ ใช้งานง่าย และราคาเข้าถึงได้
+                      เพื่อเพิ่ม <span className="text-purple-600 font-bold">ศักยภาพในการแข่งขัน</span>
+                      และพัฒนาระบบการทำงานให้เติบโตอย่างต่อเนื่องเพื่อกำไรสูงสุด
+                    </p>
+                  </div>
+
+                  <div className="pt-8 border-t border-slate-100">
+                    <div className="flex items-center gap-5 p-5 bg-slate-50 rounded-[2rem]">
+                      <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-purple-600">
+                        <Layout className="w-7 h-7" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Experience</p>
+                        <p className="text-slate-800 font-extrabold text-lg">ทีมงานมืออาชีพมานาน</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </motion.div>
+          </div>
 
-              <div className="border-t border-gray-200 pt-6">
-                <div className="space-y-3 text-slate-600">
-                  <p>
-                    <strong>1. ระบบขายหน้าร้าน(จุดขาย คิดเงิน)</strong> 
-                  </p>
-                  <p>
-                    <strong>2. ระบบโปรโมชั่น</strong> 
-                  </p>
-                  <p>
-                    <strong>3. ระบบสต็อกสินค้า</strong> 
-                  </p>
-                  <p>
-                    <strong>4. ระบบแจ้งซ่อมสินค้า</strong>
-                  </p>
-                </div>
+          {/* ===== Right Content - Main Content ===== */}
+          <div className="lg:col-span-2 space-y-12">
+
+            {/* Feature Section */}
+            <section className="bg-white rounded-[3rem] shadow-2xl shadow-purple-200/20 p-8 md:p-14 border border-slate-100 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-10 opacity-[0.03] rotate-12">
+                <Target className="w-64 h-64" />
               </div>
 
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-10 flex items-center gap-4 relative z-10">
+                <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600">
+                  <Layers className="w-7 h-7" />
+                </div>
+                Feature การทำงานหลัก
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                {[
+                  { title: "1. ระบบขายหน้าร้าน", desc: "(จุดขาย คิดเงิน) รองรับการขายด้วยระบบ Barcode ออกใบกำกับภาษีได้รวดเร็ว", icon: ShoppingCart },
+                  { title: "2. ระบบโปรโมชั่น", desc: "รองรับการกำหนดโปรโมชั่นที่หลากหลาย ทั้งระบบสมาชิกและส่วนลดพิเศษ", icon: Tag },
+                  { title: "3. ระบบสต็อกสินค้า", desc: "บริหารจัดการสต็อกแยกตามคลังหรือสาขา พร้อมระบบโอนสินค้าข้ามสาขา", icon: Package },
+                  { title: "4. ระบบแจ้งซ่อมสินค้า", desc: "รองรับการแจ้งซ่อม ตรวจสอบสถานะงาน และเช็คประวัติการซ่อมได้จากทุกสาขา", icon: Wrench },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -5 }}
+                    className="group p-8 rounded-[2.5rem] border border-slate-50 bg-slate-50/50 hover:bg-white hover:border-purple-100 hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-500"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-purple-600 mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:bg-purple-600 group-hover:text-white">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-black text-slate-800 mb-3 text-lg">{item.title}</h4>
+                    <p className="text-[15px] text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-14 pt-12 border-t border-slate-100 relative z-10">
+                <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500">
+                    <Zap className="w-6 h-6" />
+                  </div>
                   ประโยชน์ที่ได้รับจากโปรแกรม
                 </h3>
-                <div className="space-y-2 text-slate-600 text-sm">
-                  <div className="space-y-2">
-                    <p>1. สามารถเรียกดูข้อมูลรายละเอียดสินค้า ได้แก่ รหัสสินค้า ราคา และจำนวนคงเหลือ</p>
-                    <p>2. สามารถขายสินค้าผ่านระบบ Barcode ได้</p>
-                    <p>3. สามารถกำหนดโปรโมชั่นการขายสินค้าได้หลากหลาย</p>
-                    <p>4. รองรับระบบสมาชิก และราคาสมาชิก</p>
-                    <p>5. สามารถออกใบกำกับภาษีอย่างย่อ หรือเต็มรูปแบบได้</p>
-                    <p>6. สามารถรับชำระได้ทั้ง เงินสด บัตรเครดิต</p>
-                    <p>7. สามารถแสดงยอดคงเหลือสินค้าแยกตามคลัง หรือสาขาได้</p>
-                    <p>8. สามารถโอนสินค้าข้ามสาขาได้</p>
-                    <p>9. สามารถเช็คข้อมูลการรับประกันสินค้าได้</p>
-                    <p>10. สามารถทำเรื่องแจ้งซ่อมที่สาขาไหนก็ได้</p>
-                    <p>11. สามารถติดตามสถานะงานแจ้งซ่อมได้</p>
-                    <p>12. สามารถเช็คประวัติการซ่อมได้</p>
-                    <p>13. สามารถเรียกข้อมูลการขายย้อนหลังได้</p>
-                    <p>14. สามารถดูรายงานวิเคราะห์ต่างๆ ได้</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* ===== Documents Download ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
-                  📄 ดาวน์โหลดเอกสารประกอบ
-                </h3>
-                <div className="space-y-2">
-                  <p className="text-sm text-slate-600">
-                    <a
-                      href="/doc/Q_Soft_POS.zip"
-                      download
-                      className="text-blue-600 hover:text-blue-700 font-semibold"
-                    >
-                      📦 ดาวน์โหลดทั้งหมด (ZIP)
-                    </a>
-                  </p>
-                  <div className="space-y-2">
-                    {[
-                      { name: "Q.Soft POS Brochure (Thai)", file: "Q_Soft_POS_Brochue(thai)600305.pdf" },
-                    ].map((doc, idx) => (
-                      <a
-                        key={idx}
-                        href={`/doc/${doc.file}`}
-                        download
-                        className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                      >
-                        <span className="text-lg mr-1">📕</span> {doc.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ===== Related Products ===== */}
-              <div className="border-t border-gray-200 pt-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
-                  🔗 โปรแกรมที่เกี่ยวข้อง
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 gap-2">
                   {[
-                    { label: "MRP", href: "/mrp" },
-                    { label: "APS", href: "/aps" },
-                    { label: "PM", href: "/pm" },
-                    { label: "WMS", href: "/wms" },
-                    { label: "VFS", href: "/vfs" },
-                    { label: "Service", href: "/service" },
-                  ].map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="text-center p-3 bg-gray-100 rounded hover:bg-blue-100 transition"
+                    "1. สามารถเรียกดูข้อมูลรายละเอียดสินค้า ได้แก่ รหัสสินค้า ราคา และจำนวนคงเหลือ",
+                    "2. สามารถขายสินค้าผ่านระบบ Barcode ได้",
+                    "3. สามารถกำหนดโปรโมชั่นการขายสินค้าได้หลากหลาย",
+                    "4. รองรับระบบสมาชิก และราคาสมาชิก",
+                    "5. สามารถออกใบกำกับภาษีอย่างย่อ หรือเต็มรูปแบบได้",
+                    "6. สามารถรับชำระได้ทั้ง เงินสด บัตรเครดิต",
+                    "7. สามารถแสดงยอดคงเหลือสินค้าแยกตามคลัง หรือสาขาได้",
+                    "8. สามารถโอนสินค้าข้ามสาขาได้",
+                    "9. สามารถเช็คข้อมูลการรับประกันสินค้าได้",
+                    "10. สามารถทำเรื่องแจ้งซ่อมที่สาขาไหนก็ได้",
+                    "11. สามารถติดตามสถานะงานแจ้งซ่อมได้",
+                    "12. สามารถเช็คประวัติการซ่อมได้",
+                    "13. สามารถเรียกข้อมูลการขายย้อนหลังได้",
+                    "14. สามารถดูรายงานวิเคราะห์ต่างๆ ได้"
+                  ].map((text, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ x: 5 }}
+                      className="flex items-start gap-4 p-3 rounded-2xl hover:bg-purple-50/50 transition-all group"
                     >
-                      <span className="text-sm font-semibold text-blue-600">
-                        {item.label}
-                      </span>
-                    </Link>
+                      <div className="mt-1.5 p-1 rounded-full bg-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
+                        <ChevronRight className="w-3 h-3" />
+                      </div>
+                      <span className="text-slate-600 text-[15px] leading-relaxed font-medium">{text}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            </div>
+            </section>
+
+            {/* ===== Re-imagined Download Section ===== */}
+            <section className="bg-white rounded-[3rem] shadow-2xl shadow-purple-200/20 overflow-hidden border border-slate-100">
+              <div className="bg-gradient-to-br from-purple-700 via-violet-600 to-purple-500 px-10 py-14 text-white relative">
+                <div className="absolute top-0 right-0 p-12 opacity-10">
+                  <FileDown className="w-40 h-40" />
+                </div>
+                <div className="relative z-10 text-center md:text-left">
+                  <h3 className="text-4xl font-black mb-4">ดาวน์โหลดเอกสาร</h3>
+                  <p className="text-purple-100 text-lg font-medium max-w-lg">รวบรวมข้อมูล คู่มือ และโบรชัวร์สำหรับ Q.Soft POS เพื่อการเริ่มต้นใช้งานอย่างมืออาชีพ</p>
+                </div>
+              </div>
+
+              <div className="p-10">
+                {/* Bundle Download */}
+                <div className="mb-10">
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="/doc/Q_Soft_POS.zip"
+                    download
+                    className="w-full md:w-auto inline-flex items-center justify-center gap-4 px-10 py-6 bg-gradient-to-r from-purple-600 to-violet-500 text-white rounded-2xl font-black text-xl hover:shadow-2xl hover:shadow-purple-200 transition-all group"
+                  >
+                    <Package className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                    ดาวน์โหลดทั้งหมด (ZIP)
+                    <ArrowRight className="w-6 h-6 opacity-50" />
+                  </motion.a>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {[
+                    { name: "Q.Soft POS Brochure (Thai)", file: "Q_Soft_POS_Brochue(thai)600305.pdf", type: "Brochure" },
+                  ].map((doc, idx) => (
+                    <motion.a
+                      key={idx}
+                      whileHover={{ scale: 1.01 }}
+                      href={`/doc/${doc.file}`}
+                      download
+                      className="group flex items-center justify-between p-6 bg-slate-50 hover:bg-white rounded-2xl border border-transparent hover:border-purple-100 hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300"
+                    >
+                      <div className="flex items-center gap-5">
+                        <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-red-500 group-hover:bg-red-50 transition-colors">
+                          <FileText className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <p className="text-slate-800 font-bold text-[15px] leading-tight group-hover:text-purple-600 transition-colors">{doc.name}</p>
+                          <p className="text-[10px] text-slate-400 font-black uppercase tracking-widest mt-2">{doc.type}</p>
+                        </div>
+                      </div>
+                      <div className="p-2 opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all text-purple-500">
+                        <Download className="w-5 h-5" />
+                      </div>
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Related Products Section */}
+            <section className="pb-12">
+              <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center gap-3">
+                <Package className="w-7 h-7 text-purple-600" /> โปรแกรมที่เกี่ยวข้อง
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5">
+                {[
+                  { label: "MRP", href: "/mrp" },
+                  { label: "APS", href: "/aps" },
+                  { label: "PM", href: "/pm" },
+                  { label: "WMS", href: "/wms" },
+                  { label: "VFS", href: "/vfs" },
+                  { label: "Service", href: "/service" },
+                ].map((item, idx) => (
+                  <Link
+                    key={idx}
+                    href={item.href}
+                    className="flex flex-col items-center justify-center p-5 bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 hover:border-purple-100 hover:-translate-y-1.5 transition-all duration-300 group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-purple-600 group-hover:bg-purple-50 transition-colors mb-3">
+                      <ExternalLink className="w-5 h-5" />
+                    </div>
+                    <span className="text-[11px] font-black tracking-widest text-slate-600 group-hover:text-purple-600 transition-colors uppercase">
+                      {item.label}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
           </div>
         </div>
       </div>

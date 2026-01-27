@@ -42,6 +42,7 @@ type ChildItem = {
   desc?: string;
   href?: string;
   sections?: SectionBlock[];
+  color?: string; // Add color property
 };
 
 type ServiceItem = {
@@ -60,32 +61,38 @@ export default function ServicePage() {
           icon: <Zap className="w-6 h-6" />,
           label: "อบรมการใช้งานโปรแกรม Q.Soft",
           desc: "คือ การอบรมการใช้งานโปรแกรม (In House Training) ให้กับองค์กรที่ใช้ Software ของเรา เพื่อให้สามารถใช้งานโปรแกรมได้อย่างมีประสิทธิภาพ ตอบข้อซักถามต่างๆ รวมถึงการสาธิต Users ผู้ทำงานให้มีความเข้าใจในการทำงานมากที่สุด",
+          color: "blue"
         },
         {
           icon: <Shield className="w-6 h-6" />,
           label: "Implement โปรแกรม Q.Soft",
           desc: "คือ การวางระบบการทำงานขององค์กรโดยใช้โปรแกรม Q.Soft ของเราเป็นพื้นฐาน เพื่อวิเคราะห์และปรับปรุงประสิทธิภาพการทำงาน และทำให้ใช้งานโปรแกรมได้อย่างเต็มประสิทธิภาพ ประกอบไปด้วยการวิเคราะห์ระบบ, อบรมการใช้งาน, ดูแลการใช้งานจริง",
+          color: "indigo"
         },
         {
           icon: <Calendar className="w-6 h-6" />,
           label: "Implement โปรแกรมบัญชี-การเงินชั้นนำ",
           desc: "จากประสบการณ์การวางระบบบัญชีด้วยโปรแกรมชั้นนำกว่า 7 ปี ทำให้เรามีความชำนาญการวางระบบบัญชี-การเงินด้วยซอฟแวร์ชั้นนำ และยังสามารถให้คำแนะนำในการวิเคราะห์และปรับปรุงระบบ, ฝึกอบรม และดูแลการใช้งานจนทุกฝ่ายที่เกี่ยวข้องทำงานได้สะดวกรวดเร็ว",
+          color: "violet"
         },
         {
           icon: <Star className="w-6 h-6" />,
           label: "อบรมการใช้งานโปรแกรมบัญชีชั้นนำ",
           desc: "การอบรมการใช้งานโปรแกรม (In House Training) ให้กับองค์กรที่ใช้ Software ของเรา เพื่อให้สามารถใช้งานโปรแกรมได้อย่างมีประสิทธิภาพ ตอบข้อซักถามต่างๆ และสาธิตการใช้งาน โดยประกบติดกับ Users ให้เข้าใจการทำงานมากที่สุด",
+          color: "amber"
         },
         {
           icon: <Briefcase className="w-6 h-6" />,
           label: "ให้คำปรึกษาในการวางระบบบริหารการผลิตและบัญชี",
           desc: "จากประสบการณ์ในการ Implement ของเรา เพื่อให้สามารถใช้งาน Software ได้จริงและมีประสิทธิภาพ ทำให้การให้คำปรึกษาอยู่บนพื้นฐานของการใช้งานจริงของ Users เป็นหลัก พร้อมผลลัพธ์ที่ถูกต้องตามต้องการ",
+          color: "sky"
         },
         {
           icon: <PowerBIIcon className="w-6 h-6" />,
           label: "หลักสูตร Power BI",
           desc: "จากประสบการณ์ในการ Implement ของเรา เพื่อให้ลูกค้าสามารถใช้งาน Software ได้จริง และมีประสิทธิภาพ ทำให้คำปรึกษาอยู่บนพื้นฐานการใช้งานจริงของ Users พร้อมผลลัพธ์ที่ถูกต้องตามผู้บริหารต้องการ",
           href: "/powerbi",
+          color: "yellow"
         },
       ],
     },
@@ -97,26 +104,31 @@ export default function ServicePage() {
           icon: <Camera className="w-6 h-6" />,
           label: "Vision Inspection System",
           desc: "ระบบ AI Vision ที่ช่วยตรวจจับข้อบกพร่องได้อย่างแม่นยำจากภาพในทุกขั้นตอนการผลิต รับประกันคุณภาพงานอย่างสม่ำเสมอ พร้อมยกระดับประสิทธิภาพและลดความสูญเสียในกระบวนการผลิต",
+          color: "emerald"
         },
         {
           icon: <AlertTriangle className="w-6 h-6" />,
           label: "Monitoring for Safety",
           desc: "ระบบ AI ตรวจสอบความปลอดภัยที่สามารถระบุความเสี่ยงและพฤติกรรมไม่ปลอดภัยได้ทันที ลดโอกาสเกิดอุบัติเหตุ และสร้างสภาพแวดล้อมการทำงานที่ปลอดภัยและยั่งยืนมากขึ้น",
+          color: "orange"
         },
         {
           icon: <Wrench className="w-6 h-6" />,
           label: "AI - Predictive Maintenance",
           desc: "ใช้ AI วิเคราะห์ข้อมูลจากเครื่องจักรเพื่อคาดการณ์ปัญหาล่วงหน้า ช่วยวางแผนบำรุงรักษาเชิงรุก ลดเวลาหยุดเครื่อง และเพิ่มความต่อเนื่องในการผลิต",
+          color: "rose"
         },
         {
           icon: <Gauge className="w-6 h-6" />,
           label: "Real-Time Throughput Bottleneck Detection",
           desc: "โซลูชัน AI สำหรับตรวจจับและจัดการจุดคอขวดในกระบวนการผลิตแบบเรียลไทม์ ใช้การวิเคราะห์ข้อมูลเพื่อระบุปัญหาทันที พร้อมแจ้งเตือนให้ผู้ใช้งานปรับแผน/การทำงาน เพื่อให้การผลิตราบรื่นและมีประสิทธิภาพมากขึ้น",
+          color: "teal"
         },
         {
           icon: <Briefcase className="w-6 h-6" />,
           label: "Sales Enablement",
           desc: "ผู้ช่วยอัจฉริยะสำหรับทีมขาย (LLM-Powered Sales Assistant) ช่วยให้ทีมขายเข้าถึงข้อมูลกำลังการผลิตและข้อจำกัดของระบบได้ทันที ลดความเสี่ยงในการรับคำสั่งซื้อเกินศักยภาพจริง",
+          color: "indigo",
           sections: [
             {
               heading: "ความสามารถหลัก",
@@ -141,6 +153,7 @@ export default function ServicePage() {
           icon: <Headphones className="w-6 h-6" />,
           label: "Intelligent Customer Support Assistant",
           desc: "LLM ทำหน้าที่เป็นผู้ช่วยให้ทีม Support เข้าใจสถานการณ์การผลิตและปัญหาที่เกิดขึ้นได้รวดเร็ว พร้อมอธิบายข้อมูลให้ลูกค้าเข้าใจได้ง่ายและชัดเจน",
+          color: "blue",
           sections: [
             {
               heading: "ความสามารถหลัก",
@@ -171,11 +184,13 @@ export default function ServicePage() {
           icon: <Network className="w-6 h-6" />,
           label: "รับดูแลระบบ Network ภายในองค์กร",
           desc: "สำหรับองค์กรขนาดเล็กที่ยังไม่พร้อมมีผู้ดูแลระบบ Network ภายในองค์กร ทางบริษัทฯ สามารถช่วยออกแบบและดูแล Network ให้มีเสถียรภาพและความปลอดภัย",
+          color: "slate"
         },
         {
           icon: <Code className="w-6 h-6" />,
           label: "รับเขียนโปรแกรม และจัดทำ Web Application",
           desc: "รับจัดทำ/พัฒนาโปรแกรมทั้งในรูปแบบ Web Application หรือจัดทำ Web Service ตามความต้องการของลูกค้า",
+          color: "cyan"
         },
       ],
     },
@@ -242,19 +257,37 @@ export default function ServicePage() {
                   {section.children.map((service, cIdx) => {
                     const cardClasses = "group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full";
 
+                    // Color mapping for icons
+                    const colorMap: Record<string, { bg: string, text: string, hover: string, shadow: string, hoverText: string }> = {
+                      blue: { bg: "bg-blue-50", text: "text-blue-600", hover: "group-hover:bg-blue-600", shadow: "group-hover:shadow-blue-200", hoverText: "group-hover:text-blue-600" },
+                      indigo: { bg: "bg-indigo-50", text: "text-indigo-600", hover: "group-hover:bg-indigo-600", shadow: "group-hover:shadow-indigo-200", hoverText: "group-hover:text-indigo-600" },
+                      violet: { bg: "bg-violet-50", text: "text-violet-600", hover: "group-hover:bg-violet-600", shadow: "group-hover:shadow-violet-200", hoverText: "group-hover:text-violet-600" },
+                      amber: { bg: "bg-amber-50", text: "text-amber-500", hover: "group-hover:bg-amber-500", shadow: "group-hover:shadow-amber-100", hoverText: "group-hover:text-amber-500" },
+                      sky: { bg: "bg-sky-50", text: "text-sky-500", hover: "group-hover:bg-sky-500", shadow: "group-hover:shadow-sky-100", hoverText: "group-hover:text-sky-500" },
+                      yellow: { bg: "bg-yellow-50", text: "text-yellow-600", hover: "group-hover:bg-yellow-600", shadow: "group-hover:shadow-yellow-100", hoverText: "group-hover:text-yellow-600" },
+                      emerald: { bg: "bg-emerald-50", text: "text-emerald-600", hover: "group-hover:bg-emerald-600", shadow: "group-hover:shadow-emerald-100", hoverText: "group-hover:text-emerald-600" },
+                      orange: { bg: "bg-orange-50", text: "text-orange-500", hover: "group-hover:bg-orange-500", shadow: "group-hover:shadow-orange-100", hoverText: "group-hover:text-orange-500" },
+                      rose: { bg: "bg-rose-50", text: "text-rose-500", hover: "group-hover:bg-rose-500", shadow: "group-hover:shadow-rose-100", hoverText: "group-hover:text-rose-500" },
+                      teal: { bg: "bg-teal-50", text: "text-teal-500", hover: "group-hover:bg-teal-500", shadow: "group-hover:shadow-teal-100", hoverText: "group-hover:text-teal-500" },
+                      slate: { bg: "bg-slate-50", text: "text-slate-600", hover: "group-hover:bg-slate-600", shadow: "group-hover:shadow-slate-200", hoverText: "group-hover:text-slate-600" },
+                      cyan: { bg: "bg-cyan-50", text: "text-cyan-500", hover: "group-hover:bg-cyan-500", shadow: "group-hover:shadow-cyan-100", hoverText: "group-hover:text-cyan-500" },
+                    };
+
+                    const style = colorMap[service.color || "blue"] || colorMap.blue;
+
                     const cardContent = (
                       <>
                         <div className="mb-6 flex items-start justify-between">
                           <div
-                            className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shadow-sm
-                                       bg-sky-50 text-[var(--brand-blue)] 
-                                       group-hover:bg-[var(--brand-blue)] group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-200/50"
+                            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shadow-sm
+                                       ${style.bg} ${style.text} 
+                                       ${style.hover} group-hover:text-white group-hover:scale-110 group-hover:shadow-lg ${style.shadow}/50`}
                           >
                             {service.icon}
                           </div>
                         </div>
 
-                        <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[var(--brand-blue)] font-kanit">
+                        <h3 className={`text-lg font-bold text-[#1e293b] mb-3 transition-colors ${style.hoverText} font-kanit`}>
                           {service.label}
                         </h3>
 
@@ -268,8 +301,7 @@ export default function ServicePage() {
                               <div key={s.heading}>
                                 <div className="flex items-center gap-2 mb-2">
                                   <span
-                                    className="w-1 h-4 rounded-full"
-                                    style={{ backgroundColor: "var(--brand-blue)" }}
+                                    className={`w-1 h-4 rounded-full ${style.bg.replace('bg-', 'bg-').replace('-50', '-500')}`}
                                   />
                                   <div className="text-sm font-extrabold text-slate-700 tracking-wide font-kanit">
                                     {s.heading}
@@ -278,7 +310,7 @@ export default function ServicePage() {
                                 <ul className="space-y-1.5 text-xs text-slate-500 font-kanit">
                                   {s.bullets.map((b) => (
                                     <li key={b} className="flex items-start gap-2">
-                                      <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "var(--brand-blue)" }}></span>
+                                      <span className={`w-1 h-1 rounded-full mt-1.5 shrink-0 ${style.bg.replace('bg-', 'bg-').replace('-50', '-500')}`}></span>
                                       {b}
                                     </li>
                                   ))}

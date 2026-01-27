@@ -36,7 +36,7 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           transition={{ duration: 0.4, type: "spring", stiffness: 260, damping: 20 }}
-          className="fixed right-6 bottom-24 z-[9999]"
+          className="fixed right-3 bottom-5 z-[9999]"
         >
           <button
             onClick={handleClick}

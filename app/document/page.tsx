@@ -255,35 +255,49 @@ export default function DocumentPage() {
                       e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                     }}
                     className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === "All"
-                      ? "bg-[var(--brand-blue)] text-white shadow-lg shadow-blue-200"
-                      : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-blue-50"
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
+                      : "text-slate-500 hover:text-blue-600 hover:bg-blue-50"
                       }`}
                   >
                     <Layers className="w-4 h-4" />
                     All
                   </button>
 
-                  {documents.map((section) => (
-                    <button
-                      key={section.title}
-                      onClick={(e) => {
-                        setActiveTab(section.title);
-                        e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                      }}
-                      className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === section.title
-                        ? "bg-[var(--brand-blue)] text-white shadow-lg shadow-blue-200"
-                        : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-blue-50"
-                        }`}
-                    >
-                      {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
-                      {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
-                      {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
-                      {section.title === "HRMI" && <Users className="w-4 h-4" />}
-                      {section.title === "CRM" && <BarChart3 className="w-4 h-4" />}
-                      {section.title === "Support & Other" && <Files className="w-4 h-4" />}
-                      {section.title}
-                    </button>
-                  ))}
+                  {documents.map((section) => {
+                    // Color theme mapping for document categories
+                    const tabThemes: Record<string, { active: string, hover: string, text: string, shadow: string }> = {
+                      "Documents": { active: "bg-blue-600", hover: "hover:bg-blue-50 hover:text-blue-600", text: "text-blue-600", shadow: "shadow-blue-200" },
+                      "Brochure": { active: "bg-violet-600", hover: "hover:bg-violet-50 hover:text-violet-600", text: "text-violet-600", shadow: "shadow-violet-200" },
+                      "WINSpeed": { active: "bg-emerald-600", hover: "hover:bg-emerald-50 hover:text-emerald-600", text: "text-emerald-600", shadow: "shadow-emerald-200" },
+                      "HRMI": { active: "bg-amber-500", hover: "hover:bg-amber-50 hover:text-amber-500", text: "text-amber-500", shadow: "shadow-amber-200" },
+                      "CRM": { active: "bg-rose-500", hover: "hover:bg-rose-50 hover:text-rose-500", text: "text-rose-500", shadow: "shadow-rose-200" },
+                      "Support & Other": { active: "bg-indigo-600", hover: "hover:bg-indigo-50 hover:text-indigo-600", text: "text-indigo-600", shadow: "shadow-indigo-200" },
+                    };
+
+                    const theme = tabThemes[section.title] || tabThemes["Documents"];
+
+                    return (
+                      <button
+                        key={section.title}
+                        onClick={(e) => {
+                          setActiveTab(section.title);
+                          e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                        }}
+                        className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === section.title
+                          ? `${theme.active} text-white shadow-lg ${theme.shadow}`
+                          : `text-slate-500 ${theme.hover}`
+                          }`}
+                      >
+                        {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
+                        {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
+                        {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
+                        {section.title === "HRMI" && <Users className="w-4 h-4" />}
+                        {section.title === "CRM" && <BarChart3 className="w-4 h-4" />}
+                        {section.title === "Support & Other" && <Files className="w-4 h-4" />}
+                        {section.title}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -319,121 +333,146 @@ export default function DocumentPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-50">
-                    {displayData.map((section) => (
-                      <React.Fragment key={section.title}>
-                        {activeTab === "All" && (
-                          <tr className="bg-slate-50/50">
-                            <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-3">
-                              <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
-                                {section.title}
-                              </div>
-                            </td>
-                          </tr>
-                        )}
-                        {section.items.map((item, index) => (
-                          <MotionTr
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            key={`${item.name}-${index}`}
-                            className="hover:bg-slate-50 transition-colors group"
-                          >
-                            <td className="px-8 py-5">
-                              <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-[var(--brand-blue)]">
-                                  <FileText className="w-4 h-4" />
+                    {displayData.map((section) => {
+                      // Color theme mapping for section headers
+                      const headerThemes: Record<string, { text: string, bg: string }> = {
+                        "Documents": { text: "text-blue-600", bg: "bg-blue-50/50" },
+                        "Brochure": { text: "text-violet-600", bg: "bg-violet-50/50" },
+                        "WINSpeed": { text: "text-emerald-600", bg: "bg-emerald-50/50" },
+                        "HRMI": { text: "text-amber-600", bg: "bg-amber-50/50" },
+                        "CRM": { text: "text-rose-600", bg: "bg-rose-50/50" },
+                        "Support & Other": { text: "text-indigo-600", bg: "bg-indigo-50/50" },
+                      };
+                      const theme = headerThemes[section.title] || headerThemes["Documents"];
+
+                      return (
+                        <React.Fragment key={section.title}>
+                          {activeTab === "All" && (
+                            <tr className={theme.bg}>
+                              <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-3">
+                                <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] ${theme.text}`}>
+                                  {section.title}
                                 </div>
-                                <span className="text-slate-700 font-semibold text-sm">{item.name}</span>
-                              </div>
-                            </td>
-                            {/* TH */}
-                            <td className="px-4 py-5 text-center text-sm">
-                              {item.thUrl ? (
-                                <Link href={item.thUrl} target="_blank" className="text-[var(--brand-blue)] font-bold hover:underline">Download</Link>
-                              ) : <span className="text-slate-300">-</span>}
-                            </td>
-                            {/* EN */}
-                            <td className="px-4 py-5 text-center text-sm">
-                              {item.enUrl ? (
-                                <Link href={item.enUrl} target="_blank" className="text-purple-600 font-bold hover:underline">Download</Link>
-                              ) : <span className="text-slate-300">-</span>}
-                            </td>
-                            {showExtraLanguages && (
-                              <>
-                                <td className="px-4 py-5 text-center text-sm">{item.cnUrl ? <Link href={item.cnUrl} target="_blank" className="text-red-500 font-bold hover:underline">CN</Link> : <span className="text-slate-300">-</span>}</td>
-                                <td className="px-4 py-5 text-center text-sm">{item.krUrl ? <Link href={item.krUrl} target="_blank" className="text-green-600 font-bold hover:underline">KR</Link> : <span className="text-slate-300">-</span>}</td>
-                                <td className="px-4 py-5 text-center text-sm">{item.jpUrl ? <Link href={item.jpUrl} target="_blank" className="text-amber-500 font-bold hover:underline">JP</Link> : <span className="text-slate-300">-</span>}</td>
-                              </>
-                            )}
-                            <td className="px-8 py-5 text-right">
-                              <span className="text-[10px] text-slate-400 font-mono">{item.created}</span>
-                            </td>
-                          </MotionTr>
-                        ))}
-                      </React.Fragment>
-                    ))}
+                              </td>
+                            </tr>
+                          )}
+                          {section.items.map((item, index) => (
+                            <MotionTr
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              key={`${item.name}-${index}`}
+                              className="hover:bg-slate-50 transition-colors group"
+                            >
+                              <td className="px-8 py-5">
+                                <div className="flex items-center gap-3">
+                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${theme.bg.replace('/50', '')}`}>
+                                    <FileText className={`w-4 h-4 ${theme.text}`} />
+                                  </div>
+                                  <span className="text-slate-700 font-semibold text-sm">{item.name}</span>
+                                </div>
+                              </td>
+                              {/* TH */}
+                              <td className="px-4 py-5 text-center text-sm">
+                                {item.thUrl ? (
+                                  <Link href={item.thUrl} target="_blank" className={`${theme.text} font-bold hover:underline`}>Download</Link>
+                                ) : <span className="text-slate-300">-</span>}
+                              </td>
+                              {/* EN */}
+                              <td className="px-4 py-5 text-center text-sm">
+                                {item.enUrl ? (
+                                  <Link href={item.enUrl} target="_blank" className="text-purple-600 font-bold hover:underline">Download</Link>
+                                ) : <span className="text-slate-300">-</span>}
+                              </td>
+                              {showExtraLanguages && (
+                                <>
+                                  <td className="px-4 py-5 text-center text-sm">{item.cnUrl ? <Link href={item.cnUrl} target="_blank" className="text-red-500 font-bold hover:underline">Download</Link> : <span className="text-slate-300">-</span>}</td>
+                                  <td className="px-4 py-5 text-center text-sm">{item.krUrl ? <Link href={item.krUrl} target="_blank" className="text-green-600 font-bold hover:underline">Download</Link> : <span className="text-slate-300">-</span>}</td>
+                                  <td className="px-4 py-5 text-center text-sm">{item.jpUrl ? <Link href={item.jpUrl} target="_blank" className="text-amber-500 font-bold hover:underline">Download</Link> : <span className="text-slate-300">-</span>}</td>
+                                </>
+                              )}
+                              <td className="px-8 py-5 text-right">
+                                <span className="text-[10px] text-slate-400 font-mono">{item.created}</span>
+                              </td>
+                            </MotionTr>
+                          ))}
+                        </React.Fragment>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
 
               {/* Mobile List/Card View */}
               <div className="md:hidden divide-y divide-slate-100">
-                {displayData.map((section) => (
-                  <div key={section.title}>
-                    {activeTab === "All" && (
-                      <div className="bg-slate-50 px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                        {section.title}
-                      </div>
-                    )}
-                    <div className="divide-y divide-slate-100">
-                      {section.items.map((item, idx) => (
-                        <div key={idx} className="p-4 bg-white">
-                          <div className="flex items-start justify-between mb-4">
-                            <div className="flex items-start gap-3">
-                              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] shrink-0">
-                                <FileText className="w-5 h-5" />
-                              </div>
-                              <div>
-                                <h4 className="font-bold text-slate-800 text-sm leading-tight mb-1">{item.name}</h4>
-                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-                                  <Calendar className="w-3 h-3" />
-                                  <span>{item.created}</span>
+                {displayData.map((section) => {
+                  const headerThemes: Record<string, { text: string, bg: string }> = {
+                    "Documents": { text: "text-blue-600", bg: "bg-blue-50" },
+                    "Brochure": { text: "text-violet-600", bg: "bg-violet-50" },
+                    "WINSpeed": { text: "text-emerald-600", bg: "bg-emerald-50" },
+                    "HRMI": { text: "text-amber-600", bg: "bg-amber-50" },
+                    "CRM": { text: "text-rose-600", bg: "bg-rose-50" },
+                    "Support & Other": { text: "text-indigo-600", bg: "bg-indigo-50" },
+                  };
+                  const theme = headerThemes[section.title] || headerThemes["Documents"];
+
+                  return (
+                    <div key={section.title}>
+                      {activeTab === "All" && (
+                        <div className={`${theme.bg} px-4 py-3 text-[10px] font-bold tracking-widest ${theme.text}`}>
+                          {section.title}
+                        </div>
+                      )}
+                      <div className="divide-y divide-slate-100">
+                        {section.items.map((item, idx) => (
+                          <div key={idx} className="p-4 bg-white">
+                            <div className="flex items-start justify-between mb-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] shrink-0">
+                                  <FileText className="w-5 h-5" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-slate-800 text-sm leading-tight mb-1">{item.name}</h4>
+                                  <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
+                                    <Calendar className="w-3 h-3" />
+                                    <span>{item.created}</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                          <div className="flex flex-wrap gap-2">
-                            {item.thUrl && (
-                              <a href={item.thUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-[var(--brand-blue)] rounded-xl text-xs font-bold active:bg-blue-600 active:text-white transition-colors">
-                                <Download className="w-3 h-3" /> TH
-                              </a>
-                            )}
-                            {item.enUrl && (
-                              <a href={item.enUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-purple-50 text-purple-600 rounded-xl text-xs font-bold active:bg-purple-600 active:text-white transition-colors">
-                                <Download className="w-3 h-3" /> EN
-                              </a>
-                            )}
-                            {item.cnUrl && (
-                              <a href={item.cnUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl text-xs font-bold">
-                                CN
-                              </a>
-                            )}
-                            {item.krUrl && (
-                              <a href={item.krUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-green-50 text-green-600 rounded-xl text-xs font-bold">
-                                KR
-                              </a>
-                            )}
-                            {item.jpUrl && (
-                              <a href={item.jpUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold">
-                                JP
-                              </a>
-                            )}
+                            <div className="flex flex-wrap gap-2">
+                              {item.thUrl && (
+                                <a href={item.thUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-[var(--brand-blue)] rounded-xl text-xs font-bold active:bg-blue-600 active:text-white transition-colors">
+                                  <Download className="w-3 h-3" /> TH
+                                </a>
+                              )}
+                              {item.enUrl && (
+                                <a href={item.enUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-purple-50 text-purple-600 rounded-xl text-xs font-bold active:bg-purple-600 active:text-white transition-colors">
+                                  <Download className="w-3 h-3" /> EN
+                                </a>
+                              )}
+                              {item.cnUrl && (
+                                <a href={item.cnUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl text-xs font-bold">
+                                   <Download className="w-3 h-3" />CN
+                                </a>
+                              )}
+                              {item.krUrl && (
+                                <a href={item.krUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-green-50 text-green-600 rounded-xl text-xs font-bold">
+                                   <Download className="w-3 h-3" />KR
+                                </a>
+                              )}
+                              {item.jpUrl && (
+                                <a href={item.jpUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold">
+                                   <Download className="w-3 h-3" />JP
+                                </a>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

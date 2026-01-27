@@ -312,6 +312,19 @@ export default function SitePage() {
               <div className="flex gap-2.5 min-w-max pb-1">
                 {navItems.map((item) => {
                   const isActive = active === item.key;
+
+                  // Color theme mapping for buttons
+                  const buttonThemes: Record<string, { active: string, border: string, text: string, shadow: string, hover: string }> = {
+                    qsoft: { active: "bg-blue-600 border-blue-600", border: "border-slate-100", text: "text-blue-600", shadow: "shadow-blue-200", hover: "hover:border-blue-200 hover:text-blue-600" },
+                    winspeed: { active: "bg-amber-500 border-amber-500", border: "border-slate-100", text: "text-amber-500", shadow: "shadow-amber-200", hover: "hover:border-amber-200 hover:text-amber-500" },
+                    hrm: { active: "bg-indigo-500 border-indigo-500", border: "border-slate-100", text: "text-indigo-500", shadow: "shadow-indigo-200", hover: "hover:border-indigo-200 hover:text-indigo-500" },
+                    ai: { active: "bg-sky-500 border-sky-500", border: "border-slate-100", text: "text-sky-500", shadow: "shadow-sky-200", hover: "hover:border-sky-200 hover:text-sky-500" },
+                    consulting: { active: "bg-emerald-600 border-emerald-600", border: "border-slate-100", text: "text-emerald-600", shadow: "shadow-emerald-100", hover: "hover:border-emerald-200 hover:text-emerald-600" },
+                    others: { active: "bg-slate-700 border-slate-700", border: "border-slate-100", text: "text-slate-700", shadow: "shadow-slate-200", hover: "hover:border-slate-300 hover:text-slate-800" },
+                  };
+
+                  const theme = buttonThemes[item.key] || buttonThemes.qsoft;
+
                   const Icon = () => {
                     switch (item.key) {
                       case 'qsoft': return <Package className="w-4 h-4" />;
@@ -335,8 +348,8 @@ export default function SitePage() {
                         flex items-center gap-2 px-5 py-3 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold 
                         transition-all duration-300 border-2
                         ${isActive
-                          ? "bg-[var(--brand-blue)] text-white border-[var(--brand-blue)] shadow-lg shadow-blue-200"
-                          : "bg-white text-slate-600 border-slate-100 hover:border-blue-200 hover:text-[var(--brand-blue)]"
+                          ? `${theme.active} text-white shadow-lg ${theme.shadow}`
+                          : `bg-white text-slate-600 ${theme.border} ${theme.hover}`
                         }
                       `}
                     >

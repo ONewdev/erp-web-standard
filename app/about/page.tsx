@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 import {
@@ -14,7 +14,9 @@ import {
   Zap,
   Globe,
   Users,
-  X
+  X,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FadeInSection from "../components/FadeInSection";
@@ -22,6 +24,20 @@ import FloatingIcons from "../components/FloatingIcons";
 
 export default function AboutPage() {
   const brandBlue = "var(--brand-blue)";
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const products = [
+    { img: 'q-soft-logo-50.png', name: 'Q.Soft', desc: 'โซลูชั่นการจัดการทรัพยากรระดับองค์กร' },
+    { img: 'smart-soft-logo-50.png', name: 'Smart-Soft', desc: 'นวัตกรรมซอฟต์แวร์สำหรับการผลิตที่ชาญฉลาด' },
+    { img: 'smile-soft-logo-50.png', name: 'Smile-Soft', desc: 'ระบบที่เน้นความง่ายและรอยยิ้มในการทำงาน' },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % products.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [products.length]);
 
   const infoSections = [
     {
@@ -114,88 +130,140 @@ export default function AboutPage() {
 
     <div className="font-kanit bg-white min-h-screen">
       <FloatingIcons />
-      {/* Full Width Video - Top of Page */}
-      <div className="w-full relative bg-white pb-8">
+      {/* Flush Full-Width Video */}
+      <div className="w-full relative -mt-10 md:-mt-20">
         <FadeInSection delay={0.2}>
-          <div className="relative group aspect-video">
-            <div data-hide-cursor className="relative w-full h-full bg-white overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/YR_aeSKM-FQ?si=hkYktBerRij5oMso"
-                title="BCI Corporate Video"
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
+          <div data-hide-cursor className="w-full aspect-video bg-slate-900">
+            <iframe
+              src="https://www.youtube.com/embed/YR_aeSKM-FQ?si=hkYktBerRij5oMso"
+              title="BCI Corporate Video"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
         </FadeInSection>
       </div>
 
-      {/* Hero Section with About Us Side by Side */}
-      <div className="relative bg-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--brand-blue)]/5 -skew-x-12 transform origin-top-right"></div>
-        <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* About Us with Background Image */}
-            <FadeInSection>
-              <div className="relative rounded-3xl overflow-hidden h-96 md:h-[500px]">
-                <Image
-                  src="/img/shattered.png"
-                  alt="BCI Background"
-                  fill
-                  className="object-cover opacity-20"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
-                <div className="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-12 z-10">
-                  <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4 leading-tight">
-                    About <span style={{ color: "var(--brand-blue)" }}>Us</span>
-                  </h1>
-                  <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-md">
-                    เกี่ยวกับบริษัทของเรา
-                  </p>
-                  <div className="w-24 h-1.5 bg-[var(--brand-blue)] mx-auto mt-10 rounded-full"></div>
-                </div>
+      {/* Hero Section - Focused on About Us */}
+      <div className="relative bg-white overflow-hidden pb-12">
+        <div className="absolute top-10 right-0 w-full h-full bg-[var(--brand-blue)]/5  transform origin-top-right"></div>
+        <div className="max-w-7xl mx-auto px-6 py-8 md:py-12 relative z-10 text-center">
+          <FadeInSection>
+            <div className="relative rounded-3xl overflow-hidden py-12">
+              <div className="relative z-10">
+                <h1 className="text-6xl md:text-9xl font-black text-slate-900 mb-6 leading-none tracking-tighter">
+                  About <span style={{ color: "var(--brand-blue)" }}>Us</span>
+                </h1>
+                <p className="text-xl md:text-3xl text-slate-500 font-semibold leading-relaxed max-w-2xl mx-auto">
+                  เกี่ยวกับบริษัทของเรา
+                </p>
+                <div className="w-32 h-2 bg-[var(--brand-blue)] mt-12 mx-auto rounded-full"></div>
               </div>
-            </FadeInSection>
-
-            {/* Product Showcase Grid */}
-            <FadeInSection delay={0.2}>
-              <div className="space-y-6">
-                <div className="relative mb-10">
-                  <h3 className="text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-[var(--brand-blue)] italic tracking-tighter mb-4">
-                    ผลิตภัณฑ์
-                  </h3>
-                  <div className="w-24 h-2 bg-gradient-to-r from-[var(--brand-blue)] to-indigo-400 rounded-full"></div>
-                </div>
-                <div className="grid grid-cols-2 gap-12 md:gap-16">
-                  {[
-                    { id: 'qsoft', img: 'q-soft-logo-50.png', name: 'Q.Soft', color: 'blue' },
-                    { id: 'smart', img: 'smart-soft-logo-50.png', name: 'Smart-Soft', color: 'indigo' },
-                    { id: 'smile', img: 'smile-soft-logo-50.png', name: 'Smile-Soft', color: 'emerald' },
-                  ].map((prod, idx) => (
-                    <div key={prod.id} className={`flex flex-col items-center gap-6 ${idx === 0 ? 'col-span-2 md:col-span-2' : ''}`}>
-                      <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-                        <img src={`/img/feature/${prod.img}`} alt={prod.name} className="max-w-full max-h-full object-contain" />
-                      </div>
-                      <h3 className="font-bold text-slate-900 text-lg text-center">{prod.name}</h3>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
+            </div>
+          </FadeInSection>
         </div>
       </div>
 
-      {/* Product Showcase Section - Removed as moved above */}
+      {/* Product Showcase Section - 3D Carousel Style */}
+      <div className="bg-slate-50/50 py-24 border-y border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+          <FadeInSection>
+            <h3 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight italic">
+              ผลิตภัณฑ์ <span className="text-[var(--brand-blue)]">และโซลูชั่น</span>
+            </h3>
+          </FadeInSection>
+        </div>
+
+        {/* 3D-ish Carousel Container - Smaller & Clearer */}
+        <div className="relative max-w-7xl mx-auto h-[400px] flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center perspective-[1500px]">
+            {products.map((prod, idx) => {
+              // Calculate relative position based on activeIndex
+              let position = idx - activeIndex;
+              if (position < -Math.floor(products.length / 2)) position += products.length;
+              if (position > Math.floor(products.length / 2)) position -= products.length;
+
+              const isActive = position === 0;
+              const isSide = Math.abs(position) === 1;
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={false}
+                  animate={{
+                    x: position * 280,
+                    scale: isActive ? 1.1 : 0.8,
+                    z: isActive ? 0 : -200,
+                    opacity: isActive ? 1 : isSide ? 0.6 : 0,
+                    filter: isActive ? "blur(0px)" : "blur(2px)",
+                    rotateY: position * -30,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 30,
+                  }}
+                  style={{
+                    zIndex: isActive ? 20 : 10,
+                    position: "absolute",
+                    transformStyle: "preserve-3d",
+                  }}
+                  className="flex flex-col items-center gap-8 cursor-pointer"
+                  onClick={() => setActiveIndex(idx)}
+                >
+                  <div className={`relative transition-all duration-700 flex items-center justify-center rounded-[3rem] 
+                    ${isActive
+                      ? 'w-44 h-44 md:w-64 md:h-64 bg-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] ring-1 ring-slate-100 p-8'
+                      : 'w-32 h-32 md:w-52 md:h-52 p-4'}`}>
+                    <img
+                      src={`/img/feature/${prod.img}`}
+                      alt={prod.name}
+                      className={`max-w-full max-h-full object-contain transition-all duration-1000 
+                        ${isActive ? 'grayscale-0 scale-100' : 'grayscale opacity-40'}`}
+                    />
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    {isActive && (
+                      <motion.div
+                        key={prod.name}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -15 }}
+                        className="text-center"
+                      >
+                        <h3 className="font-black text-slate-900 text-2xl md:text-3xl tracking-tighter uppercase mb-2">{prod.name}</h3>
+                        <p className="text-slate-500 font-semibold text-sm md:text-base max-w-sm mx-auto">{prod.desc}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-30">
+            {products.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`h-2 rounded-full transition-all duration-700 ${i === activeIndex ? 'w-12 bg-[var(--brand-blue)]' : 'w-3 bg-slate-300'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Info Sections - Alternating Full Width Rows */}
       <div className="py-24 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <FadeInSection>
             <div className="text-center mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">บริษัท BCI</h2>
-              <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto">เรามุ่งมั่นในการนำเสนอโซลูชั่นที่มีคุณภาพสูงสุดเพื่อขับเคลื่อนธุรกิจของคุณไปสู่ความสำเร็จ</p>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">บริษัท <span style={{ color: "var(--brand-blue)" }}>BCI</span></h2>
+              <div className="w-20 h-1.5 bg-[var(--brand-blue)] mx-auto mb-8 rounded-full"></div>
+              <p className="text-lg md:text-xl text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">เรามุ่งมั่นในการนำเสนอโซลูชั่นที่มีคุณภาพสูงสุดเพื่อขับเคลื่อนธุรกิจของคุณไปสู่ความสำเร็จ</p>
             </div>
           </FadeInSection>
 

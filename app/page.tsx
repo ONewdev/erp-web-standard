@@ -609,10 +609,20 @@ export default function Home() {
                         </div>
 
                         <div className="pt-4">
-                          <button type="submit" className="w-full bg-[var(--brand-blue)] text-white py-4 rounded-xl font-bold text-base shadow-lg shadow-[var(--brand-blue)]-100 hover:bg-gray-50 hover:text-[var(--brand-blue)] transition-all duration-500 flex items-center justify-center gap-3 active:scale-95">
-                            <Send className="w-5 h-5" />
-                            SUBMIT
-                          </button>
+                          <motion.button
+                            type="submit"
+                            whileHover={{ scale: 1.02, y: -2 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="w-full bg-[var(--brand-blue)] text-white py-4 rounded-xl font-bold text-base shadow-xl shadow-blue-500/20 hover:bg-white hover:text-[var(--brand-blue)] border-2 border-transparent hover:border-[var(--brand-blue)] transition-all duration-300 flex items-center justify-center gap-3 group/btn relative overflow-hidden"
+                          >
+                            {/* Simple shine effect */}
+                            <motion.div
+                              className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-full group-hover/btn:translate-x-[200%] transition-transform duration-1000 ease-in-out"
+                            />
+
+                            <Send className="w-5 h-5 transition-transform duration-500 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 group-hover/btn:rotate-12" />
+                            <span className="relative z-10 tracking-widest">SUBMIT</span>
+                          </motion.button>
                         </div>
                       </form>
                     </motion.div>

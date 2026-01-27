@@ -81,10 +81,7 @@ export default function Footer() {
             <span className="uppercase text-slate-500">Business Competitive Intelligence Co., Ltd.</span>
           </div>
 
-          <div className="flex items-center gap-2 text-[var(--brand-blue)]">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            <span>Powering Industrial Excellence</span>
-          </div>
+          
         </div>
       </div>
     </footer>

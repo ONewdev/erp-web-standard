@@ -56,11 +56,31 @@ export default function CareerCard({ data, index = 0 }: Props) {
       <div className="p-8 flex-1 flex flex-col md:w-2/3">
         {/* Chips/Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {data.tags?.map((tag) => (
-            <span key={tag} className="px-3 py-1 bg-slate-100 text-slate-500 text-xs rounded-lg font-medium">
-              #{tag}
-            </span>
-          ))}
+          {data.tags?.map((tag) => {
+            // Hash function to pick a consistent color for the same tag
+            const colors = [
+              { bg: 'bg-blue-50', text: 'text-blue-600' },
+              { bg: 'bg-indigo-50', text: 'text-indigo-600' },
+              { bg: 'bg-emerald-50', text: 'text-emerald-600' },
+              { bg: 'bg-amber-50', text: 'text-amber-600' },
+              { bg: 'bg-rose-50', text: 'text-rose-600' },
+              { bg: 'bg-violet-50', text: 'text-violet-600' },
+              { bg: 'bg-sky-50', text: 'text-sky-600' },
+              { bg: 'bg-slate-100', text: 'text-slate-600' },
+            ];
+
+            const hash = tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            const theme = colors[hash % colors.length];
+
+            return (
+              <span
+                key={tag}
+                className={`px-3 py-1 ${theme.bg} ${theme.text} text-[10px] rounded-lg font-bold uppercase tracking-wider shadow-sm border border-white/50`}
+              >
+                #{tag}
+              </span>
+            );
+          })}
         </div>
 
         <h3 className="text-2xl font-bold text-slate-800 mb-2 group-hover:text-[var(--brand-blue)] transition-colors">
