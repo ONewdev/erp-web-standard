@@ -70,8 +70,8 @@ export default function TestimonialsPage() {
           <FadeInSection>
             <div className="mb-16">
               <div className="flex items-center gap-6 mb-8">
-                <div className="p-4 rounded-2xl bg-[var(--brand-blue)]/50">
-                  <i style={{ fontSize: 40, color: "var(--brand-blue)" }} className="fa fa-comments-o" />
+                <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-[var(--brand-blue)] transition-colors group-hover:bg-blue-100">
+                  <i style={{ fontSize: 32 }} className="fa fa-comments-o" />
                 </div>
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">

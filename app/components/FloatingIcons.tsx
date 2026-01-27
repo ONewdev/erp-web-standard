@@ -85,7 +85,7 @@ export default function FloatingIcons() {
                     style={{
                         position: 'absolute',
                         color: 'var(--brand-blue)',
-                        filter: 'blur(0.3px)',
+                        filter: 'blur(0.10px)',
                     }}
                 >
                     <node.Icon size={node.size} strokeWidth={1} />

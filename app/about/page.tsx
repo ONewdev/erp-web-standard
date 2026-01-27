@@ -114,7 +114,7 @@ export default function AboutPage() {
   ];
 
   return (
-    
+
     <div className="font-kanit bg-white min-h-screen">
       <FloatingIcons />
       {/* Full Width Video - Top of Page */}
@@ -235,7 +235,7 @@ export default function AboutPage() {
                           <div className="space-y-6">
                             {section.items.map((item, i) => (
                               <div key={i} className="flex items-start gap-4 md:gap-6">
-                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0" 
+                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0"
                                   style={{ backgroundColor: colorMap[section.color] || brandBlue }}></div>
                                 <p className="text-slate-600 font-medium leading-relaxed flex-1">{item}</p>
                               </div>
@@ -283,7 +283,7 @@ export default function AboutPage() {
                           <div className="space-y-6">
                             {section.items.map((item, i) => (
                               <div key={i} className="flex items-start gap-4 md:gap-6">
-                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0" 
+                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0"
                                   style={{ backgroundColor: colorMap[section.color] || brandBlue }}></div>
                                 <p className="text-slate-600 font-medium leading-relaxed flex-1">{item}</p>
                               </div>
@@ -328,9 +328,15 @@ export default function AboutPage() {
           <FadeInSection>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-8 italic text-center">Company description</h2>
             <div className="mb-12 inline-block">
-              <Image src="/img/bci_logo.png" alt="BCI Logo" width={120} height={120} className="mx-auto" />
+              <Image
+                src="/img/bci_logo.png"
+                alt="BCI Logo"
+                width={250}
+                height={250}
+                className="mx-auto w-[150px] md:w-[150px] h-auto"
+              />
             </div>
-            <div className="space-y-4 text-base md:text-lg text-slate-600 font-medium italic leading-relaxed text-center">
+            <div className="space-y-5 text-base md:text-lg text-slate-600 font-medium italic leading-relaxed text-center">
               <p>
                 ด้วยประสบการณ์กว่า 19 ปี โดยทีมงานมืออาชืพที่มีความสามารถ ความเชี่ยวชาญ ในการให้คำปรึกษาและฝึกอบรม
               </p>
@@ -361,28 +367,27 @@ export default function AboutPage() {
                 <div className="p-3 bg-white rounded-xl shadow-sm border border-slate-100">
                   <Award className="w-6 h-6 text-amber-500" />
                 </div>
-                <div className="text-sm font-bold text-slate-400 italic">ISO/IEC 29110 Certified</div>
               </div>
             </div>
           </FadeInSection>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 border border-slate-300">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             {awards.map((award, idx) => (
               <FadeInSection key={idx} delay={idx * 0.05}>
                 <a
                   href={`/img/award/${award}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative block cursor-zoom-in transition-all duration-500 border-r border-b border-slate-300"
+                  className="group relative block cursor-zoom-in bg-white p-4 rounded-2xl shadow-sm border border-slate-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-1"
                 >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
                     <Image
                       src={`/img/award/${award}`}
                       alt="BCI Award"
                       fill
-                      className="object-contain transition-transform duration-700 group-hover:scale-110"
+                      className="object-contain transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-[var(--brand-blue)]/0 group-hover:bg-[var(--brand-blue)]/10 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-blue)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </div>
                 </a>
               </FadeInSection>

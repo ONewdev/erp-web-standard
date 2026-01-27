@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart3,
   FileDown,
@@ -17,11 +17,15 @@ import {
   BookOpen,
   Users,
   Layers,
+  ChevronRight,
+  Download,
+  Calendar
 } from "lucide-react";
 import FadeInSection from "../components/FadeInSection";
 
-// Fix for TypeScript error with motion.tr properties
+// Fix for TypeScript error with motion components
 const MotionTr = motion.tr as any;
+const MotionDiv = motion.div as any;
 
 interface Document {
   name: string;
@@ -136,21 +140,30 @@ export default function DocumentPage() {
   // Compute items to display
   const displayData = activeTab === "All" ? documents : [documents.find((doc) => doc.title === activeTab)].filter(Boolean) as DocumentSection[];
 
+  // Scroll to top of list when category changes
+  useEffect(() => {
+    const element = document.getElementById('doc-list-start');
+    if (element) {
+      const yOffset = -150;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [activeTab]);
+
   return (
-    <div className="font-kanit min-h-screen bg-gray-50">
-      {/* Hero Header Section - Clean & White like other pages */}
+    <div className="font-kanit min-h-screen bg-gray-50 pb-12">
+      {/* Hero Header Section */}
       <FadeInSection>
         <div className="bg-white border-b overflow-hidden relative">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--brand-blue)]/5 -skew-x-12 transform origin-top-right"></div>
 
-          <div className="max-w-7xl mx-auto px-6 py-8 md:py-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-20 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Section - Image & Title */}
-              <div className="flex flex-col md:flex-row gap-10 items-center ">
-
+              <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center">
                 <div className="relative group flex-shrink-0">
                   <div className="absolute inset-0 bg-[var(--brand-blue)]/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
-                  <div className="relative w-48 h-48 bg-slate-50 rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-slate-100 shadow-sm transition-transform duration-500 group-hover:-rotate-3">
+                  <div className="relative w-40 h-40 md:w-48 md:h-48 bg-slate-50 rounded-[2.5rem] overflow-hidden flex items-center justify-center border border-slate-100 shadow-sm transition-transform duration-500 group-hover:-rotate-3">
                     <Image
                       src="/img/download_from_cloud.png"
                       alt="Download"
@@ -164,29 +177,27 @@ export default function DocumentPage() {
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-[var(--brand-blue)] rounded-full text-xs font-bold mb-4">
                     <BookOpen className="w-3 h-3" /> RESOURCES
                   </div>
-                  <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                  <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
                     Document <span style={{ color: "var(--brand-blue)" }}>Center</span>
                   </h1>
-                  <p className="text-lg text-slate-500 font-medium max-w-md leading-relaxed">
+                  <p className="text-base md:text-lg text-slate-500 font-medium max-w-md leading-relaxed">
                     ศูนย์รวมคู่มือการใช้งานและโบรชัวร์ผลิตภัณฑ์ BCI สำหรับผู้ใช้งานและองค์กร
                   </p>
                 </div>
               </div>
 
               {/* Right Section - Stats Card & Info Overlay */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full">
-                <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group">
-
-
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-white p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group">
                   <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="p-2.5 bg-blue-50 rounded-xl">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-2 bg-blue-50 rounded-xl">
                         <BarChart3 className="w-5 h-5 text-[var(--brand-blue)]" />
                       </div>
-                      <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">Overview</span>
+                      <span className="text-xs font-bold text-slate-400 tracking-widest uppercase">Overview</span>
                     </div>
 
-                    <div className="space-y-5">
+                    <div className="space-y-4">
                       {[
                         { label: "ไฟล์ทั้งหมด", count: 39, color: "#0e9aef", icon: FileDown },
                         { label: "เอกสารคู่มือ", count: 11, color: "#10b981", icon: FileText },
@@ -194,27 +205,27 @@ export default function DocumentPage() {
                       ].map((stat) => (
                         <div key={stat.label} className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`p-1.5 rounded-lg bg-slate-50`}>
+                            <div className="p-1.5 rounded-lg bg-slate-50">
                               <stat.icon className="w-4 h-4" style={{ color: stat.color }} />
                             </div>
                             <span className="text-sm font-semibold text-slate-600">{stat.label}</span>
                           </div>
-                          <span className="text-lg font-bold text-slate-800">{stat.count}</span>
+                          <span className="text-base md:text-lg font-bold text-slate-800">{stat.count}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[var(--brand-blue)] p-8 rounded-[2.5rem] shadow-xl shadow-blue-200/50 text-white flex flex-col justify-between relative overflow-hidden group">
+                <div className="bg-[var(--brand-blue)] p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] shadow-xl shadow-blue-200/50 text-white flex flex-col justify-between relative overflow-hidden group">
                   <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
 
-                  <div className="relative z-10 flex items-center gap-2 mb-6 text-sm font-bold opacity-80 italic">
+                  <div className="relative z-10 flex items-center gap-2 mb-4 text-xs font-bold opacity-80 italic">
                     <ArrowUpCircle className="w-4 h-4" /> Recommended
                   </div>
 
-                  <div className="relative z-10 mb-8">
-                    <p className="text-sm opacity-90 leading-relaxed font-light italic">
+                  <div className="relative z-10 mb-6">
+                    <p className="text-xs md:text-sm opacity-90 leading-relaxed font-light italic">
                       "สำหรับการดาวน์โหลดแบบพิมพ์ จำเป็นต้องติดตั้ง Adobe Reader 5.0.5 ขึ้นไป"
                     </p>
                   </div>
@@ -230,189 +241,204 @@ export default function DocumentPage() {
       </FadeInSection>
 
       {/* Content Section */}
-      <FadeInSection delay={0.2}>
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
-            {/* Tabs - Premium Horizontal Scroll */}
-            <div className="border-b border-b bg-white/80 backdrop-blur p-3 top-24 z-30">
-              <div className="flex flex-wrap gap-2">
-                {/* All Button */}
-                <button
-                  onClick={(e) => { e.currentTarget.blur(); setActiveTab("All"); }}
-                  className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[var(--brand-blue)]/40 flex items-center gap-2 ${activeTab === "All"
-                    ? "bg-[var(--brand-blue)] text-white shadow-lg border border-[var(--brand-blue)]"
-                    : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-white"
-                    }`}
-                >
-                  <Layers className="w-4 h-4" />
-                  All
-                </button>
+      <div id="doc-list-start" className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <FadeInSection delay={0.2}>
+          <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
 
-                {/* Dynamic Buttons */}
-                {documents.map((section) => (
+            {/* Tabs - Responsive Scrollable Container */}
+            <div className="border-b bg-white/80 backdrop-blur sticky top-0 z-30">
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex p-3 gap-2 min-w-max">
                   <button
-                    key={section.title}
-                    onClick={(e) => { e.currentTarget.blur(); setActiveTab(section.title); }}
-                    className={`px-7 py-3.5 rounded-2xl font-bold transition-all text-sm focus:ring-2 focus:ring-[var(--brand-blue)]/40 flex items-center gap-2 ${activeTab === section.title
-                      ? "bg-[var(--brand-blue)] text-white shadow-lg border border-[var(--brand-blue)]"
-                      : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-white"
+                    onClick={(e) => {
+                      setActiveTab("All");
+                      e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }}
+                    className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === "All"
+                      ? "bg-[var(--brand-blue)] text-white shadow-lg shadow-blue-200"
+                      : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-blue-50"
                       }`}
                   >
-                    {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
-                    {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
-                    {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
-                    {section.title === "HRMI" && <Users className="w-4 h-4" />}
-                    {section.title === "CRM" && <BarChart3 className="w-4 h-4" />}
-                    {section.title === "Support & Other" && <Files className="w-4 h-4" />}
-                    {section.title}
+                    <Layers className="w-4 h-4" />
+                    All
                   </button>
-                ))}
+
+                  {documents.map((section) => (
+                    <button
+                      key={section.title}
+                      onClick={(e) => {
+                        setActiveTab(section.title);
+                        e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                      }}
+                      className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === section.title
+                        ? "bg-[var(--brand-blue)] text-white shadow-lg shadow-blue-200"
+                        : "text-slate-500 hover:text-[var(--brand-blue)] hover:bg-blue-50"
+                        }`}
+                    >
+                      {section.title === "Documents" && <FileSearch className="w-4 h-4" />}
+                      {section.title === "Brochure" && <ImageOff className="w-4 h-4" />}
+                      {section.title === "WINSpeed" && <ArrowUpCircle className="w-4 h-4" />}
+                      {section.title === "HRMI" && <Users className="w-4 h-4" />}
+                      {section.title === "CRM" && <BarChart3 className="w-4 h-4" />}
+                      {section.title === "Support & Other" && <Files className="w-4 h-4" />}
+                      {section.title}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Info Message */}
-            <div className="bg-[var(--brand-blue)]/5 px-6 py-4 flex items-center gap-3">
-              <div className="p-2 bg-white rounded-lg shadow-sm">
+            <div className="bg-[var(--brand-blue)]/5 px-4 md:px-6 py-4 flex items-start md:items-center gap-3">
+              <div className="p-2 bg-white rounded-lg shadow-sm shrink-0">
                 <BookOpen className="w-4 h-4 text-[var(--brand-blue)]" />
               </div>
-              <p className="text-sm text-slate-600">
-                <span className="font-bold text-slate-800">Pro Tip:</span> ไฟล์ PDF สามารถเปิดอ่านผ่าน Web Browser ได้ทันทีโดยไม่ต้องติดตั้งซอฟต์แวร์เพิ่มเติม
+              <p className="text-xs md:text-sm text-slate-600">
+                <span className="font-bold text-slate-800">Pro Tip:</span> ไฟล์ PDF สามารถเปิดอ่านจากเครื่องหรือโทรศัพท์ได้ทันที หากมีปัญหาให้ติดตั้ง Adobe Acrobat Reader
               </p>
             </div>
 
-            {/* Table */}
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-100">
-                    <th className="px-8 py-5 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">
-                      Flie
-                    </th>
-                    <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">TH</th>
-                    <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">EN</th>
-                    {showExtraLanguages && (
-                      <>
-                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">CN</th>
-                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">KR</th>
-                        <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">JP</th>
-                      </>
-                    )}
-                    <th className="px-8 py-5 text-right text-xs font-bold text-slate-400 uppercase tracking-wider">
-                      Release Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50">
-                  {displayData.map((section) => (
-                    <React.Fragment key={section.title}>
-                      {activeTab === "All" && (
-                        <MotionTr
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="bg-slate-100 hover:bg-slate-100"
-                        >
-                          <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-4">
-                            <div className="flex items-center gap-3">
-                              {section.title === "Documents" && <FileSearch className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              {section.title === "Brochure" && <ImageOff className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              {section.title === "WINSpeed" && <ArrowUpCircle className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              {section.title === "HRMI" && <Users className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              {section.title === "CRM" && <BarChart3 className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              {section.title === "Support & Other" && <Files className="w-5 h-5 text-[var(--brand-blue)]" />}
-                              <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider">{section.title}</h3>
-                            </div>
-                          </td>
-                        </MotionTr>
-                      )}
-                      {section.items.map((item, index) => (
-                        <MotionTr
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.02 }}
-                          key={`${item.name}-${index}`}
-                          className="hover:bg-slate-50/50 transition-colors group"
-                        >
-                          <td className="px-8 py-5">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-lg bg-[var(--brand-blue)]/10 flex items-center justify-center text-[var(--brand-blue)] group-hover:scale-110 transition-transform">
-                            <FileText className="w-4 h-4" />
-                          </div>
-                          <span className="text-slate-700 font-semibold group-hover:text-[var(--brand-blue)] transition-colors">{item.name}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-5 text-center">
-                        {item.thUrl ? (
-                          <a
-                            href={item.thUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                          >
-                            Download
-                          </a>
-                        ) : (
-                          <span className="text-slate-300 text-xs">N/A</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-5 text-center">
-                        {item.enUrl ? (
-                          <a
-                            href={item.enUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-4 py-1.5 bg-purple-50 text-purple-600 rounded-full text-xs font-bold hover:bg-purple-600 hover:text-white transition-all shadow-sm"
-                          >
-                            Download
-                          </a>
-                        ) : (
-                          <span className="text-slate-300 text-xs">N/A</span>
-                        )}
-                      </td>
+            {/* Table Area - Responsive Grid for Mobile, Table for Tablet/Desktop */}
+            <div>
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-slate-50 border-b border-slate-100">
+                      <th className="px-8 py-5 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">File Name</th>
+                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">TH</th>
+                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">EN</th>
                       {showExtraLanguages && (
                         <>
-                          {[
-                            { url: item.cnUrl, text: item.cn, lang: "cn" },
-                            { url: item.krUrl, text: item.kr, lang: "kr" },
-                            { url: item.jpUrl, text: item.jp, lang: "jp" },
-                          ].map((langData, idx) => {
-                            const colors: Record<string, string> = {
-                              cn: "bg-red-50 text-red-600 hover:bg-red-600",
-                              kr: "bg-green-50 text-green-600 hover:bg-green-600",
-                              jp: "bg-yellow-50 text-yellow-600 hover:bg-yellow-600"
-                            };
-                            return (
-                              <td key={idx} className="px-6 py-5 text-center">
-                                {langData.url ? (
-                                  <a
-                                    href={langData.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-bold hover:text-white transition-all shadow-sm ${colors[langData.lang]}`}
-                                  >
-                                    Download
-                                  </a>
-                                ) : (
-                                  <span className="text-slate-300 text-xs">N/A</span>
-                                )}
-                              </td>
-                            );
-                          })}
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">CN</th>
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">KR</th>
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">JP</th>
                         </>
                       )}
-                      <td className="px-8 py-5 text-right">
-                        <span className="text-xs font-medium text-slate-400 font-mono">{item.created}</span>
-                      </td>
-                    </MotionTr>
+                      <th className="px-8 py-5 text-right text-xs font-bold text-slate-400 uppercase tracking-wider">Release</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-50">
+                    {displayData.map((section) => (
+                      <React.Fragment key={section.title}>
+                        {activeTab === "All" && (
+                          <tr className="bg-slate-50/50">
+                            <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-3">
+                              <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+                                {section.title}
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                        {section.items.map((item, index) => (
+                          <MotionTr
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            key={`${item.name}-${index}`}
+                            className="hover:bg-slate-50 transition-colors group"
+                          >
+                            <td className="px-8 py-5">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-[var(--brand-blue)]">
+                                  <FileText className="w-4 h-4" />
+                                </div>
+                                <span className="text-slate-700 font-semibold text-sm">{item.name}</span>
+                              </div>
+                            </td>
+                            {/* TH */}
+                            <td className="px-4 py-5 text-center text-sm">
+                              {item.thUrl ? (
+                                <Link href={item.thUrl} target="_blank" className="text-[var(--brand-blue)] font-bold hover:underline">Download</Link>
+                              ) : <span className="text-slate-300">-</span>}
+                            </td>
+                            {/* EN */}
+                            <td className="px-4 py-5 text-center text-sm">
+                              {item.enUrl ? (
+                                <Link href={item.enUrl} target="_blank" className="text-purple-600 font-bold hover:underline">Download</Link>
+                              ) : <span className="text-slate-300">-</span>}
+                            </td>
+                            {showExtraLanguages && (
+                              <>
+                                <td className="px-4 py-5 text-center text-sm">{item.cnUrl ? <Link href={item.cnUrl} target="_blank" className="text-red-500 font-bold hover:underline">CN</Link> : <span className="text-slate-300">-</span>}</td>
+                                <td className="px-4 py-5 text-center text-sm">{item.krUrl ? <Link href={item.krUrl} target="_blank" className="text-green-600 font-bold hover:underline">KR</Link> : <span className="text-slate-300">-</span>}</td>
+                                <td className="px-4 py-5 text-center text-sm">{item.jpUrl ? <Link href={item.jpUrl} target="_blank" className="text-amber-500 font-bold hover:underline">JP</Link> : <span className="text-slate-300">-</span>}</td>
+                              </>
+                            )}
+                            <td className="px-8 py-5 text-right">
+                              <span className="text-[10px] text-slate-400 font-mono">{item.created}</span>
+                            </td>
+                          </MotionTr>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile List/Card View */}
+              <div className="md:hidden divide-y divide-slate-100">
+                {displayData.map((section) => (
+                  <div key={section.title}>
+                    {activeTab === "All" && (
+                      <div className="bg-slate-50 px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                        {section.title}
+                      </div>
+                    )}
+                    <div className="divide-y divide-slate-100">
+                      {section.items.map((item, idx) => (
+                        <div key={idx} className="p-4 bg-white">
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] shrink-0">
+                                <FileText className="w-5 h-5" />
+                              </div>
+                              <div>
+                                <h4 className="font-bold text-slate-800 text-sm leading-tight mb-1">{item.name}</h4>
+                                <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
+                                  <Calendar className="w-3 h-3" />
+                                  <span>{item.created}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-wrap gap-2">
+                            {item.thUrl && (
+                              <a href={item.thUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-blue-50 text-[var(--brand-blue)] rounded-xl text-xs font-bold active:bg-blue-600 active:text-white transition-colors">
+                                <Download className="w-3 h-3" /> TH
+                              </a>
+                            )}
+                            {item.enUrl && (
+                              <a href={item.enUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-purple-50 text-purple-600 rounded-xl text-xs font-bold active:bg-purple-600 active:text-white transition-colors">
+                                <Download className="w-3 h-3" /> EN
+                              </a>
+                            )}
+                            {item.cnUrl && (
+                              <a href={item.cnUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-red-50 text-red-600 rounded-xl text-xs font-bold">
+                                CN
+                              </a>
+                            )}
+                            {item.krUrl && (
+                              <a href={item.krUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-green-50 text-green-600 rounded-xl text-xs font-bold">
+                                KR
+                              </a>
+                            )}
+                            {item.jpUrl && (
+                              <a href={item.jpUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-amber-50 text-amber-600 rounded-xl text-xs font-bold">
+                                JP
+                              </a>
+                            )}
+                          </div>
+                        </div>
                       ))}
-                    </React.Fragment>
-                  ))}
-                </tbody>
-              </table>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </FadeInSection>
+        </FadeInSection>
+      </div>
     </div>
   );
 }

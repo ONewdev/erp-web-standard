@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Zap,
   Shield,
@@ -39,6 +40,7 @@ type ChildItem = {
   label: string;
   icon: React.ReactNode;
   desc?: string;
+  href?: string;
   sections?: SectionBlock[];
 };
 
@@ -83,6 +85,7 @@ export default function ServicePage() {
           icon: <PowerBIIcon className="w-6 h-6" />,
           label: "หลักสูตร Power BI",
           desc: "จากประสบการณ์ในการ Implement ของเรา เพื่อให้ลูกค้าสามารถใช้งาน Software ได้จริง และมีประสิทธิภาพ ทำให้คำปรึกษาอยู่บนพื้นฐานการใช้งานจริงของ Users พร้อมผลลัพธ์ที่ถูกต้องตามผู้บริหารต้องการ",
+          href: "/powerbi",
         },
       ],
     },
@@ -233,63 +236,74 @@ export default function ServicePage() {
               </button>
 
               <div
-                className={` overflow-hidden transition-all duration-500 ease-in-out ${openSections.includes(section.title)? "max-h-[2000px] opacity-100 translate-y-0": "max-h-0 opacity-0 -translate-y-2"}`}
+                className={` overflow-hidden transition-all duration-500 ease-in-out ${openSections.includes(section.title) ? "max-h-[2000px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"}`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-top-4 duration-500">
-                  {section.children.map((service, cIdx) => (
-                    <div
-                      key={service.label}
-                      className="group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
-                    >
-                      <div className="mb-6 flex items-start justify-between">
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shadow-inner group-hover:text-white"
-                          style={{
-                            backgroundColor: "rgba(var(--brand-blue), 0.1)",
-                            color: "var(--brand-blue)"
-                          }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "var(--brand-blue)"}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(var(--brand-blue), 0.1)"}
-                        >
-                          {service.icon}
+                  {section.children.map((service, cIdx) => {
+                    const cardClasses = "group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full";
+
+                    const cardContent = (
+                      <>
+                        <div className="mb-6 flex items-start justify-between">
+                          <div
+                            className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 shadow-sm
+                                       bg-sky-50 text-[var(--brand-blue)] 
+                                       group-hover:bg-[var(--brand-blue)] group-hover:text-white group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-200/50"
+                          >
+                            {service.icon}
+                          </div>
                         </div>
-                      </div>
 
-                      <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
-                        {service.label}
-                      </h3>
+                        <h3 className="text-lg font-bold text-[#1e293b] mb-3 transition-colors group-hover:text-[var(--brand-blue)] font-kanit">
+                          {service.label}
+                        </h3>
 
-                      <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
-                        {service.desc}
-                      </p>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow font-kanit">
+                          {service.desc}
+                        </p>
 
-                      {service.sections && (
-                        <div className="space-y-4 pt-4 border-t border-slate-50 mt-auto">
-                          {service.sections.map((s) => (
-                            <div key={s.heading}>
-                              <div className="flex items-center gap-2 mb-2">
-                                <span
-                                  className="w-1 h-4 rounded-full"
-                                  style={{ backgroundColor: "[var(--brand-blue)]" }}
-                                />
-                                <div className="text-sm font-extrabold text-slate-700 tracking-wide">
-                                  {s.heading}
+                        {service.sections && (
+                          <div className="space-y-4 pt-4 border-t border-slate-50 mt-auto">
+                            {service.sections.map((s) => (
+                              <div key={s.heading}>
+                                <div className="flex items-center gap-2 mb-2">
+                                  <span
+                                    className="w-1 h-4 rounded-full"
+                                    style={{ backgroundColor: "var(--brand-blue)" }}
+                                  />
+                                  <div className="text-sm font-extrabold text-slate-700 tracking-wide font-kanit">
+                                    {s.heading}
+                                  </div>
                                 </div>
+                                <ul className="space-y-1.5 text-xs text-slate-500 font-kanit">
+                                  {s.bullets.map((b) => (
+                                    <li key={b} className="flex items-start gap-2">
+                                      <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "var(--brand-blue)" }}></span>
+                                      {b}
+                                    </li>
+                                  ))}
+                                </ul>
                               </div>
-                              <ul className="space-y-1.5 text-xs text-slate-500">
-                                {s.bullets.map((b) => (
-                                  <li key={b} className="flex items-start gap-2">
-                                    <span className="w-1 h-1 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: "[var(--brand-blue)]" }}></span>
-                                    {b}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    );
+
+                    if (service.href) {
+                      return (
+                        <Link key={service.label} href={service.href} className={cardClasses}>
+                          {cardContent}
+                        </Link>
+                      );
+                    }
+
+                    return (
+                      <div key={service.label} className={cardClasses}>
+                        {cardContent}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </FadeInSection>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, Package, Sparkles, Star, Users, Zap } from "lucide-react";
+import { Briefcase, Package, Sparkles, Star, Users, Zap, CheckCircle2, ChevronRight } from "lucide-react";
+import FadeInSection from "../components/FadeInSection";
 
 const navItems = [
   { label: "Q.soft", key: "qsoft" },
@@ -32,7 +33,7 @@ const Tooltip = ({ title, children }: { title: string; children: React.ReactNode
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded shadow-lg whitespace-nowrap z-50 pointer-events-none"
+            className="absolute bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-[10px] rounded shadow-lg whitespace-nowrap z-50 pointer-events-none"
           >
             {title}
             <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-gray-800" />
@@ -173,70 +174,75 @@ export default function SitePage() {
 
   const displayClients = active === "qsoft" ? getQsoftClientsWithTags() : clients[active];
 
+  // Scroll to top of grid when category changes
+  useEffect(() => {
+    const element = document.getElementById('client-grid');
+    if (element) {
+      const yOffset = -150;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [active]);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0,
+        staggerChildren: 0.08, // Increased stagger for better visibility
       },
     },
     exit: {
       opacity: 0,
       transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
+        staggerChildren: 0.03,
+        staggerDirection: -1
+      }
     },
   };
 
   const itemVariants = {
     hidden: {
       opacity: 0,
-      y: 20,
+      y: 60, // Higher jump
+      scale: 0.9,
+      rotateX: 15 // Add slight tilt for 'fresh' look
     },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
+      rotateX: 0,
       transition: {
-        duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94], // cubic-bezier for smooth feel
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
       },
     },
     exit: {
       opacity: 0,
-      y: -20,
+      y: -40,
+      scale: 0.9,
       transition: {
         duration: 0.3,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hover: {
-      y: -4,
-      boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
+        ease: "easeInOut"
+      }
     },
   };
 
   return (
-    <div className="font-kanit bg-gray-50/50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="font-kanit bg-gray-50/50 min-h-screen pb-20 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
+
+        {/* Header Grid: Responsive stacking */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-12 items-start">
-          {/* LEFT : Title */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col gap-4"
-          >
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-              <div className="relative w-24 h-24 flex-shrink-0">
+
+          {/* LEFT: Title & Intro */}
+          <FadeInSection>
+            <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 md:gap-8">
+              <div className="relative w-20 h-20 md:w-24 md:h-24 flex-shrink-0">
                 <Image
                   src="/img/best_seller.png"
                   alt="Business Client Groups"
@@ -245,190 +251,199 @@ export default function SitePage() {
                 />
               </div>
 
-              <div className="space-y-2">
-                <div className="w-16 h-1 bg-[var(--brand-blue)] rounded-full mb-4 hidden md:block" />
-                <h1 className="text-3xl md:text-5xl font-bold text-slate-800 leading-tight">
-                  กลุ่มลูกค้าที่ใช้บริการ
-                  <span className="text-[var(--brand-blue)]">โปรแกรม</span>
+              <div className="space-y-3">
+                <div className="w-12 h-1 bg-[var(--brand-blue)] rounded-full mb-2 hidden md:block" />
+                <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+                  กลุ่มลูกค้าที่
+                  <span className="text-[var(--brand-blue)] block sm:inline px-1">ที่ใช้บริการ</span>
+                  โปรแกรม
                 </h1>
-                <p className="text-slate-500 text-lg font-light">
-                  Q.Soft, WINSpeed, HRM, AI และผลิตภัณฑ์ชั้นนำอื่น ๆ
+                <p className="text-slate-500 text-base md:text-lg font-medium max-w-xl">
+                  Q.Soft, WINSpeed, HRM, AI และอื่น ๆ
                 </p>
               </div>
             </div>
-          </motion.div>
+          </FadeInSection>
 
-          {/* RIGHT : Stats (Moves up in responsive but stays right on desktop) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 min-w-[320px] relative overflow-hidden group lg:row-span-2"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110" />
+          {/* RIGHT: Stats Section */}
+          <FadeInSection delay={0.2}>
+            <div className="relative z-10 py-2 lg:pl-12 min-w-full sm:min-w-[340px]">
 
-            <div className="relative z-10 grid grid-cols-2 gap-y-4 gap-x-8">
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-[var(--brand-blue)] font-bold">Total Sites</span>
-                <span className="text-2xl font-bold text-slate-800">47</span>
+              <div className="grid grid-cols-2 gap-y-8 gap-x-12">
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-900 leading-tight">26</span>
+                  <span className="text-[10px] uppercase tracking-widest text-[var(--brand-blue)] font-bold">All Site</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-800 leading-tight">8+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Q.Soft</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-800 leading-tight">6+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">WINSpeed</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-800 leading-tight">0</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">HRM</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-800 leading-tight">5+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">AI</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-3xl font-black text-slate-800 leading-tight">13+</span>
+                  <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">อื่น ๆ</span>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Q.Soft</span>
-                <span className="text-2xl font-bold text-slate-800">17+</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">WINSpeed</span>
-                <span className="text-2xl font-bold text-slate-800">13+</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">AI Solution</span>
-                <span className="text-2xl font-bold text-slate-800">1</span>
+
+              <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[10px] font-bold text-slate-300 tracking-tight uppercase whitespace-nowrap">
+                  Last update 13.02.2025 14:53
+                </span>
               </div>
             </div>
-
-            <div className="mt-8 pt-6 border-t border-slate-50 text-[10px] text-slate-400 text-right font-medium tracking-wider">
-              LAST UPDATE: {new Date().toLocaleDateString("th-TH")}
-            </div>
-          </motion.div>
-
-          {/* ✅ Sticky Navbar - Moved under Total Sites for responsive, but remains on left for desktop */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="sticky top-20 z-40 lg:col-start-1"
-          >
-            <div className="inline-flex flex-wrap gap-3">
-              {navItems.map((item) => {
-                const isActive = active === item.key;
-
-                const Icon = () => {
-                  switch (item.key) {
-                    case 'qsoft': return <Package className="w-4 h-4" />;
-                    case 'winspeed': return <Zap className="w-4 h-4" />;
-                    case 'hrm': return <Users className="w-4 h-4" />;
-                    case 'ai': return <Sparkles className="w-4 h-4" />;
-                    case 'consulting': return <Briefcase className="w-4 h-4" />;
-                    case 'others': return <Star className="w-4 h-4" />;
-                    default: return null;
-                  }
-                };
-
-                return (
-                  <button
-                    key={item.key}
-                    onClick={() => {
-                      setActive(item.key);
-                      window.scrollTo({ top: 20, behavior: "smooth" });
-                    }}
-                    className={`
-                      flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold 
-                      transition-all duration-300 border-2
-                      ${isActive
-                        ? "bg-[var(--brand-blue)] text-white border-[var(--brand-blue)] shadow-lg shadow-blue-200/50"
-                        : "bg-white text-slate-600 border-slate-200 hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)] hover:shadow-md"
-                      }
-                    `}
-                  >
-                    <Icon />
-                    {item.label}
-                  </button>
-                );
-              })}
-            </div>
-          </motion.div>
+          </FadeInSection>
         </div>
 
+        {/* ✅ Sticky Responsive Navbar */}
+        <div className="sticky top-20 z-40 mb-10 -mx-4 sm:mx-0">
+          <div className="bg-white/80 backdrop-blur-md border-y md:border-none md:bg-transparent px-4 py-3 md:p-0">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-2.5 min-w-max pb-1">
+                {navItems.map((item) => {
+                  const isActive = active === item.key;
+                  const Icon = () => {
+                    switch (item.key) {
+                      case 'qsoft': return <Package className="w-4 h-4" />;
+                      case 'winspeed': return <Zap className="w-4 h-4" />;
+                      case 'hrm': return <Users className="w-4 h-4" />;
+                      case 'ai': return <Sparkles className="w-4 h-4" />;
+                      case 'consulting': return <Briefcase className="w-4 h-4" />;
+                      case 'others': return <Star className="w-4 h-4" />;
+                      default: return null;
+                    }
+                  };
+
+                  return (
+                    <button
+                      key={item.key}
+                      onClick={(e) => {
+                        setActive(item.key);
+                        e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                      }}
+                      className={`
+                        flex items-center gap-2 px-5 py-3 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold 
+                        transition-all duration-300 border-2
+                        ${isActive
+                          ? "bg-[var(--brand-blue)] text-white border-[var(--brand-blue)] shadow-lg shadow-blue-200"
+                          : "bg-white text-slate-600 border-slate-100 hover:border-blue-200 hover:text-[var(--brand-blue)]"
+                        }
+                      `}
+                    >
+                      <Icon />
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Legend for Q.soft - Animates in */}
         <AnimatePresence>
           {active === "qsoft" && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="flex items-center gap-6 py-4 mb-8 overflow-x-auto whitespace-nowrap border-b border-slate-100"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="overflow-hidden"
             >
-              <span className="text-xs font-bold text-[var(--brand-blue)] uppercase tracking-widest">ระบบงานหลัก:</span>
-              <div className="flex gap-6">
-                {qsoftSubcategories.map((subcat) => (
-                  <div key={subcat} className="flex items-center gap-2 group cursor-pointer">
-                    <Tooltip title={`Q.Soft ${subcat}`}>
-                      <div className="w-3 h-3 rounded-full shadow-sm ring-2 ring-white transition-transform group-hover:scale-125" style={{ background: qsoftColors[subcat].dot }} />
-                    </Tooltip>
-                    <span className="text-xs font-bold text-slate-600 tracking-tight">{subcat}</span>
-                  </div>
-                ))}
+              <div className="flex items-center gap-4 md:gap-6 py-4 mb-8 overflow-x-auto scrollbar-hide whitespace-nowrap border-b border-slate-100">
+                <span className="text-[10px] font-bold text-[var(--brand-blue)] uppercase tracking-widest pl-1">หมวดหมู่เทคโนโลยี:</span>
+                <div className="flex gap-5">
+                  {qsoftSubcategories.map((subcat) => (
+                    <div key={subcat} className="flex items-center gap-2 group cursor-default">
+                      <div className="w-2.5 h-2.5 rounded-full shadow-sm ring-2 ring-white" style={{ background: qsoftColors[subcat].dot }} />
+                      <span className="text-[11px] font-bold text-slate-500">{subcat}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Grid Container */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8"
-          >
-            {displayClients.length > 0 ? (
-              displayClients.map((company, idx) => (
-                <motion.div
-                  key={`${active}-${company.name}-${idx}`}
-                  variants={itemVariants}
-                  className="group flex flex-col items-center"
-                >
+        {/* Client Grid */}
+        <div id="client-grid">
+          <AnimatePresence>
+            <motion.div
+              key={active}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-8"
+            >
+              {displayClients.length > 0 ? (
+                displayClients.map((company, idx) => (
                   <motion.div
-                    className="relative w-full aspect-[4/3] bg-transparent flex items-center justify-center p-10 cursor-pointer overflow-hidden transition-all duration-500 hover:border-blue-100"
+                    key={`${active}-${company.name}-${idx}`}
+                    variants={itemVariants}
+                    className="group"
                   >
-                    {/* Background Detail */}
-                    <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[var(--brand-blue)]/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                    {company.logo && (
-                      <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-110">
-                        <Image
-                          src={company.logo}
-                          alt={company.name}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    )}
-                  </motion.div>
-
-                  <div className="mt-5 px-4 text-center flex flex-col items-center gap-2">
-                    {/* Tags / Indicators moved outside */}
-                    {active === "qsoft" && "categories" in company && (
-                      <div className="flex gap-1.5 mb-1 transition-all duration-300">
-                        {(company as any).categories.map((cat: QsoftSubcategory) => (
-                          <Tooltip key={cat} title={`Q.Soft ${cat}`}>
-                            <div
-                              className="w-2.5 h-2.5 rounded-full shadow-sm ring-1 ring-slate-100"
-                              style={{ background: qsoftColors[cat].dot }}
+                    <div className="rounded-2xl md:rounded-3xl p-2 md:p-4 hover:-translate-y-1.5 transition-all duration-500 h-full flex flex-col items-center">
+                      <div className="relative w-full aspect-square md:aspect-video mb-4 md:mb-6 overflow-hidden">
+                        {company.logo ? (
+                          <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-110">
+                            <Image
+                              src={company.logo}
+                              alt={company.name}
+                              fill
+                              className="object-contain"
                             />
-                          </Tooltip>
-                        ))}
+                          </div>
+                        ) : (
+                          <div className="w-full h-full bg-slate-50 flex items-center justify-center rounded-xl">
+                            <Users className="w-8 h-8 text-slate-200" />
+                          </div>
+                        )}
                       </div>
-                    )}
-                    <h3 className="text-sm md:text-base font-bold text-slate-700 group-hover:text-[var(--brand-blue)] transition-colors leading-snug">
-                      {company.name}
-                    </h3>
+
+                      <div className="flex flex-col items-center text-center gap-2">
+                        {active === "qsoft" && "categories" in company && (
+                          <div className="flex gap-1.5 mb-1">
+                            {(company as any).categories.map((cat: QsoftSubcategory) => (
+                              <Tooltip key={cat} title={`Q.Soft ${cat}`}>
+                                <div
+                                  className="w-2 h-2 rounded-full shadow-sm ring-1 ring-white"
+                                  style={{ background: qsoftColors[cat].dot }}
+                                />
+                              </Tooltip>
+                            ))}
+                          </div>
+                        )}
+                        <h3 className="text-[10px] md:text-sm font-bold text-slate-800 group-hover:text-[var(--brand-blue)] transition-colors leading-tight">
+                          {company.name}
+                        </h3>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="col-span-full py-24 text-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-slate-100 rounded-full mb-6">
+                    <Users className="w-10 h-10 text-slate-300" />
                   </div>
-                </motion.div>
-              ))
-            ) : (
-              <motion.div
-                variants={itemVariants}
-                className="col-span-full py-24 text-center bg-white rounded-[3rem] border border-dashed border-slate-200"
-              >
-                <p className="text-slate-400 font-light italic">
-                  ไม่มีข้อมูลในหมวดหมู่นี้
-                </p>
-              </motion.div>
-            )}
-          </motion.div>
-        </AnimatePresence>
+                  <p className="text-slate-400 font-medium italic">
+                    ยังไม่มีข้อมูลในหมวดหมู่นี้
+                  </p>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
       </div>
     </div>
   );
