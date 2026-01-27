@@ -2,13 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronUp } from "lucide-react";
+
 export default function ScrollToTop() {
   const [show, setShow] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
-      // ปรับ 200 ได้ตามใจ: เลื่อนลงเกินเท่านี้ค่อยโชว์ปุ่ม
-      setShow(window.scrollY > 800);
+      const scrollY = window.scrollY;
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollProgress = (scrollY / windowHeight) * 100;
+
+      setProgress(scrollProgress);
+      setShow(scrollY > 800);
     };
 
     onScroll();
@@ -20,41 +28,80 @@ export default function ScrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (!show) return null;
-
   return (
-    <button
-      onClick={handleClick}
-      aria-label="กลับขึ้นด้านบน"
-      title="กลับขึ้นด้านบน"
-      style={{
-        position: "fixed",
-        right: 18,
-        bottom: 80,
-        width: 44,
-        height: 44,
-        borderRadius: 999,
-        border: "1px solid #e5e7eb",
-        background: "rgba(255,255,255,0.95)",
-        boxShadow: "0 8px 22px rgba(0,0,0,0.12)",
-        cursor: "pointer",
-        display: "grid",
-        placeItems: "center",
-        zIndex: 9999,
-        color: "var(--brand-blue)",
-        fontFamily: "var(--font-kanit)",
-      }}
-    >
-      {/* ไอคอนลูกศรขึ้น (SVG) */}
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M12 5l-7 7m7-7l7 7M12 5v14"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </button>
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 260, damping: 20 }}
+          className="fixed right-6 bottom-24 z-[9999]"
+        >
+          <button
+            onClick={handleClick}
+            className="group relative w-14 h-14 flex items-center justify-center bg-white border-2 border-slate-100 rounded-full shadow-2xl transition-all duration-500 overflow-hidden"
+            aria-label="Back to top"
+          >
+            {/* Liquid Fill Effect */}
+            <div
+              className="absolute bottom-0 left-0 w-full transition-all duration-300 ease-out overflow-hidden"
+              style={{
+                height: `${progress}%`,
+                background: progress > 90
+                  ? "var(--brand-blue)"
+                  : `linear-gradient(to top, var(--brand-blue), #60a5fa)`
+              }}
+            >
+              {/* Wave Animation */}
+              <motion.div
+                animate={{
+                  x: ["0%", "-50%", "0%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute top-0 left-0 w-[200%] h-8 -translate-y-1/2 opacity-50"
+              >
+                <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="w-full h-full fill-current text-white/30">
+                  <path d="M0 10 Q 25 0, 50 10 T 100 10 V 20 H 0 Z" />
+                </svg>
+              </motion.div>
+              <motion.div
+                animate={{
+                  x: ["-50%", "0%", "-50%"],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute top-0 left-0 w-[200%] h-6 -translate-y-1/2 opacity-30"
+              >
+                <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="w-full h-full fill-current text-white/40">
+                  <path d="M0 10 Q 25 20, 50 10 T 100 10 V 20 H 0 Z" />
+                </svg>
+              </motion.div>
+            </div>
+
+            {/* Icon */}
+            <div className={`relative z-10 transition-colors duration-500 ${progress > 50 ? 'text-white' : 'text-[var(--brand-blue)]'}`}>
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ChevronUp className="w-7 h-7 stroke-[3px]" />
+              </motion.div>
+            </div>
+
+            {/* Shine effect on hover */}
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
+

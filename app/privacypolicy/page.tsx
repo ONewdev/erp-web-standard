@@ -400,19 +400,39 @@ export default function PrivacyPolicy() {
                                     </div>
                                 </div>
                                 <div className="space-y-4">
-                                    <div className="p-8 bg-slate-50 rounded-[2.5rem] space-y-6">
-                                        <a href="tel:+66863950364" className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-[var(--brand-blue)] transition-all group">
-                                            <div className="w-10 h-10 rounded-xl bg-green-50 text-green-500 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-colors leading-none"><Phone className="w-5 h-5" /></div>
-                                            <span className="text-slate-700 font-black text-sm tracking-tight">+66 8 6395 0364</span>
-                                        </a>
-                                        <a href="mailto:chopaka_m@hotmail.com" className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-[var(--brand-blue)] transition-all group">
-                                            <div className="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-500 group-hover:text-white transition-colors leading-none"><Mail className="w-5 h-5" /></div>
-                                            <span className="text-slate-700 font-black text-sm tracking-tight break-all">chopaka_m@hotmail.com</span>
-                                        </a>
-                                        <a href="https://erptothai.com/#contact" className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-[var(--brand-blue)] transition-all group">
-                                            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-colors leading-none"><ExternalLink className="w-5 h-5" /></div>
-                                            <span className="text-slate-700 font-black text-sm tracking-tight italic break-all">erptothai.com/#contact</span>
-                                        </a>
+                                    <div className="space-y-4">
+                                        <h5 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Quick Connect</h5>
+                                        <div className="space-y-3">
+                                            <a href="tel:+66863950364" className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-green-200 hover:shadow-lg hover:shadow-green-500/5 transition-all duration-300 group">
+                                                <div className="w-10 h-10 rounded-xl bg-green-50 text-green-500 flex items-center justify-center group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-sm leading-none">
+                                                    <Phone className="w-5 h-5" />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider leading-none mb-1">Call Us</span>
+                                                    <span className="text-slate-700 font-extrabold text-sm tracking-tight">+66 8 6395 0364</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="mailto:chopaka_m@hotmail.com" className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-red-200 hover:shadow-lg hover:shadow-red-500/5 transition-all duration-300 group">
+                                                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-500 group-hover:text-white transition-all duration-300 shadow-sm leading-none">
+                                                    <Mail className="w-5 h-5" />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider leading-none mb-1">Email Support</span>
+                                                    <span className="text-slate-700 font-extrabold text-sm tracking-tight break-all">chopaka_m@hotmail.com</span>
+                                                </div>
+                                            </a>
+
+                                            <a href="https://erptothai.com/#contact" className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300 group">
+                                                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 shadow-sm leading-none">
+                                                    <ExternalLink className="w-5 h-5" />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider leading-none mb-1">Visit Website</span>
+                                                    <span className="text-slate-700 font-extrabold text-sm tracking-tight italic break-all">erptothai.com/#contact</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

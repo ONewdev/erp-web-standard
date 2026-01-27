@@ -352,7 +352,7 @@ export default function Home() {
                   <FadeInSection delay={0.1}>
                     <div>
                       <div className="flex items-start gap-4 mb-6">
-                        <div className="w-12 h-12 bg-[var(--brand-blue)]/50 text-[var(--brand-blue)] rounded-xl flex items-center justify-center">
+                        <div className="w-12 h-12 bg-blue-50 text-[var(--brand-blue)] rounded-xl flex items-center justify-center border border-blue-100 shadow-sm">
                           <MapPin className="w-6 h-6" />
                         </div>
                         <h3 className="text-2xl font-bold text-slate-800">
@@ -364,7 +364,7 @@ export default function Home() {
                         <p className="mb-4 text-slate-500 leading-relaxed">
                           บริการให้คำปรึกษา การเพิ่มประสิทธิภาพภาคการผลิต <br />
                           <span className="font-medium text-slate-700">Q. Soft</span> เป็น Software
-                          ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลาย
+                          ที่พัฒนาขึ้นโดยทีมงานที่มีประสบการณ์ด้านการวิเคราะห์ และพัฒนาระบบบริหารการผลิตในภาคอุตสาหกรรมที่หลากหลายผนวกกับทีมงานที่มีประสบการณ์ในการพัฒนา Database Application (โปรแกรมที่มีระบบการจัดเก็บฐานข้อมูลจำนวนมาก)
                         </p>
 
                         <strong className="block mb-2 text-[var(--brand-blue)] text-[17px]">
@@ -386,7 +386,7 @@ export default function Home() {
                     <FadeInSection delay={0.2}>
                       <div>
                         <div className="flex items-center gap-4 mb-4">
-                          <div className="w-10 h-10 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center">
+                          <div className="w-10 h-10 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center border border-amber-100 shadow-sm">
                             <Phone className="w-5 h-5" />
                           </div>
                           <h4 className="text-xl font-bold text-slate-800">
@@ -418,7 +418,7 @@ export default function Home() {
                     <FadeInSection delay={0.3}>
                       <div>
                         <div className="flex items-center gap-4 mb-4">
-                          <div className="w-10 h-10 bg-green-100 text-green-500 rounded-xl flex items-center justify-center">
+                          <div className="w-10 h-10 bg-emerald-50 text-emerald-500 rounded-xl flex items-center justify-center border border-emerald-100 shadow-sm">
                             <Phone className="w-5 h-5" />
                           </div>
                           <h4 className="text-xl font-bold text-slate-800">

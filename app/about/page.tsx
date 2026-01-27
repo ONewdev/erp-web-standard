@@ -28,7 +28,6 @@ export default function AboutPage() {
       icon: Briefcase,
       title: "งานของเรา",
       color: "blue",
-      bgImage: "/img/feature/",
       items: [
         "เราจะพัฒนาศักยภาพของโปรแกรมอย่างต่อเนื่อง",
         "เราจะสร้างสรรค์โปรแกรมใหม่ๆเพื่อตอบสนองความต้องการของภาคอุตสาหกรรม",
@@ -40,7 +39,6 @@ export default function AboutPage() {
       icon: Star,
       title: "วัตถุประสงค์",
       color: "amber",
-      bgImage: "/img/",
       content: "บริษัทของเรามีวัตถุประสงค์หลัก ที่จะเป็นผู้นำเสนอโซลูชั่นสำหรับอุตสาหกรรมการผลิตโดย ทางบริษัทมีความมุ่งมั่น ที่จะให้บริการที่มีคุณภาพสูงสุด เพื่อสร้างความพึ่งพอใจให้กับลูกค้า อีกทั้งความเป็นเลิศในการปฏิบัติงานภายในแผนงาน และสามารถแก้ไขปัญหาการบริหารงานให้กับผู้ประกอบการณ์ที่เลือกใช้ระบบทำให้ลูกค้าของเราก้าวไปสู่การพัฒนาศักยภาพ ในการแข่งขันขององค์กรในธุรกิจของเขาได้เป็นอย่างดี"
     },
     {
@@ -54,7 +52,6 @@ export default function AboutPage() {
       icon: BarChart,
       title: "ข้อได้เปรียบเชิงกลยุทธ์",
       color: "indigo",
-      bgImage: "/img/",
       content: "บริษัทมีความมุ่งมั่นที่จะตอบโจทย์ความต้องการของลูกค้า การให้บริการลูกค้าและการพัฒนา ด้วย Solution ที่ดีเยี่ยม และมีประสิทธิภาพ อีกทั้งทางบริษัทมีบริการจากวิทยากร และผู้พัฒนาระบบ ที่มีคุณสมบัติเหมาะสม ครบถ้วนซึ่งจะช่วยให้ลูกค้า ได้รับประโยชน์ และประสบการณ์อย่างกว้างขวาง โดยละเอียด ของ solution ที่มีความหลายหลายต่างๆ และระบบของทางบริษัท"
     },
     {
@@ -164,7 +161,12 @@ export default function AboutPage() {
             {/* Product Showcase Grid */}
             <FadeInSection delay={0.2}>
               <div className="space-y-6">
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 italic">ผลิตภัณฑ์</h3>
+                <div className="relative mb-10">
+                  <h3 className="text-4xl md:text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-[var(--brand-blue)] italic tracking-tighter mb-4">
+                    ผลิตภัณฑ์
+                  </h3>
+                  <div className="w-24 h-2 bg-gradient-to-r from-[var(--brand-blue)] to-indigo-400 rounded-full"></div>
+                </div>
                 <div className="grid grid-cols-2 gap-12 md:gap-16">
                   {[
                     { id: 'qsoft', img: 'q-soft-logo-50.png', name: 'Q.Soft', color: 'blue' },
@@ -197,122 +199,82 @@ export default function AboutPage() {
             </div>
           </FadeInSection>
 
-          <div className="space-y-16 md:space-y-0">
-            {/* All Sections - Alternating Left/Right */}
-            {infoSections.map((section, idx) => (
+          <div className="space-y-16">
+            {/* Highlight Three Sections in a Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+              {[infoSections[0], infoSections[1], infoSections[3]].map((section, idx) => (
+                <FadeInSection key={idx} delay={idx * 0.1}>
+                  <div className="h-full p-8 bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden relative group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-slate-50 to-transparent rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform duration-700"></div>
+
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                        style={{ backgroundColor: colorMap[section.color] + "15" }}>
+                        <section.icon className="w-6 h-6" style={{ color: colorMap[section.color] || brandBlue }} />
+                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 mb-4">{section.title}</h3>
+
+                      {section.items ? (
+                        <div className="space-y-3">
+                          {section.items.map((item, i) => (
+                            <div key={i} className="flex items-start gap-3">
+                              <div className="w-1 h-1 rounded-full mt-2 flex-shrink-0"
+                                style={{ backgroundColor: colorMap[section.color] || brandBlue }}></div>
+                              <p className="text-slate-500 text-[13px] font-medium leading-relaxed">{item}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-slate-500 text-[13px] font-medium leading-relaxed">
+                          {highlightText(section.content || "")}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </FadeInSection>
+              ))}
+            </div>
+
+            {/* Detailed Sections - Alternating Left/Right */}
+            {[infoSections[2], infoSections[4]].map((section, idx) => (
               <FadeInSection key={idx} delay={idx * 0.1}>
-                {/* Check if this section should be on right and has no subContent */}
-                {(idx === 1 || idx === 3) && !section.subContent ? (
-                  /* Right aligned without subContent - use text-align or margin */
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start py-8 md:py-12">
-                    <div className="md:col-start-2">
-                      <div className="relative">
-                        {/* Background Image */}
-                        {section.bgImage && (
-                          <div className="absolute -inset-8 opacity-10 -z-10">
-                            <Image
-                              src={section.bgImage}
-                              alt="background"
-                              width={300}
-                              height={300}
-                              className="object-contain"
-                            />
-                          </div>
-                        )}
-                        {/* Section Title */}
-                        <div className="flex items-center gap-4 mb-8">
-                          <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-                            style={{ backgroundColor: colorMap[section.color] + "15" }}>
-                            <section.icon className="w-6 h-6" style={{ color: colorMap[section.color] || brandBlue }} />
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
-                            {section.title}
-                          </h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start py-8 md:py-12">
+                  {/* Content Column */}
+                  <div className={idx % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}>
+                    <div className="relative">
+                      <div className="flex items-center gap-4 mb-8">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm"
+                          style={{ backgroundColor: colorMap[section.color] + "15" }}>
+                          <section.icon className="w-7 h-7" style={{ color: colorMap[section.color] || brandBlue }} />
                         </div>
-
-                        {/* Content */}
-                        {section.items ? (
-                          <div className="space-y-6">
-                            {section.items.map((item, i) => (
-                              <div key={i} className="flex items-start gap-4 md:gap-6">
-                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0"
-                                  style={{ backgroundColor: colorMap[section.color] || brandBlue }}></div>
-                                <p className="text-slate-600 font-medium leading-relaxed flex-1">{item}</p>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <p className="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
-                            {highlightText(section.content)}
-                          </p>
-                        )}
+                        <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
+                          {section.title}
+                        </h3>
                       </div>
+
+                      <p className="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
+                        {highlightText(section.content || "")}
+                      </p>
                     </div>
                   </div>
-                ) : (
-                  /* Normal grid with order classes */
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start py-8 md:py-12">
-                    {/* Left Column */}
-                    <div className={(idx === 1 || idx === 3) ? 'md:order-2' : 'md:order-1'}>
-                      <div className="relative">
-                        {/* Background Image */}
-                        {section.bgImage && (
-                          <div className="absolute -inset-8 opacity-10 -z-10">
-                            <Image
-                              src={section.bgImage}
-                              alt="background"
-                              width={300}
-                              height={300}
-                              className="object-contain"
-                            />
-                          </div>
-                        )}
-                        {/* Section Title */}
-                        <div className="flex items-center gap-4 mb-8">
-                          <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-                            style={{ backgroundColor: colorMap[section.color] + "15" }}>
-                            <section.icon className="w-6 h-6" style={{ color: colorMap[section.color] || brandBlue }} />
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-slate-900">
-                            {section.title}
-                          </h3>
-                        </div>
 
-                        {/* Content */}
-                        {section.items ? (
-                          <div className="space-y-6">
-                            {section.items.map((item, i) => (
-                              <div key={i} className="flex items-start gap-4 md:gap-6">
-                                <div className="w-1.5 h-1.5 rounded-full mt-3 flex-shrink-0"
-                                  style={{ backgroundColor: colorMap[section.color] || brandBlue }}></div>
-                                <p className="text-slate-600 font-medium leading-relaxed flex-1">{item}</p>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <p className="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
-                            {highlightText(section.content)}
-                          </p>
-                        )}
+                  {/* SubContent Box */}
+                  <div className={idx % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}>
+                    <div className="p-8 md:p-10 bg-white rounded-[2.5rem] border-2 transition-all duration-500 hover:shadow-xl h-full flex items-center relative overflow-hidden group"
+                      style={{ borderColor: colorMap[section.color] + "30" }}>
+                      <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-110"
+                        style={{ color: colorMap[section.color] }}>
+                        <section.icon className="w-full h-full" />
                       </div>
+                      <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed whitespace-pre-wrap relative z-10">
+                        {highlightText(section.subContent || "")}
+                      </p>
                     </div>
-
-                    {/* Right Column - SubContent */}
-                    {section.subContent && (
-                      <div className={(idx === 1 || idx === 3) ? 'md:order-1' : 'md:order-2'}>
-                        <div className="p-6 md:p-8 bg-white rounded-2xl border-2 transition-all duration-500 hover:shadow-lg h-full flex items-center"
-                          style={{ borderColor: colorMap[section.color] + "30" }}>
-                          <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed whitespace-pre-wrap">
-                            {highlightText(section.subContent)}
-                          </p>
-                        </div>
-                      </div>
-                    )}
                   </div>
-                )}
+                </div>
 
-                {/* Divider */}
-                {idx !== infoSections.length - 1 && (
+                {/* Divider for the first one */}
+                {idx === 0 && (
                   <div className="mt-8 md:mt-12 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
                 )}
               </FadeInSection>
