@@ -218,48 +218,48 @@ export default function Home() {
           {/* ===== Software Q.Soft Information Section ===== */}
           <section
             id="highlight"
-            className="scroll-mt-24 py-20"
+            className="scroll-mt-24 py-12 md:py-16"
           >
             <FadeInSection>
               <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
-                <div className="text-center mb-16">
-                  <div className="w-[60px] h-[1px] border-b-2 border-[var(--brand-blue)] mx-auto mb-10"></div>
-                  <h1 className="text-3xl md:text-4xl font-light text-[#676a6c] mb-4">
+                <div className="text-center mb-10 md:mb-12">
+                  <div className="w-[50px] h-[1px] border-b-2 border-[var(--brand-blue)] mx-auto mb-8"></div>
+                  <h1 className="text-2xl md:text-3xl font-light text-[#676a6c] mb-3">
                     Software Q.Soft
                     <br />
-                    <span className="text-[var(--brand-blue)] font-semibold"> ระบบบริหารโรงงานอุตสาหกรรมและคลังสินค้ารับฝาก</span>
+                    <span className="text-[var(--brand-blue)] font-semibold text-3xl md:text-4xl"> ระบบบริหารโรงงานอุตสาหกรรมและคลังสินค้ารับฝาก</span>
                   </h1>
-                  <p className="text-[#aeaeae] text-sm md:text-base mt-4">
+                  <p className="text-[#aeaeae] text-xs md:text-sm mt-3">
                     We are confident that we can solve the problem, you have a point. Within a short time
                   </p>
                 </div>
 
                 {/* Features Grid - 3 Columns */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
                   {/* Left Column */}
                   <FadeInSection delay={0.1}>
-                    <div className="space-y-8">
-                      <div className="text-center group p-8 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/50 hover:shadow-lg hover:-translate-y-1">
-                        <div className="inline-flex items-center justify-center p-4 bg-white shadow-sm border border-slate-100 rounded-2xl mb-6 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-blue-200">
-                          <Building2 className="w-12 h-12" />
+                    <div className="space-y-6">
+                      <div className="text-center group p-6 md:p-7 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/5 hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-slate-100/50">
+                        <div className="inline-flex items-center justify-center p-3.5 bg-white shadow-sm border border-slate-100 rounded-2xl mb-5 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-blue-200">
+                          <Building2 className="w-10 h-10" />
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-800 mb-4 transition-colors group-hover:text-[var(--brand-blue)]">
+                        <h2 className="text-xl font-bold text-slate-800 mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
                           Q.Soft MRP
                         </h2>
-                        <p className="text-slate-500 leading-relaxed font-light text-[15px]">
+                        <p className="text-slate-500 leading-relaxed font-light text-sm">
                           ผู้ประกอบการภาคอุตสาหกรรมที่กำลังมองหาโปรแกรมบริหารและวางแผนการผลิต (MRP) ที่มีคุณภาพ
                           รับรู้ต้นทุนที่แท้จริง (Actual Cost) ใช้งานง่าย ราคาไม่สูงจนเกินไป เมื่อเทียบกับความสามารถที่ได้รับ q.soft mrp ของเราตอบโจทย์คุณได้
                         </p>
                       </div>
-                      <div className="text-center group p-8 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/50 hover:shadow-lg hover:-translate-y-1">
-                        <div className="inline-flex items-center justify-center p-4 bg-white shadow-sm border border-slate-100 rounded-2xl mb-6 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-[var(--brand-blue)]-200">
-                          <Settings className="w-12 h-12" />
+                      <div className="text-center group p-6 md:p-7 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/5 hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-slate-100/50">
+                        <div className="inline-flex items-center justify-center p-3.5 bg-white shadow-sm border border-slate-100 rounded-2xl mb-5 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-[var(--brand-blue)]-200">
+                          <Settings className="w-10 h-10" />
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-800 mb-4 transition-colors group-hover:text-[var(--brand-blue)]">
+                        <h2 className="text-xl font-bold text-slate-800 mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
                           Q.Soft PM
                         </h2>
-                        <p className="text-slate-500 leading-relaxed font-light text-[15px]">
+                        <p className="text-slate-500 leading-relaxed font-light text-sm">
                           ระบบที่จะช่วยให้คุณกำหนดแผนการซ่อมบำรุงให้กับเครื่องจักร หรือทรัพย์สินต่างๆ
                           รวมไปถึงการบันทึกและติดตามงานซ่อมบำรุงในเครื่องจักรของคุณได้
                         </p>
@@ -269,13 +269,13 @@ export default function Home() {
 
                   {/* Center Column - Image */}
                   <FadeInSection delay={0.2}>
-                    <div className="flex items-center justify-center h-full group cursor-pointer">
+                    <div className="flex items-center justify-center h-full group cursor-pointer p-4">
                       <div className="relative w-full aspect-square overflow-hidden rounded-lg">
                         <Image
                           src="/img/perspective.png"
                           alt="Q.Soft Dashboard"
                           fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-110"
+                          className="object-contain transition-transform duration-300 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, 400px"
                         />
                       </div>
@@ -284,28 +284,28 @@ export default function Home() {
 
                   {/* Right Column */}
                   <FadeInSection delay={0.3}>
-                    <div className="space-y-8">
-                      <div className="text-center group p-8 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/50 hover:shadow-lg hover:-translate-y-1">
-                        <div className="inline-flex items-center justify-center p-4 bg-white shadow-sm border border-slate-100 rounded-2xl mb-6 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-blue-200">
-                          <BarChart3 className="w-12 h-12" />
+                    <div className="space-y-6">
+                      <div className="text-center group p-6 md:p-7 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/5 hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-slate-100/50">
+                        <div className="inline-flex items-center justify-center p-3.5 bg-white shadow-sm border border-slate-100 rounded-2xl mb-5 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-blue-200">
+                          <BarChart3 className="w-10 h-10" />
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-800 mb-4 transition-colors group-hover:text-[var(--brand-blue)]">
+                        <h2 className="text-xl font-bold text-slate-800 mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
                           Q.Soft APS
                         </h2>
-                        <p className="text-slate-500 leading-relaxed font-light text-[15px]">
+                        <p className="text-slate-500 leading-relaxed font-light text-sm">
                           โปรแกรมบริหารการผลิต
                           ที่จะช่วยให้คุณจัดการแผนการผลิตสินค้าที่มีความซับซ้อนในกระบวนการผลิตได้อย่างรวดเร็ว
                           และโปรแกรมสามารถแสดงผลการผลิตให้อยู่ในรูปแบบของกราฟฟิกเพื่อให้ง่ายต่อการบริหารจัดการอีกด้วย
                         </p>
                       </div>
-                      <div className="text-center group p-8 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/50 hover:shadow-lg hover:-translate-y-1">
-                        <div className="inline-flex items-center justify-center p-4 bg-white shadow-sm border border-slate-100 rounded-2xl mb-6 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-[var(--brand-blue)]-200">
-                          <Truck className="w-12 h-12" />
+                      <div className="text-center group p-6 md:p-7 rounded-[2rem] transition-all duration-500 hover:bg-[var(--brand-blue)]/5 hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-slate-100/50">
+                        <div className="inline-flex items-center justify-center p-3.5 bg-white shadow-sm border border-slate-100 rounded-2xl mb-5 transition-all duration-300 group-hover:bg-[var(--brand-blue)] group-hover:text-white text-[var(--brand-blue)] group-hover:shadow-[var(--brand-blue)]-200">
+                          <Truck className="w-10 h-10" />
                         </div>
-                        <h2 className="text-2xl font-bold text-slate-800 mb-4 transition-colors group-hover:text-[var(--brand-blue)]">
+                        <h2 className="text-xl font-bold text-slate-800 mb-3 transition-colors group-hover:text-[var(--brand-blue)]">
                           Q.Soft WMS
                         </h2>
-                        <p className="text-slate-500 leading-relaxed font-light text-[15px]">
+                        <p className="text-slate-500 leading-relaxed font-light text-sm">
                           การจัดเก็บสินค้าสำหรับธุรกิจรับฝากสินค้า ไม่ว่าจะเป็นสินค้าพิเศษ หรือสินค้าทั่วไป
                           ระบบของเราสามารถบริหารพื้นที่จัดเก็บได้อย่างมีประสิทธิภาพสูงสุด
                         </p>

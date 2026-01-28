@@ -31,7 +31,7 @@ export default function CookieModal() {
         <div
             className="fixed bottom-10 right-10 z-[99999] max-w-[365px] flex flex-col items-center text-center 
                   bg-[var(--brand-blue)] text-white p-6 rounded-[15px] shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-                  opacity-100 scale-100 ring-4 ring-white"
+                  opacity-100 scale-100 ring-4 ring-[#fcba7f]"
         >
             <div className="absolute top-2 right-2">
                 <button

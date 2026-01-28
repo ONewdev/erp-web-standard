@@ -24,7 +24,7 @@ export default function Footer() {
                 />
               </div>
               <span className="text-white font-black text-lg tracking-tight">
-                BCI <span className="text-[var(--brand-blue)]">COMPANY</span>
+                <span className="text-[var(--brand-blue)]">BCI</span> COMPANY
               </span>
             </div>
             <p className="max-w-md text-xs md:text-sm leading-relaxed font-medium">

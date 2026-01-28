@@ -25,7 +25,7 @@ export default function PageMRP() {
     <div className="font-kanit min-h-screen bg-emerald-50/10 pb-20">
       {/* ===== Hero Header / Breadcrumb alternative ===== */}
       <div className="bg-white border-b border-emerald-50 mb-10 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-600/5 -skew-x-12 transform origin-top-right"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-100/50 -skew-x-12 transform origin-top-right"></div>
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-600/5 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -70,7 +70,7 @@ export default function PageMRP() {
             >
               <div className="p-8 space-y-8">
                 <div className="relative h-64 group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-[2rem] transform group-hover:scale-105 transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 to-teal-50 rounded-[2rem] transform group-hover:scale-105 transition-transform duration-700"></div>
                   <Image
                     src="/img/feature/qsoft_mrp_big.png"
                     alt="Q.Soft MRP"

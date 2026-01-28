@@ -19,170 +19,148 @@ export default function PowerBIPage() {
     return (
         <div className="bg-[#f8fafc] min-h-screen font-kanit">
             {/* Hero Header */}
-            <div className="bg-white border-b overflow-hidden relative">
+            <div className="bg-white overflow-hidden relative border-b border-slate-50">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-[var(--brand-blue)]/5 -skew-x-12 transform origin-top-right"></div>
-                <div className="max-w-7xl mx-auto px-4 py-16 md:py-20 relative z-10">
+                <div className="max-w-4xl mx-auto px-6 py-20 text-center relative z-10">
                     <FadeInSection>
-                        <div className="flex items-center gap-6 mb-6">
-                            <div className="p-4 bg-[var(--brand-blue)] rounded-2xl text-white shadow-xl shadow-blue-200">
-                                <PowerBIIcon />
-                            </div>
-                            <div className="h-12 w-1 bg-slate-200 rounded-full hidden md:block"></div>
-                            <div>
-                                <h1 className="text-4xl md:text-6xl font-extrabold text-[#111827] mb-2 tracking-tight">
-                                    Power <span style={{ color: "var(--brand-blue)" }}>BI</span>
-                                </h1>
-                                <p className="text-xl text-slate-500 font-medium">แนะนำหลักสูตรการใช้งาน</p>
-                            </div>
-                        </div>
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="inline-flex p-4 bg-[var(--brand-blue)] rounded-3xl text-white shadow-2xl shadow-blue-200 mb-8"
+                        >
+                            <PowerBIIcon />
+                        </motion.div>
+                        <h1 className="text-5xl md:text-7xl font-black text-[#111827] mb-6 tracking-tighter leading-none">
+                            Power <span style={{ color: "var(--brand-blue)" }}>BI</span>
+                        </h1>
+                        <p className="text-xl md:text-2xl text-slate-500 font-semibold tracking-tight">นวัตกรรมซอฟต์แวร์สำหรับการจัดการข้อมูลอัจฉริยะ</p>
+                        <div className="w-24 h-1.5 bg-[var(--brand-blue)] mx-auto mt-10 rounded-full"></div>
                     </FadeInSection>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="max-w-4xl mx-auto px-6 py-20">
+                <div className="space-y-32">
 
-                    {/* Main Content Area */}
-                    <div className="lg:col-span-8 space-y-12">
-
-                        {/* Video Section */}
-                        <FadeInSection delay={0.1}>
-                            <div className="bg-white rounded-[2.5rem] p-4 shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
-                                <div className="aspect-video relative rounded-[2rem] overflow-hidden bg-slate-100">
-                                    <iframe
-                                        className="absolute inset-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/n534IUwLOtk"
-                                        title="YouTube video player"
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
-                                </div>
-                            </div>
-                        </FadeInSection>
-
-                        {/* Information Blocks */}
-                        <div className="space-y-10">
-                            <FadeInSection delay={0.2}>
-                                <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-shadow">
-                                    <div className="absolute top-0 left-0 w-2 h-full bg-[var(--brand-blue)]"></div>
-                                    <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                        <BarChart3 className="text-[var(--brand-blue)] w-8 h-8" />
-                                        Power BI คืออะไร ?
-                                    </h2>
-                                    <p className="text-slate-600 text-lg leading-relaxed mb-0">
-                                        Power BI คือคอลเลกชันของบริการซอฟต์แวร์ แอป และตัวเชื่อมต่อที่ทำงานร่วมกัน
-                                        เพื่อเปลี่ยนแหล่งข้อมูลที่ไม่เกี่ยวข้องของคุณให้เป็นข้อมูลเชิงลึกที่สอดคล้องกัน
-                                        แสดงข้อมูลได้ และโต้ตอบได้ ข้อมูลของคุณอาจเป็นสเปรดชีต Excel
-                                        หรือคอลเลกชันของระบบ Cloud และคลังข้อมูลแบบไฮบริดภายในองค์กร Power BI
-                                        ช่วยให้คุณเชื่อมต่อกับแหล่งข้อมูลของคุณ แสดงภาพและค้นพบเรื่องสำคัญ
-                                        รวมถึงแชร์สิ่งเหล่านั้นกับบุคคลหรือทุกคนที่คุณต้องการได้อย่างง่ายดาย
-                                    </p>
-                                </div>
-                            </FadeInSection>
-
-                            <FadeInSection delay={0.3}>
-                                <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 relative overflow-hidden group hover:shadow-md transition-shadow">
-                                    <div className="absolute top-0 left-0 w-2 h-full bg-blue-400"></div>
-                                    <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                        <Layout className="text-blue-400 w-8 h-8" />
-                                        Power BI Desktop คืออะไร ?
-                                    </h2>
-                                    <p className="text-slate-600 text-lg leading-relaxed">
-                                        Power BI Desktop คือ เครื่องมือในการจัดการกับข้อมูล ทั้ง จัดระเบียบ คำนวณ
-                                        ปรับแต่งอัตโนมัติและยังเป็นเครื่องมือในการสร้างรายงาน มีความสามารถในการรวม
-                                        ประสานข้อมูลจากหลายแหล่ง ทั้ง ฐานข้อมูล ไฟล์ต่างๆ ทั้ง Excel, Text File
-                                        และ ข้อมูลจากเว็บไซต์ ทำให้งานอันแสนน่าเบื่อ เป็นงานที่สนุก ใช้เวลาในการพัฒนาไม่มาก
-                                    </p>
-                                </div>
-                            </FadeInSection>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <FadeInSection delay={0.4}>
-                                    <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 h-full">
-                                        <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                            <Share2 className="text-[var(--brand-blue)] w-6 h-6" />
-                                            ส่วนต่างๆ ของ Power BI
-                                        </h2>
-                                        <p className="text-slate-600 leading-relaxed">
-                                            Power BI ประกอบด้วย: แอปพลิเคชันสำหรับเครื่องเดสก์ท็อป Windows ที่เรียกว่า
-                                            Power BI Desktop, บริการ SaaS (Software as a Service)
-                                            แบบออนไลน์ที่เรียกว่าบริการของ Power BI และแอปสำหรับอุปกรณ์เคลื่อนที่
-                                            Power BI สำหรับอุปกรณ์ Windows, iOS และ Android
-                                        </p>
-                                    </div>
-                                </FadeInSection>
-
-                                <FadeInSection delay={0.5}>
-                                    <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 h-full">
-                                        <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                            <Database className="text-blue-400 w-6 h-6" />
-                                            การเก็บข้อมูลของ Power BI
-                                        </h2>
-                                        <p className="text-slate-600 leading-relaxed">
-                                            Power BI สามารถนำข้อมูลของทั้งองค์กร ไม่ว่าจะอยู่บน คลาวด์ (Cloud) หรือ
-                                            On-Premise โดยใช้ Power BI Gateway ที่จะเชื่อมโยงไปยังฐานข้อมูล SQL Server,
-                                            Analysis Service หรือแหล่งต่างๆ ให้มาอยู่ใน Dashboard เดียวกัน และเผยแพร่ไปยังทุกอุปกรณ์
-                                        </p>
-                                    </div>
-                                </FadeInSection>
+                    {/* Video Section - No Box, just rounded video */}
+                    <FadeInSection>
+                        <div className="relative group">
+                            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                            <div className="aspect-video relative rounded-[2.5rem] overflow-hidden shadow-2xl ring-1 ring-slate-100 bg-slate-900">
+                                <iframe
+                                    className="absolute inset-0 w-full h-full"
+                                    src="https://www.youtube.com/embed/n534IUwLOtk"
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
                             </div>
                         </div>
-                    </div>
+                    </FadeInSection>
 
-                    {/* Sidebar Area */}
-                    <div className="lg:col-span-4 space-y-8">
-                        <FadeInSection delay={0.6}>
-                            <div className="bg-white rounded-3xl p-6 shadow-xl shadow-slate-200/50 border border-slate-100">
-                                <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2 pb-4 border-b">
-                                    <BookOpen className="text-[var(--brand-blue)] w-6 h-6" />
-                                    เอกสารประกอบ
-                                </h3>
-
-                                <div className="space-y-6">
-                                    <div className="group cursor-zoom-in">
-                                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">หนังสือเชิญวิทยากร #1</p>
-                                        <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200">
-                                            <Image
-                                                src="/img/bi/หนังสือเชิญนายธนพล_page-0001 (1).jpg"
-                                                alt="หนังสือเชิญนายธนพล"
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="group cursor-zoom-in">
-                                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">หนังสือเชิญวิทยากร #2</p>
-                                        <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-slate-200">
-                                            <Image
-                                                src="/img/bi/หนังสือเรียนเชิญเป็นวิทยากรAHRDA.jpg"
-                                                alt="หนังสือเรียนเชิญเป็นวิทยากรAHRDA"
-                                                fill
-                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </FadeInSection>
-
-                        <FadeInSection delay={0.7}>
-                            <div className="bg-gradient-to-br from-[var(--brand-blue)] to-blue-600 rounded-3xl p-8 text-white shadow-xl shadow-blue-200/50 relative overflow-hidden group">
-                                <div className="absolute -right-8 -bottom-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
-                                    <PowerBIIcon className="w-48 h-48" />
-                                </div>
-                                <h3 className="text-2xl font-bold mb-4 relative z-10">สนใจหลักสูตร?</h3>
-                                <p className="text-white/80 mb-8 relative z-10 leading-relaxed font-light">
-                                    ยกระดับการวิเคราะห์ข้อมูลในองค์กรของคุณด้วย Power BI ติดต่อเราเพื่อขอรายละเอียดเพิ่มเติมเกี่ยวกับการอบรม
+                    {/* Information Sections - Clean Typography, No Boxes */}
+                    <div className="space-y-24">
+                        <FadeInSection>
+                            <div className="text-center">
+                                <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter flex items-center justify-center gap-4">
+                                    Power BI <span className="text-[var(--brand-blue)] italic">คืออะไร?</span>
+                                </h2>
+                                <p className="text-slate-500 text-lg md:text-xl leading-relaxed font-medium mx-auto italic">
+                                    "เปลี่ยนแหล่งข้อมูลที่กระจัดกระจาย ให้เป็นข้อมูลเชิงลึกที่สอดคล้องกัน แข็งแกร่ง และโต้ตอบได้อย่างชาญฉลาด"
                                 </p>
-                                <button className="w-full bg-white text-[var(--brand-blue)] py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 active:scale-95 relative z-10">
-                                    สอบถามข้อมูลโทร 091-762-3838
-                                </button>
+                                <p className="mt-8 text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
+                                    Power BI คือคอลเลกชันของบริการซอฟต์แวร์ แอป และตัวเชื่อมต่อที่ทำงานร่วมกัน
+                                    เพื่อเปลี่ยนแหล่งข้อมูลที่ไม่เกี่ยวข้องของคุณให้เป็นข้อมูลเชิงลึกที่สอดคล้องกัน แสดงข้อมูลได้ และโต้ตอบได้
+                                    ข้อมูลของคุณอาจเป็นสเปรดชีต Excel หรือคอลเลกชันของระบบ Cloud และคลังข้อมูลแบบไฮบริดภายในองค์กร
+                                    Power BI ช่วยให้คุณเชื่อมต่อกับแหล่งข้อมูลของคุณ แสดงภาพและค้นพบเรื่องสำคัญ รวมถึงแชร์สิ่งเหล่านั้นกับบุคคลหรือทุกคนที่คุณต้องการได้อย่างง่ายดาย
+                                </p>
+                            </div>
+                        </FadeInSection>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 py-12 border-t border-slate-100">
+                            <FadeInSection>
+                                <div className="space-y-4 text-center md:text-left">
+                                    <h3 className="text-2xl font-black text-slate-900 flex items-center justify-center md:justify-start gap-3">
+                                        <Layout className="text-blue-400 w-7 h-7" />
+                                        Power BI Desktop
+                                    </h3>
+                                    <p className="text-slate-600 leading-relaxed font-medium">
+                                        เครื่องมือในการจัดการกับข้อมูล ทั้ง จัดระเบียบ คำนวณ ปรับแต่งอัตโนมัติและยังเป็นเครื่องมือในการสร้างรายงาน
+                                        มีความสามารถในการรวม ประสานข้อมูลจากหลายแหล่ง ทั้ง ฐานข้อมูล ไฟล์ต่างๆ ทั้ง Excel, Text File และ ข้อมูลจากเว็บไซต์
+                                        ทำให้งานอันแสนน่าเบื่อ เป็นงานที่สนุก ใช้เวลาในการพัฒนาไม่มาก
+                                    </p>
+                                </div>
+                            </FadeInSection>
+
+                            <FadeInSection>
+                                <div className="space-y-4 text-center md:text-left">
+                                    <h3 className="text-2xl font-black text-slate-900 flex items-center justify-center md:justify-start gap-3">
+                                        <Share2 className="text-[var(--brand-blue)] w-7 h-7" />
+                                        ส่วนต่างๆ ของ Power BI
+                                    </h3>
+                                    <p className="text-slate-600 leading-relaxed font-medium">
+                                        Power BI ประกอบด้วย: แอปพลิเคชันสำหรับเครื่องเดสก์ท็อป Windows ที่เรียกว่า Power BI Desktop
+                                        บริการ SaaS (Software as a Service) แบบออนไลน์ที่เรียกว่าบริการของ Power BI
+                                        แอปสำหรับอุปกรณ์เคลื่อนที่ Power BI สำหรับอุปกรณ์ Windows, iOS และ Android
+                                    </p>
+                                </div>
+                            </FadeInSection>
+
+                            <FadeInSection>
+                                <div className="space-y-4 text-center md:text-left md:col-span-2">
+                                    <h3 className="text-2xl font-black text-slate-900 flex items-center justify-center md:justify-start gap-3">
+                                        <Database className="text-blue-400 w-7 h-7" />
+                                        การเก็บข้อมูลของ Power BI
+                                    </h3>
+                                    <p className="text-slate-600 leading-relaxed font-medium md:max-w-none">
+                                        Power BI จะยังสามารถนำข้อมูลของทั้งองค์กร ไม่ว่าจะอยู่บน คลาวน์ (Cloud) หรือ On-Premise
+                                        โดยใช้ Power BI Gateway ที่จะเชื่อมโยงไปยังฐานข้อมูล SQL Server, Analysis Service หรือแหล่งต่างๆ
+                                        ให้มาอยู่ใน Dashboard เดียวกันใน Power BI และเผยแพร่ไปให้กับทุกๆ อุปกรณ์
+                                        หรือนำไปแสดงผลในเว็บไซต์ ด้วย embed code
+                                    </p>
+                                </div>
+                            </FadeInSection>
+                        </div>
+
+                        {/* Centered Image Gallery - Prominent Documents - Moved to bottom */}
+                        <FadeInSection>
+                            <div className="space-y-12">
+                                <div className="text-center mb-12">
+                                    <h3 className="text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-3">
+                                        <BookOpen className="text-[var(--brand-blue)] w-10 h-10" />
+                                        เอกสารประกอบหลักสูตร
+                                    </h3>
+                                    <div className="w-16 h-1.5 bg-[var(--brand-blue)] mx-auto mt-6 rounded-full"></div>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    {[
+                                        { src: "/img/bi/หนังสือเชิญนายธนพล_page-0001 (1).jpg", label: "หนังสือเชิญวิทยากร #1" },
+                                        { src: "/img/bi/หนังสือเรียนเชิญเป็นวิทยากรAHRDA.jpg", label: "หนังสือเรียนเชิญเป็นวิทยากร #2" }
+                                    ].map((doc, idx) => (
+                                        <div key={idx} className="group cursor-zoom-in">
+                                            <div className="relative aspect-[3/4.2] rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] transition-all duration-700 group-hover:scale-[1.03] ring-1 ring-slate-100">
+                                                <Image
+                                                    src={doc.src}
+                                                    alt={doc.label}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                                    <div className="bg-white/20 backdrop-blur-md px-8 py-4 rounded-full text-white font-bold text-base border border-white/30 tracking-widest uppercase">
+                                                        Click to View
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p className="mt-8 text-center text-base font-bold text-slate-400 uppercase tracking-[0.3em]">{doc.label}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </FadeInSection>
                     </div>
 
+                    
                 </div>
             </div>
         </div>
