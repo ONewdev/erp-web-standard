@@ -255,7 +255,7 @@ export default function ServicePage() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in slide-in-from-top-4 duration-500">
                   {section.children.map((service, cIdx) => {
-                    const cardClasses = "group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full";
+                    const cardClasses = "group transition-all duration-300 flex flex-col h-full p-2";
 
                     // Color mapping for icons
                     const colorMap: Record<string, { bg: string, text: string, hover: string, shadow: string, hoverText: string }> = {

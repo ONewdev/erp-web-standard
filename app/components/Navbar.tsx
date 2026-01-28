@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import FadeInSection from "./FadeInSection";
 import FloatingIcons from "./FloatingIcons";
 
 const navItems = [
@@ -60,9 +59,9 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out ${navbarClasses}`}
+      className={`fixed top-0 left-0 right-0 z-[100] ${navbarClasses}`}
     >
-      <FadeInSection className="mx-auto max-w-7xl px-4 lg:px-6" viewport={{ once: true, margin: "0px" }}>
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex items-start justify-between">
           <FloatingIcons />
           {/* Logo - Hanging Tab Style with Animation */}
@@ -70,10 +69,10 @@ export default function Navbar() {
             <Link
               href="/"
               onClick={() => setOpen(false)}
-              className={`flex items-center justify-center bg-[var(--brand-blue)] text-white font-bold font-kanit hover:bg-[var(--brand-blue)] transition-all duration-300 ease-in-out shadow-sm
+              className={`flex items-center justify-center bg-[var(--brand-blue)] text-white font-bold font-kanit shadow-sm
                 ${isTransparent
-                  ? "px-5 py-4 text-sm rounded-b-md scale-100"
-                  : "mt-[10px] px-4 py-3 text-sm rounded-md scale-130"
+                  ? "px-5 py-4 text-sm rounded-b-md"
+                  : "mt-[10px] px-4 py-3 text-sm rounded-md"
                 }
               `}
             >
@@ -154,11 +153,11 @@ export default function Navbar() {
               {/* Hover/Click Dropdown */}
               <div
                 className={`absolute right-0 top-full mt-0 w-52 rounded-b-lg border border-slate-200
-                  bg-white shadow-lg transition-all transform origin-top
+                  bg-white shadow-lg
                   ${dropdownOpen
-                    ? "visible opacity-100 scale-100"
-                    : "invisible opacity-0 scale-95"
-                  } group-hover:visible group-hover:opacity-100 group-hover:scale-100`}
+                    ? "visible opacity-100"
+                    : "invisible opacity-0"
+                  } group-hover:visible group-hover:opacity-100`}
               >
                 {moreLinks.map((item) => {
                   const isActive = pathname === item.href;
@@ -222,7 +221,7 @@ export default function Navbar() {
             </nav>
           </div>
         )}
-      </FadeInSection>
+      </div>
     </header>
   );
 }

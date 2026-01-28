@@ -159,7 +159,7 @@ export default function RegisterBIPage() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                     <input
                       type="text"
                       id="name"
@@ -167,7 +167,7 @@ export default function RegisterBIPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-2xl"
                       placeholder="ชื่อ-สกุล"
                     />
                     <label
@@ -180,7 +180,7 @@ export default function RegisterBIPage() {
                     </label>
                   </div>
 
-                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                     <input
                       type="email"
                       id="email"
@@ -188,7 +188,7 @@ export default function RegisterBIPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-2xl"
                       placeholder="อีเมล"
                     />
                     <label
@@ -201,7 +201,7 @@ export default function RegisterBIPage() {
                     </label>
                   </div>
 
-                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                     <input
                       type="tel"
                       id="mobile"
@@ -209,7 +209,7 @@ export default function RegisterBIPage() {
                       value={formData.mobile}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-2xl"
                       placeholder="เบอร์โทรศัพท์"
                     />
                     <label
@@ -222,7 +222,7 @@ export default function RegisterBIPage() {
                     </label>
                   </div>
 
-                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                     <input
                       type="text"
                       id="company"
@@ -230,7 +230,7 @@ export default function RegisterBIPage() {
                       value={formData.company}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-2xl"
                       placeholder="บริษัท"
                     />
                     <label
@@ -243,7 +243,7 @@ export default function RegisterBIPage() {
                     </label>
                   </div>
 
-                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                  <div className="relative group/field bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                     <textarea
                       id="address"
                       name="address"
@@ -251,7 +251,7 @@ export default function RegisterBIPage() {
                       onChange={handleChange}
                       required
                       rows={3}
-                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent resize-none"
+                      className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent resize-none rounded-2xl"
                       placeholder="ที่อยู่บริษัท"
                     />
                     <label

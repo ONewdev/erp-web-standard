@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   BarChart3,
   FileDown,
@@ -17,30 +17,23 @@ import {
   BookOpen,
   Users,
   Layers,
-  ChevronRight,
   Download,
-  Calendar
+  Calendar,
+  ChevronDown
 } from "lucide-react";
 import FadeInSection from "../components/FadeInSection";
 
 // Fix for TypeScript error with motion components
 const MotionTr = motion.tr as any;
-const MotionDiv = motion.div as any;
 
 interface Document {
   name: string;
-  th?: string;
-  en?: string;
   thUrl?: string;
   enUrl?: string;
-  cn?: string;
   cnUrl?: string;
-  kr?: string;
   krUrl?: string;
-  jp?: string;
   jpUrl?: string;
   created: string;
-  category?: string;
 }
 
 interface DocumentSection {
@@ -52,101 +45,112 @@ const documents: DocumentSection[] = [
   {
     title: "Documents",
     items: [
-      { name: "Q.Soft MRP", th: "ดาวน์โหลด", en: "ดาวน์โหลด", thUrl: "/doc/Q-Soft_MRP_THV3.pdf", enUrl: "/doc/Q-Soft_MRP_ENGV3.pdf", created: "29.07.2025 10:19" },
-      { name: "Q.Soft APS", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/APS_new.pdf", created: "14.08.2014 02:51" },
-      { name: "Q.Soft WMS", th: "-", en: "-", created: "14.08.2014 02:51" },
-      { name: "Q.Soft PM", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/Q.Soft_PM_V3Brochue(thai).pdf", created: "29.07.2025 10:19" },
-      { name: "Q.Soft POS", th: "ดาวน์โหลด", en: "-", thUrl: "/doc/Q_Soft_POS_V3Brochue(thai)600305.pdf", created: "29.07.2025 10:19" },
+      { name: "Q.Soft MRP", thUrl: "/doc/Q-Soft_MRP_THV3.pdf", enUrl: "/doc/Q-Soft_MRP_ENGV3.pdf", created: "29.07.2025 10:19" },
+      { name: "Q.Soft APS", thUrl: "/doc/APS_new.pdf", created: "14.08.2014 02:51" },
+      { name: "Q.Soft WMS", created: "14.08.2014 02:51" },
+      { name: "Q.Soft PM", thUrl: "/doc/Q.Soft_PM_V3Brochue(thai).pdf", created: "29.07.2025 10:19" },
+      { name: "Q.Soft POS", thUrl: "/doc/Q_Soft_POS_V3Brochue(thai)600305.pdf", created: "29.07.2025 10:19" },
     ],
   },
   {
     title: "Brochure",
     items: [
-      { name: "Power BI Advanced", th: "ดาวน์โหลด", thUrl: "/doc/CoursePowerBI-Advanced.jpg", en: "-", cn: "-", kr: "-", jp: "-", created: "30.01.2023 10:01" },
-      { name: "Power BI Basic", th: "ดาวน์โหลด", thUrl: "/doc/CoursePowerBI-Basic.jpg", en: "-", cn: "-", kr: "-", jp: "-", created: "30.01.2023 10:01" },
-      { name: "Smart Soft SCM", th: "ดาวน์โหลด", thUrl: "/doc/Smart_Soft_SCM_Brochure650610.pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "05.08.2020 15:25" },
-      { name: "Q.Soft SCM", th: "ดาวน์โหลด", thUrl: "/doc/Q_Soft_SCM_Brochure6901.pdf", en: "ดาวน์โหลด", enUrl: "/doc/Q_Soft_SCM_Brochure(Eng)671008.pdf", cn: "ดาวน์โหลด", cnUrl: "/doc/CN_Q_Soft_SCM_Brochure671008.pdf", kr: "ดาวน์โหลด", krUrl: "/doc/KR_Q_Soft_SCM_Brochure671008.pdf", jp: "ดาวน์โหลด", jpUrl: "/doc/JP_Q_Soft_SCM_Brochure671008.pdf", created: "06.12.2024 12:56" },
-      { name: "Q.Soft SO Web Application", th: "ดาวน์โหลด", thUrl: "/doc/SOApp.jpg", en: "-", cn: "-", kr: "-", jp: "-", created: "05.06.2020 02:51" },
-      { name: "Q.Soft WMS (Warehouse Management System)", th: "ดาวน์โหลด", thUrl: "/doc/Q_Soft_MFG-WMS_Brochue(thai).pdf", en: "ดาวน์โหลด", enUrl: "/doc/Q_Soft_WMS_Prof+Brochue(Eng)V1.pdf", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
-      { name: "Q.Soft Smart Tag", th: "ดาวน์โหลด", thUrl: "/doc/Medicine_Pay_Out_System(SmartTag).pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "14.08.2014 02:51" },
-      { name: "Q.Soft CM (Container Management)", th: "ดาวน์โหลด", thUrl: "/doc/Q.soft_CM.pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "14.08.2014 02:51" },
-      { name: "Q.Soft APS (Brochure)", th: "ดาวน์โหลด", thUrl: "/doc/Q_Soft_APS_Brochue(thai).pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
-      { name: "Q.Soft WMS (Service)", th: "ดาวน์โหลด", thUrl: "/doc/Q_Soft_Ser-WMS_Brochue(thai).pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
-      { name: "Q.Soft PM (Version 1.01)", th: "ดาวน์โหลด", thUrl: "/doc/Q.Soft_PM_V1Brochue(thai).pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
-      { name: "Q.Soft SMS (Sport Management System)", th: "ดาวน์โหลด", thUrl: "/doc/Q_Soft_SMS_Brochue.pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
-      { name: "Q.soft ElectricShield", th: "ดาวน์โหลด", thUrl: "/doc/QSoftElectricShield.pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "14.08.2014 02:51" },
-      { name: "DPS สำหรับโรงพยาบาล", th: "ดาวน์โหลด", thUrl: "/doc/DPS_1.pdf", en: "-", cn: "-", kr: "-", jp: "-", created: "01.08.2025 10:20" },
+      { name: "Power BI Advanced", thUrl: "/doc/CoursePowerBI-Advanced.jpg", created: "30.01.2023 10:01" },
+      { name: "Power BI Basic", thUrl: "/doc/CoursePowerBI-Basic.jpg", created: "30.01.2023 10:01" },
+      { name: "Smart Soft SCM", thUrl: "/doc/Smart_Soft_SCM_Brochure650610.pdf", created: "05.08.2020 15:25" },
+      { name: "Q.Soft SCM", thUrl: "/doc/Q_Soft_SCM_Brochure6901.pdf", enUrl: "/doc/Q_Soft_SCM_Brochure(Eng)671008.pdf", cnUrl: "/doc/CN_Q_Soft_SCM_Brochure671008.pdf", krUrl: "/doc/KR_Q_Soft_SCM_Brochure671008.pdf", jpUrl: "/doc/JP_Q_Soft_SCM_Brochure671008.pdf", created: "06.12.2024 12:56" },
+      { name: "Q.Soft SO Web Application", thUrl: "/doc/SOApp.jpg", created: "05.06.2020 02:51" },
+      { name: "Q.Soft WMS (Warehouse Management System)", thUrl: "/doc/Q_Soft_MFG-WMS_Brochue(thai).pdf", enUrl: "/doc/Q_Soft_WMS_Prof+Brochue(Eng)V1.pdf", created: "01.08.2025 10:20" },
+      { name: "Q.Soft Smart Tag", thUrl: "/doc/Medicine_Pay_Out_System(SmartTag).pdf", created: "14.08.2014 02:51" },
+      { name: "Q.Soft CM (Container Management)", thUrl: "/doc/Q.soft_CM.pdf", created: "14.08.2014 02:51" },
+      { name: "Q.Soft APS (Brochure)", thUrl: "/doc/Q_Soft_APS_Brochue(thai).pdf", created: "01.08.2025 10:20" },
+      { name: "Q.Soft WMS (Service)", thUrl: "/doc/Q_Soft_Ser-WMS_Brochue(thai).pdf", created: "01.08.2025 10:20" },
+      { name: "Q.Soft PM (Version 1.01)", thUrl: "/doc/Q.Soft_PM_V1Brochue(thai).pdf", created: "01.08.2025 10:20" },
+      { name: "Q.Soft SMS (Sport Management System)", thUrl: "/doc/Q_Soft_SMS_Brochue.pdf", created: "01.08.2025 10:20" },
+      { name: "Q.soft ElectricShield", thUrl: "/doc/QSoftElectricShield.pdf", created: "14.08.2014 02:51" },
+      { name: "DPS สำหรับโรงพยาบาล", thUrl: "/doc/DPS_1.pdf", created: "01.08.2025 10:20" },
     ],
   },
   {
     title: "WINSpeed",
     items: [
-      { name: "WINSpeed", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/winspeed_updated_0421.pdf", en: "-", created: "09.04.2021 11:51" },
-      { name: "การสำรองข้อมูล WINSpeed", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/backup_WINSpeed.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การคีย์ใบเบิก ZZ, NW, WR", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/CC.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การคำนวณต้นทุน", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/COST.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "ลบเอกสารที่ลบไม่ได้", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/DELDOC.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การทำแบบฟอร์ม WINSpeed", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/form_winspeed_myaccount.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การโพส GL", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/GL.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การคีย์ ส่งคืน, ลดหนี้ (GR)", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/GR.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การกำหนด Lot และ Serial", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/IC.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "ทำเช็ค 1 ใบ จ่ายชำระหลาย Invoice", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/Invoice.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การขายเชื่อ", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/IVAG.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "Landed Cost", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/Landed-Cost.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "วิธีลง License", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/License_HRMI.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การซื้อเชื่อ PO", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/PO.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การโอนข้อมูลแบบ Manual เอกสาร PO, SO จากโปรแกรม WINSpeed เข้า Q.Soft ผ่าน API", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/PO_SO_Manual_WINSpeed_Q.Soft.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การจ่ายชำระหนี้ PV", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/PV.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การรับชำระหนี้ RE", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/RE.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "การรขายเชื่อ SO", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/WINSpeed/SO.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "ปรับปรุงสต็อกการ์ด เมื่อ TB ต้นทุนสินค้าถูกต้องแล้ว", thUrl: "/doc/WINSpeed/Stock_TB.pdf", th: "ดาวน์โหลด", en: "-", created: "29.07.2025 10:19" },
-      { name: "วิธีใส่ License ใหม่", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed_Delete_License.pdf", en: "-", created: "14.08.2014 02:51" },
+      { name: "WINSpeed", thUrl: "/doc/WINSpeed/winspeed_updated_0421.pdf", created: "09.04.2021 11:51" },
+      { name: "การสำรองข้อมูล WINSpeed", thUrl: "/doc/WINSpeed/backup_WINSpeed.pdf", created: "29.07.2025 10:19" },
+      { name: "การคีย์ใบเบิก ZZ, NW, WR", thUrl: "/doc/WINSpeed/CC.pdf", created: "29.07.2025 10:19" },
+      { name: "การคำนวณต้นทุน", thUrl: "/doc/WINSpeed/COST.pdf", created: "29.07.2025 10:19" },
+      { name: "ลบเอกสารที่ลบไม่ได้", thUrl: "/doc/WINSpeed/DELDOC.pdf", created: "29.07.2025 10:19" },
+      { name: "การทำแบบฟอร์ม WINSpeed", thUrl: "/doc/WINSpeed/form_winspeed_myaccount.pdf", created: "29.07.2025 10:19" },
+      { name: "การโพส GL", thUrl: "/doc/WINSpeed/GL.pdf", created: "29.07.2025 10:19" },
+      { name: "การคีย์ ส่งคืน, ลดหนี้ (GR)", thUrl: "/doc/WINSpeed/GR.pdf", created: "29.07.2025 10:19" },
+      { name: "การกำหนด Lot และ Serial", thUrl: "/doc/WINSpeed/IC.pdf", created: "29.07.2025 10:19" },
+      { name: "ทำเช็ค 1 ใบ จ่ายชำระหลาย Invoice", thUrl: "/doc/WINSpeed/Invoice.pdf", created: "29.07.2025 10:19" },
+      { name: "การขายเชื่อ", thUrl: "/doc/WINSpeed/IVAG.pdf", created: "29.07.2025 10:19" },
+      { name: "Landed Cost", thUrl: "/doc/WINSpeed/Landed-Cost.pdf", created: "29.07.2025 10:19" },
+      { name: "วิธีลง License", thUrl: "/doc/WINSpeed/License_HRMI.pdf", created: "29.07.2025 10:19" },
+      { name: "การซื้อเชื่อ PO", thUrl: "/doc/WINSpeed/PO.pdf", created: "29.07.2025 10:19" },
+      { name: "การโอนข้อมูลแบบ Manual เอกสาร PO, SO จากโปรแกรม WINSpeed เข้า Q.Soft ผ่าน API", thUrl: "/doc/WINSpeed/PO_SO_Manual_WINSpeed_Q.Soft.pdf", created: "29.07.2025 10:19" },
+      { name: "การจ่ายชำระหนี้ PV", thUrl: "/doc/WINSpeed/PV.pdf", created: "29.07.2025 10:19" },
+      { name: "การรับชำระหนี้ RE", thUrl: "/doc/WINSpeed/RE.pdf", created: "29.07.2025 10:19" },
+      { name: "การรขายเชื่อ SO", thUrl: "/doc/WINSpeed/WINSpeed/SO.pdf", created: "29.07.2025 10:19" },
+      { name: "ปรับปรุงสต็อกการ์ด เมื่อ TB ต้นทุนสินค้าถูกต้องแล้ว", thUrl: "/doc/WINSpeed/Stock_TB.pdf", created: "29.07.2025 10:19" },
+      { name: "วิธีใส่ License ใหม่", thUrl: "/doc/WINSpeed_Delete_License.pdf", created: "14.08.2014 02:51" },
     ],
   },
   {
     title: "HRMI",
     items: [
-      { name: "HRMI", th: "ดาวน์โหลด", thUrl: "/doc/HRMI/hrmi_updated_0421.pdf", en: "-", created: "09.04.2021 11:51" },
-      { name: "แก้ปัญหายอดรวมใน Pay Slip ไม่แสดง", th: "ดาวน์โหลด", thUrl: "/doc/HRMI/HR_HRMi.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "คู่มือการใช้งานโปรแกรม HRMI", th: "ดาวน์โหลด", thUrl: "/doc/HRMI/Manual_HRMI_Payroll.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "คู่มือการใช้งานโปรแกรม HRMI เพื่อทำเงินเดือน", th: "ดาวน์โหลด", thUrl: "/doc/HRMI/Manual_HRMI_Payroll_Full.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "คู่มือการ Set Email Alert", th: "ดาวน์โหลด", thUrl: "/doc/HRMI/SetEmailAlertHRMi.pdf", en: "-", created: "29.07.2025 10:19" },
+      { name: "HRMI", thUrl: "/doc/HRMI/hrmi_updated_0421.pdf", created: "09.04.2021 11:51" },
+      { name: "แก้ปัญหายอดรวมใน Pay Slip ไม่แสดง", thUrl: "/doc/HRMI/HR_HRMi.pdf", created: "29.07.2025 10:19" },
+      { name: "คู่มือการใช้งานโปรแกรม HRMI", thUrl: "/doc/HRMI/Manual_HRMI_Payroll.pdf", created: "29.07.2025 10:19" },
+      { name: "คู่มือการใช้งานโปรแกรม HRMI เพื่อทำเงินเดือน", thUrl: "/doc/HRMI/Manual_HRMI_Payroll_Full.pdf", created: "29.07.2025 10:19" },
+      { name: "คู่มือการ Set Email Alert", thUrl: "/doc/HRMI/SetEmailAlertHRMi.pdf", created: "29.07.2025 10:19" },
     ],
   },
   {
     title: "CRM",
     items: [
-      { name: "CRM", th: "ดาวน์โหลด", thUrl: "/doc/CRM/crm_updated_0421.pdf", en: "-", created: "09.04.2021 11:51" },
+      { name: "CRM", thUrl: "/doc/CRM/crm_updated_0421.pdf", created: "09.04.2021 11:51" },
     ],
   },
   {
     title: "Support & Other",
     items: [
-      { name: "SpecServer-Cloud (QSoft-WINSpeed)", th: "ดาวน์โหลด", thUrl: "/doc/WINSpeed/SpecServer-Cloud(QSoft-WINSpeed).pdf", en: "-", created: "23.09.2022 14:55" },
-      { name: "LeanManufacturing (WhitePaper)", th: "ดาวน์โหลด", thUrl: "/doc/LeanManufacturing(WhitePaper).pdf", en: "-", created: "14.08.2014 02:51" },
-      { name: "SQL Server Express 2005", th: "ดาวน์โหลด", thUrl: "/doc/setupSQL2005.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "SQL Server Express 2008 R2", th: "ดาวน์โหลด", thUrl: "/doc/setupSQL2008R2.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "SQL Server Express 2012", th: "ดาวน์โหลด", thUrl: "/doc/setupSQL2012.pdf", en: "-", created: "29.07.2025 10:19" },
-      { name: "รายละเอียดแผนงานวางระบบ ISO9001-2008", thUrl: "/doc/ISO9001-2008Brochure.pdf", th: "ดาวน์โหลด", en: "-", created: "29.07.2025 10:19" },
+      { name: "SpecServer-Cloud (QSoft-WINSpeed)", thUrl: "/doc/WINSpeed/SpecServer-Cloud(QSoft-WINSpeed).pdf", created: "23.09.2022 14:55" },
+      { name: "LeanManufacturing (WhitePaper)", thUrl: "/doc/LeanManufacturing(WhitePaper).pdf", created: "14.08.2014 02:51" },
+      { name: "SQL Server Express 2005", thUrl: "/doc/setupSQL2005.pdf", created: "29.07.2025 10:19" },
+      { name: "SQL Server Express 2008 R2", thUrl: "/doc/setupSQL2008R2.pdf", created: "29.07.2025 10:19" },
+      { name: "SQL Server Express 2012", thUrl: "/doc/setupSQL2012.pdf", created: "29.07.2025 10:19" },
+      { name: "รายละเอียดแผนงานวางระบบ ISO9001-2008", thUrl: "/doc/ISO9001-2008Brochure.pdf", created: "29.07.2025 10:19" },
     ],
   },
 ];
 
 export default function DocumentPage() {
   const [activeTab, setActiveTab] = useState<string>("All");
+  const [collapsedSections, setCollapsedSections] = useState<string[]>([]);
+
+  const toggleSection = (title: string) => {
+    setCollapsedSections((prev) =>
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
+    );
+  };
 
   const showExtraLanguages = activeTab === "Brochure" || activeTab === "All";
 
   // Compute items to display
   const displayData = activeTab === "All" ? documents : [documents.find((doc) => doc.title === activeTab)].filter(Boolean) as DocumentSection[];
 
+  const prevTab = useRef(activeTab);
   // Scroll to top of list when category changes
   useEffect(() => {
-    const element = document.getElementById('doc-list-start');
-    if (element) {
-      const yOffset = -150;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+    if (prevTab.current !== activeTab) {
+      const element = document.getElementById('doc-list-start');
+      if (element) {
+        const yOffset = -150;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      prevTab.current = activeTab;
     }
   }, [activeTab]);
 
@@ -244,9 +248,8 @@ export default function DocumentPage() {
       <div id="doc-list-start" className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <FadeInSection delay={0.2}>
           <div className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
-
             {/* Tabs - Responsive Scrollable Container */}
-            <div className="border-b bg-white/80 backdrop-blur sticky top-0 z-30">
+            <div className="bg-white/80 backdrop-blur sticky top-0 z-30">
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex p-3 gap-2 min-w-max">
                   <button
@@ -255,27 +258,24 @@ export default function DocumentPage() {
                       e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
                     }}
                     className={`px-5 md:px-7 py-2.5 md:py-3.5 rounded-xl md:rounded-2xl font-bold transition-all text-xs md:text-sm flex items-center gap-2 ${activeTab === "All"
-                      ? "bg-gray-600 text-white shadow-lg shadow-gray-200"
-                      : "text-slate-500 hover:text-gray-600 hover:bg-gray-50"
+                      ? "bg-gray-600 text-white shadow-lg shadow-gray-20"
+                      : "text-slate-500 hover:text-gray-600 hover:bg-gray-100"
                       }`}
                   >
                     <Layers className="w-4 h-4" />
                     All
                   </button>
-
                   {documents.map((section) => {
                     // Color theme mapping for document categories
                     const tabThemes: Record<string, { active: string, hover: string, text: string, shadow: string }> = {
-                      "Documents": { active: "bg-blue-600", hover: "hover:bg-blue-50 hover:text-blue-600", text: "text-blue-600", shadow: "shadow-blue-200" },
-                      "Brochure": { active: "bg-violet-600", hover: "hover:bg-violet-50 hover:text-violet-600", text: "text-violet-600", shadow: "shadow-violet-200" },
-                      "WINSpeed": { active: "bg-emerald-600", hover: "hover:bg-emerald-50 hover:text-emerald-600", text: "text-emerald-600", shadow: "shadow-emerald-200" },
-                      "HRMI": { active: "bg-amber-500", hover: "hover:bg-amber-50 hover:text-amber-500", text: "text-amber-500", shadow: "shadow-amber-200" },
-                      "CRM": { active: "bg-rose-500", hover: "hover:bg-rose-50 hover:text-rose-500", text: "text-rose-500", shadow: "shadow-rose-200" },
-                      "Support & Other": { active: "bg-indigo-600", hover: "hover:bg-indigo-50 hover:text-indigo-600", text: "text-indigo-600", shadow: "shadow-indigo-200" },
+                      "Documents": { active: "bg-blue-600", hover: "hover:bg-blue-100 hover:text-blue-600", text: "text-blue-600", shadow: "shadow-blue-20" },
+                      "Brochure": { active: "bg-violet-600", hover: "hover:bg-violet-100 hover:text-violet-600", text: "text-violet-600", shadow: "shadow-violet-20" },
+                      "WINSpeed": { active: "bg-emerald-600", hover: "hover:bg-emerald-100 hover:text-emerald-600", text: "text-emerald-600", shadow: "shadow-emerald-20" },
+                      "HRMI": { active: "bg-amber-500", hover: "hover:bg-amber-100 hover:text-amber-500", text: "text-amber-500", shadow: "shadow-amber-20" },
+                      "CRM": { active: "bg-rose-500", hover: "hover:bg-rose-100 hover:text-rose-500", text: "text-rose-500", shadow: "shadow-rose-20" },
+                      "Support & Other": { active: "bg-indigo-600", hover: "hover:bg-indigo-100 hover:text-indigo-600", text: "text-indigo-600", shadow: "shadow-indigo-20" },
                     };
-
                     const theme = tabThemes[section.title] || tabThemes["Documents"];
-
                     return (
                       <button
                         key={section.title}
@@ -312,21 +312,46 @@ export default function DocumentPage() {
               </p>
             </div>
 
-            {/* Table Area - Responsive Grid for Mobile, Table for Tablet/Desktop */}
+
             <div>
               {/* Desktop Table View */}
               <div className="hidden md:block overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-slate-50 border-b border-slate-100">
+                    <tr className="bg-slate-50 border-b border-slate-100 font-kanit">
                       <th className="px-8 py-5 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">File Name</th>
-                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">TH</th>
-                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">EN</th>
+                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 font-kanit uppercase tracking-wider">
+                        <div className="flex flex-col items-center gap-1.5">
+                          <img src="/img/flags/32/Thailand.png" alt="TH" className="w-5 h-auto shadow-sm" />
+                          <span>TH</span>
+                        </div>
+                      </th>
+                      <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 font-kanit uppercase tracking-wider">
+                        <div className="flex flex-col items-center gap-1.5">
+                          <img src="/img/flags/32/United-Kingdom.png" alt="EN" className="w-5 h-auto shadow-sm" />
+                          <span>EN</span>
+                        </div>
+                      </th>
                       {showExtraLanguages && (
                         <>
-                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">CN</th>
-                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">KR</th>
-                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 uppercase tracking-wider">JP</th>
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 font-kanit uppercase tracking-wider">
+                            <div className="flex flex-col items-center gap-1.5">
+                              <img src="/img/flags/32/China.png" alt="CN" className="w-5 h-auto shadow-sm" />
+                              <span>CN</span>
+                            </div>
+                          </th>
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 font-kanit uppercase tracking-wider">
+                            <div className="flex flex-col items-center gap-1.5">
+                              <img src="/img/flags/32/South-Korea.png" alt="KR" className="w-5 h-auto shadow-sm" />
+                              <span>KR</span>
+                            </div>
+                          </th>
+                          <th className="px-6 py-5 text-center text-xs font-bold text-slate-400 font-kanit uppercase tracking-wider">
+                            <div className="flex flex-col items-center gap-1.5">
+                              <img src="/img/flags/32/Japan.png" alt="JP" className="w-5 h-auto shadow-sm" />
+                              <span>JP</span>
+                            </div>
+                          </th>
                         </>
                       )}
                       <th className="px-8 py-5 text-right text-xs font-bold text-slate-400 uppercase tracking-wider">Release</th>
@@ -348,15 +373,21 @@ export default function DocumentPage() {
                       return (
                         <React.Fragment key={section.title}>
                           {activeTab === "All" && (
-                            <tr className={theme.bg}>
-                              <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-3">
-                                <div className={`flex items-center gap-2 text-xs font-black uppercase tracking-[0.25em] ${theme.text}`}>
-                                  {section.title}
+                            <tr
+                              onClick={() => toggleSection(section.title)}
+                              className="cursor-pointer select-none group/section"
+                            >
+                              <td colSpan={showExtraLanguages ? 7 : 4} className="px-8 py-4">
+                                <div className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full transition-all hover:brightness-95 ${theme.bg} ${theme.text}`}>
+                                  <div className="text-xs font-black uppercase tracking-[0.25em]">
+                                    {section.title}
+                                  </div>
+                                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${collapsedSections.includes(section.title) ? "-rotate-90" : ""}`} />
                                 </div>
                               </td>
                             </tr>
                           )}
-                          {section.items.map((item, index) => (
+                          {(activeTab !== "All" || !collapsedSections.includes(section.title)) && section.items.map((item, index) => (
                             <MotionTr
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
@@ -375,7 +406,7 @@ export default function DocumentPage() {
                               <td className="px-4 py-5 text-center text-sm">
                                 {item.thUrl ? (
                                   <Link href={item.thUrl} target="_blank" className="inline-flex items-center gap-1.5 text-slate-500 font-bold hover:text-slate-800 hover:underline transition-all">
-                                    <Download className="w-3.5 h-3.5" /> Download
+                                    <Download className="w-3.5 h-3.5" /> TH
                                   </Link>
                                 ) : <span className="text-slate-300">-</span>}
                               </td>
@@ -383,7 +414,7 @@ export default function DocumentPage() {
                               <td className="px-4 py-5 text-center text-sm">
                                 {item.enUrl ? (
                                   <Link href={item.enUrl} target="_blank" className="inline-flex items-center gap-1.5 text-slate-500 font-bold hover:text-slate-800 hover:underline transition-all">
-                                    <Download className="w-3.5 h-3.5" /> Download
+                                    <Download className="w-3.5 h-3.5" /> EN
                                   </Link>
                                 ) : <span className="text-slate-300">-</span>}
                               </td>
@@ -392,21 +423,21 @@ export default function DocumentPage() {
                                   <td className="px-4 py-5 text-center text-sm">
                                     {item.cnUrl ? (
                                       <Link href={item.cnUrl} target="_blank" className="inline-flex items-center gap-1.5 text-slate-500 font-bold hover:text-slate-800 hover:underline transition-all">
-                                        <Download className="w-3.5 h-3.5" /> Download
+                                        <Download className="w-3.5 h-3.5" /> CN
                                       </Link>
                                     ) : <span className="text-slate-300">-</span>}
                                   </td>
                                   <td className="px-4 py-5 text-center text-sm">
                                     {item.krUrl ? (
                                       <Link href={item.krUrl} target="_blank" className="inline-flex items-center gap-1.5 text-slate-500 font-bold hover:text-slate-800 hover:underline transition-all">
-                                        <Download className="w-3.5 h-3.5" /> Download
+                                        <Download className="w-3.5 h-3.5" /> KR
                                       </Link>
                                     ) : <span className="text-slate-300">-</span>}
                                   </td>
                                   <td className="px-4 py-5 text-center text-sm">
                                     {item.jpUrl ? (
                                       <Link href={item.jpUrl} target="_blank" className="inline-flex items-center gap-1.5 text-slate-500 font-bold hover:text-slate-800 hover:underline transition-all">
-                                        <Download className="w-3.5 h-3.5" /> Download
+                                        <Download className="w-3.5 h-3.5" /> JP
                                       </Link>
                                     ) : <span className="text-slate-300">-</span>}
                                   </td>
@@ -440,58 +471,66 @@ export default function DocumentPage() {
                   return (
                     <div key={section.title}>
                       {activeTab === "All" && (
-                        <div className={`${theme.bg} px-4 py-3 text-xs font-black tracking-[0.2em] uppercase ${theme.text}`}>
-                          {section.title}
+                        <div
+                          onClick={() => toggleSection(section.title)}
+                          className="px-4 py-4 cursor-pointer select-none"
+                        >
+                          <div className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full ${theme.bg} ${theme.text}`}>
+                            <span className="text-xs font-black tracking-[0.25em] uppercase">{section.title}</span>
+                            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${collapsedSections.includes(section.title) ? "-rotate-90" : ""}`} />
+                          </div>
                         </div>
                       )}
-                      <div className="divide-y divide-slate-100">
-                        {section.items.map((item, idx) => (
-                          <div key={idx} className="p-4 bg-white">
-                            <div className="flex items-start justify-between mb-4">
-                              <div className="flex items-start gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] shrink-0">
-                                  <FileText className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <h4 className="font-bold text-slate-800 text-sm leading-tight mb-1">{item.name}</h4>
-                                  <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-                                    <Calendar className="w-3 h-3" />
-                                    <span>{item.created}</span>
+                      {(activeTab !== "All" || !collapsedSections.includes(section.title)) && (
+                        <div className="divide-y divide-slate-100">
+                          {section.items.map((item, idx) => (
+                            <div key={idx} className="p-4 bg-white">
+                              <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-start gap-3">
+                                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[var(--brand-blue)] shrink-0">
+                                    <FileText className="w-5 h-5" />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-bold text-slate-800 text-sm leading-tight mb-1">{item.name}</h4>
+                                    <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
+                                      <Calendar className="w-3 h-3" />
+                                      <span>{item.created}</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
 
-                            <div className="flex flex-wrap gap-2">
-                              {item.thUrl && (
-                                <a href={item.thUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold active:bg-slate-600 active:text-white transition-colors">
-                                  <Download className="w-3 h-3" /> TH
-                                </a>
-                              )}
-                              {item.enUrl && (
-                                <a href={item.enUrl} target="_blank" className="flex-1 min-w-[100px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold active:bg-slate-600 active:text-white transition-colors">
-                                  <Download className="w-3 h-3" /> EN
-                                </a>
-                              )}
-                              {item.cnUrl && (
-                                <a href={item.cnUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold">
-                                  <Download className="w-3 h-3" />CN
-                                </a>
-                              )}
-                              {item.krUrl && (
-                                <a href={item.krUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold">
-                                  <Download className="w-3 h-3" />KR
-                                </a>
-                              )}
-                              {item.jpUrl && (
-                                <a href={item.jpUrl} target="_blank" className="flex-1 min-w-[80px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold">
-                                  <Download className="w-3 h-3" />JP
-                                </a>
-                              )}
+                              <div className="flex flex-wrap gap-2">
+                                {item.thUrl && (
+                                  <a href={item.thUrl} target="_blank" className="flex-1 min-w-[105px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold active:bg-slate-600 active:text-white transition-colors">
+                                    <img src="/img/flags/32/Thailand.png" className="w-4 h-auto shadow-sm" alt="" /> TH
+                                  </a>
+                                )}
+                                {item.enUrl && (
+                                  <a href={item.enUrl} target="_blank" className="flex-1 min-w-[105px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold active:bg-slate-600 active:text-white transition-colors">
+                                    <img src="/img/flags/32/United-Kingdom.png" className="w-4 h-auto shadow-sm" alt="" /> EN
+                                  </a>
+                                )}
+                                {item.cnUrl && (
+                                  <a href={item.cnUrl} target="_blank" className="flex-1 min-w-[85px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold">
+                                    <img src="/img/flags/32/China.png" className="w-4 h-auto shadow-sm" alt="" /> CN
+                                  </a>
+                                )}
+                                {item.krUrl && (
+                                  <a href={item.krUrl} target="_blank" className="flex-1 min-w-[85px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold">
+                                    <img src="/img/flags/32/South-Korea.png" className="w-4 h-auto shadow-sm" alt="" /> KR
+                                  </a>
+                                )}
+                                {item.jpUrl && (
+                                  <a href={item.jpUrl} target="_blank" className="flex-1 min-w-[85px] flex items-center justify-center gap-2 py-2.5 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold">
+                                    <img src="/img/flags/32/Japan.png" className="w-4 h-auto shadow-sm" alt="" /> JP
+                                  </a>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   );
                 })}

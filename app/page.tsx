@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, MapPin, Phone, Mail, Youtube, Facebook, Send, Building2, Settings, BarChart3, Truck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import FadeInSection from "@/app/components/FadeInSection";
 import FloatingIcons from "@/app/components/FloatingIcons";
 
@@ -40,6 +40,22 @@ export default function Home() {
 
   const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+
+  const services = [
+    { id: "1", label: "Q.Soft MRP - Manufacturing Resource Planning" },
+    { id: "2", label: "Q.Soft APS - Advanced Planning and Scheduling" },
+    { id: "3", label: "Q.Soft PM - Plant Maintenance" },
+    { id: "4", label: "Q.Soft POS - Point of Sale" },
+    { id: "5", label: "Q.Soft WMS - Warehouse Management System" },
+    { id: "6", label: "Q.Soft VFS - Village Fund System" },
+    { id: "7", label: "Q.Soft POS for Restaurant" },
+    { id: "8", label: "WINSPEED" },
+    { id: "9", label: "myAccount" },
+    { id: "10", label: "HRMI" },
+    { id: "11", label: "Industrial Internet of things" },
+  ];
 
   const next = () => {
     if (isTransitioning) return;
@@ -85,7 +101,7 @@ export default function Home() {
         {slides.map((slide, i) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-500 ${i === index ? "opacity-100 z-0" : "opacity-0 z-0"
+            className={`absolute inset-0 transition-opacity duration-500 ${i === index ? "opacity-100" : "opacity-0"
               }`}
           >
             <Image
@@ -449,7 +465,7 @@ export default function Home() {
                   </div>
 
                   <FadeInSection delay={0.4}>
-                    <div className="flex flex-col items-center gap-6 pt-30 border-t border-slate-200 mt-8">
+                    <div className="flex flex-col items-center gap-6 pt-10 border-t border-slate-200 mt-8">
                       <a
                         href="mailto:chopaka_m@q-softthai.com;nurng.t072@gmail.com;chopaka1817@gmail.com"
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[var(--brand-blue)] text-white px-10 py-4 rounded-2xl font-bold shadow-lg shadow-blue-100 hover:bg-gray-50 hover:text-[var(--brand-blue)] transition-all duration-300 hover:scale-105"
@@ -501,18 +517,18 @@ export default function Home() {
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {/* Name Input */}
-                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all">
+                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                             <input
                               type="text"
                               id="name"
                               required
-                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-xl"
                               placeholder="ชื่อ-สกุล"
                             />
                             <label
                               htmlFor="name"
                               className="absolute left-5 top-4 text-slate-400 text-sm font-kanit transition-all pointer-events-none
-                                       peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-[#0e9aef] peer-focus:font-bold
+                                       peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-[var(--brand-blue)] peer-focus:font-bold
                                        peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px]"
                             >
                               ชื่อ-สกุล
@@ -520,12 +536,12 @@ export default function Home() {
                           </div>
 
                           {/* Phone Input */}
-                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[#0e9aef] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                             <input
                               type="text"
                               id="phone"
                               required
-                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-xl"
                               placeholder="เบอร์โทรศัพท์"
                             />
                             <label
@@ -541,12 +557,12 @@ export default function Home() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {/* Email Input */}
-                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                             <input
                               type="email"
                               id="email"
                               required
-                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-xl"
                               placeholder="อีเมล"
                             />
                             <label
@@ -560,12 +576,12 @@ export default function Home() {
                           </div>
 
                           {/* Company Input */}
-                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]-50 transition-all">
+                          <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]/50 transition-all overflow-hidden">
                             <input
                               type="text"
                               id="company"
                               required
-                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent"
+                              className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer placeholder-transparent rounded-xl"
                               placeholder="บริษัท"
                             />
                             <label
@@ -579,33 +595,64 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="relative group/field bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[var(--brand-blue)] focus-within:bg-white focus-within:ring-4 focus-within:ring-[var(--brand-blue)]-50 transition-all">
-                          <select
-                            id="service"
-                            className="w-full px-5 pt-6 pb-2 bg-transparent border-none outline-none font-kanit text-slate-900 peer appearance-none cursor-pointer"
+                        {/* Custom Animated Dropdown */}
+                        <div className="relative group/field">
+                          <div
+                            onClick={() => setIsServiceOpen(!isServiceOpen)}
+                            className={`relative h-16 bg-slate-50 border border-slate-200 cursor-pointer transition-all duration-300 ${isServiceOpen ? "border-[var(--brand-blue)] bg-white ring-4 ring-[var(--brand-blue)]/50 shadow-xl rounded-t-xl rounded-b-none z-[60]" : "hover:border-[var(--brand-blue)]/50 rounded-xl"}`}
                           >
-                            <option value="" disabled selected className="text-slate-400">กรุณาเลือกบริการ</option>
-                            <option value="1">Q.Soft MRP - Manufacturing Resource Planning</option>
-                            <option value="2">Q.Soft APS - Advanced Planning and Scheduling</option>
-                            <option value="3">Q.Soft PM - Plant Maintenance</option>
-                            <option value="4">Q.Soft POS - Point of Sale</option>
-                            <option value="5">Q.Soft WMS - Warehouse Management System</option>
-                            <option value="6">Q.Soft VFS - Village Fund System</option>
-                            <option value="7">Q.Soft POS for Restaurant</option>
-                            <option value="8">WINSPEED</option>
-                            <option value="9">myAccount</option>
-                            <option value="10">HRMI</option>
-                            <option value="11">Industrial Internet of things</option>
-                          </select>
-                          <label
-                            htmlFor="service"
-                            className="absolute left-5 top-2 text-[10px] text-[var(--brand-blue)] font-bold font-kanit"
-                          >
-                            เลือกบริการที่ท่านสนใจ
-                          </label>
-                          <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                            <ChevronRight className="w-4 h-4 rotate-90" />
+                            <label className={`absolute left-5 transition-all duration-300 pointer-events-none font-kanit ${selectedService || isServiceOpen ? "top-1.5 text-[10px] text-[var(--brand-blue)] font-bold" : "top-1/2 -translate-y-1/2 text-sm text-slate-400"}`}>
+                              เลือกบริการที่ท่านสนใจ
+                            </label>
+                            <div className="px-5 pt-6 pb-2 text-slate-900 font-kanit text-sm">
+                              {selectedService ? services.find(s => s.id === selectedService)?.label : <span className="text-slate-400"></span>}
+                            </div>
+                            <div className={`absolute right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 text-slate-400 ${isServiceOpen ? "rotate-180" : ""}`}>
+                              <ChevronRight className="w-4 h-4 rotate-90" />
+                            </div>
                           </div>
+
+                          {/* Dropdown Menu */}
+                          <AnimatePresence>
+                            {isServiceOpen && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="absolute left-0 right-0 top-full z-50 bg-white border-2 border-t-0 border-[var(--brand-blue)] shadow-2xl rounded-b-2xl overflow-hidden"
+                              >
+                                <motion.div
+                                  initial="hidden"
+                                  animate="visible"
+                                  variants={{
+                                    visible: { transition: { staggerChildren: 0.05 } }
+                                  }}
+                                  className="max-h-[165px] overflow-y-auto custom-scrollbar"
+                                >
+                                  {services.map((service) => (
+                                    <motion.div
+                                      key={service.id}
+                                      variants={{
+                                        hidden: { opacity: 0, x: -10 },
+                                        visible: { opacity: 1, x: 0 }
+                                      }}
+                                      onClick={() => {
+                                        setSelectedService(service.id);
+                                        setIsServiceOpen(false);
+                                      }}
+                                      className={`px-5 py-4 text-sm font-kanit cursor-pointer transition-all duration-200 flex items-center gap-3 ${selectedService === service.id ? "bg-[var(--brand-blue)] text-white" : "text-slate-600 hover:bg-blue-50/50 hover:text-[var(--brand-blue)]"}`}
+                                    >
+                                      {service.label}
+                                    </motion.div>
+                                  ))}
+                                </motion.div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                          {/* Hidden Input for Form Submission */}
+                          <input type="hidden" name="service" value={selectedService} />
                         </div>
 
                         <div className="pt-4">

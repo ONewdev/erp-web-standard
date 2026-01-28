@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -174,13 +174,17 @@ export default function SitePage() {
 
   const displayClients = active === "qsoft" ? getQsoftClientsWithTags() : clients[active];
 
+  const prevTab = useRef(active);
   // Scroll to top of grid when category changes
   useEffect(() => {
-    const element = document.getElementById('client-grid');
-    if (element) {
-      const yOffset = -150;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+    if (prevTab.current !== active) {
+      const element = document.getElementById('client-grid');
+      if (element) {
+        const yOffset = -260;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      prevTab.current = active;
     }
   }, [active]);
 
@@ -237,7 +241,7 @@ export default function SitePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-16">
 
         {/* Header Grid: Responsive stacking */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 mb-32 md:mb-44 items-start">
 
           {/* LEFT: Title & Intro */}
           <FadeInSection>
@@ -305,87 +309,107 @@ export default function SitePage() {
           </FadeInSection>
         </div>
 
-        {/* ✅ Sticky Responsive Navbar */}
-        <div className="sticky top-20 z-40 mb-10 -mx-4 sm:mx-0">
-          <div className="bg-white/80 backdrop-blur-md border-y md:border-none md:bg-transparent px-4 py-3 md:p-0">
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-2.5 min-w-max pb-1">
-                {navItems.map((item) => {
-                  const isActive = active === item.key;
 
-                  // Color theme mapping for buttons
-                  const buttonThemes: Record<string, { active: string, border: string, text: string, shadow: string, hover: string }> = {
-                    qsoft: { active: "bg-blue-600 border-blue-600", border: "border-slate-100", text: "text-blue-600", shadow: "shadow-blue-200", hover: "hover:border-blue-200 hover:text-blue-600" },
-                    winspeed: { active: "bg-amber-500 border-amber-500", border: "border-slate-100", text: "text-amber-500", shadow: "shadow-amber-200", hover: "hover:border-amber-200 hover:text-amber-500" },
-                    hrm: { active: "bg-indigo-500 border-indigo-500", border: "border-slate-100", text: "text-indigo-500", shadow: "shadow-indigo-200", hover: "hover:border-indigo-200 hover:text-indigo-500" },
-                    ai: { active: "bg-sky-500 border-sky-500", border: "border-slate-100", text: "text-sky-500", shadow: "shadow-sky-200", hover: "hover:border-sky-200 hover:text-sky-500" },
-                    consulting: { active: "bg-emerald-600 border-emerald-600", border: "border-slate-100", text: "text-emerald-600", shadow: "shadow-emerald-100", hover: "hover:border-emerald-200 hover:text-emerald-600" },
-                    others: { active: "bg-slate-700 border-slate-700", border: "border-slate-100", text: "text-slate-700", shadow: "shadow-slate-200", hover: "hover:border-slate-300 hover:text-slate-800" },
-                  };
+        <div className="sticky top-[80px] md:top-[90px] z-40 mb-20 md:mb-32 px-4 flex justify-center">
+          <div className="overflow-x-auto scrollbar-hide w-full md:w-max">
+            <div className="flex justify-start md:justify-center gap-1.5 md:gap-2.5 min-w-max p-1">
+              {navItems.map((item) => {
+                const isActive = active === item.key;
 
-                  const theme = buttonThemes[item.key] || buttonThemes.qsoft;
+                // Color theme mapping for buttons
+                const buttonThemes: Record<string, { active: string, border: string, text: string, shadow: string, hover: string }> = {
+                  qsoft: { active: "bg-blue-600 border-blue-600", border: "border-transparent", text: "text-blue-600", shadow: "shadow-blue-200/50", hover: "hover:border-blue-100 hover:text-blue-600" },
+                  winspeed: { active: "bg-amber-500 border-amber-500", border: "border-transparent", text: "text-amber-500", shadow: "shadow-amber-200/50", hover: "hover:border-amber-100 hover:text-amber-500" },
+                  hrm: { active: "bg-indigo-500 border-indigo-500", border: "border-transparent", text: "text-indigo-500", shadow: "shadow-indigo-200/50", hover: "hover:border-indigo-100 hover:text-indigo-500" },
+                  ai: { active: "bg-sky-500 border-sky-500", border: "border-transparent", text: "text-sky-500", shadow: "shadow-sky-200/50", hover: "hover:border-sky-100 hover:text-sky-500" },
+                  consulting: { active: "bg-emerald-600 border-emerald-600", border: "border-transparent", text: "text-emerald-600", shadow: "shadow-emerald-200/50", hover: "hover:border-emerald-100 hover:text-emerald-600" },
+                  others: { active: "bg-slate-700 border-slate-700", border: "border-transparent", text: "text-slate-700", shadow: "shadow-slate-300/50", hover: "hover:border-slate-100 hover:text-slate-800" },
+                };
 
-                  const Icon = () => {
+                const theme = buttonThemes[item.key] || buttonThemes.qsoft;
+
+                const Icon = () => {
+                  const iconProps = { className: "w-4 h-4" };
+                  const getIcon = () => {
                     switch (item.key) {
-                      case 'qsoft': return <Package className="w-4 h-4" />;
-                      case 'winspeed': return <Zap className="w-4 h-4" />;
-                      case 'hrm': return <Users className="w-4 h-4" />;
-                      case 'ai': return <Sparkles className="w-4 h-4" />;
-                      case 'consulting': return <Briefcase className="w-4 h-4" />;
-                      case 'others': return <Star className="w-4 h-4" />;
+                      case 'qsoft': return <Package {...iconProps} />;
+                      case 'winspeed': return <Zap {...iconProps} />;
+                      case 'hrm': return <Users {...iconProps} />;
+                      case 'ai': return <Sparkles {...iconProps} />;
+                      case 'consulting': return <Briefcase {...iconProps} />;
+                      case 'others': return <Star {...iconProps} />;
                       default: return null;
                     }
                   };
 
                   return (
-                    <button
-                      key={item.key}
-                      onClick={(e) => {
-                        setActive(item.key);
-                        e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    <motion.div
+                      animate={isActive ? {
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 10, -10, 0],
+                      } : { scale: 1, rotate: 0 }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: isActive ? Infinity : 0,
+                        ease: "easeInOut"
                       }}
-                      className={`
-                        flex items-center gap-2 px-5 py-3 rounded-xl md:rounded-2xl text-xs md:text-sm font-bold 
-                        transition-all duration-300 border-2
-                        ${isActive
-                          ? `${theme.active} text-white shadow-lg ${theme.shadow}`
-                          : `bg-white text-slate-600 ${theme.border} ${theme.hover}`
-                        }
-                      `}
+                      className="flex items-center justify-center shrink-0"
                     >
-                      <Icon />
-                      {item.label}
-                    </button>
+                      {getIcon()}
+                    </motion.div>
                   );
-                })}
-              </div>
+                };
+
+                return (
+                  <button
+                    key={item.key}
+                    onClick={(e) => {
+                      setActive(item.key);
+                      e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }}
+                    className={`
+                      flex items-center gap-2.5 px-5 py-3 rounded-2xl md:rounded-3xl text-xs md:text-sm font-bold 
+                      transition-all duration-300 border-2 shadow-lg
+                      ${isActive
+                        ? `${theme.active} text-white ${theme.shadow} translate-y-[-2px]`
+                        : `bg-white text-slate-500 ${theme.border} ${theme.hover} hover:shadow-xl`
+                      }
+                    `}
+                  >
+                    <Icon />
+                    <span className="whitespace-nowrap">{item.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Legend for Q.soft - Animates in */}
-        <AnimatePresence>
-          {active === "qsoft" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="flex items-center gap-4 md:gap-6 py-4 mb-8 overflow-x-auto scrollbar-hide whitespace-nowrap border-b border-slate-100">
-                <span className="text-[10px] font-bold text-[var(--brand-blue)] uppercase tracking-widest pl-1">หมวดหมู่เทคโนโลยี:</span>
-                <div className="flex gap-5">
-                  {qsoftSubcategories.map((subcat) => (
-                    <div key={subcat} className="flex items-center gap-2 group cursor-default">
-                      <div className="w-2.5 h-2.5 rounded-full shadow-sm ring-2 ring-white" style={{ background: qsoftColors[subcat].dot }} />
-                      <span className="text-[11px] font-bold text-slate-500">{subcat}</span>
-                    </div>
-                  ))}
+        {/* Legend for Q.soft - Floating Pill Style */}
+        <div className="flex justify-center mb-8 px-4">
+          <AnimatePresence>
+            {active === "qsoft" && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                className="bg-white/70 backdrop-blur-md border border-white/60 rounded-full px-6 py-2.5 shadow-sm overflow-hidden"
+              >
+                <div className="flex items-center gap-5 whitespace-nowrap">
+                  <span className="text-[10px] font-bold text-[var(--brand-blue)] uppercase tracking-wider">Technology:</span>
+                  <div className="flex gap-4">
+                    {qsoftSubcategories.map((subcat) => (
+                      <div key={subcat} className="flex items-center gap-2 group cursor-default">
+                        <div className="w-2 h-2 rounded-full shadow-sm ring-1 ring-white" style={{ background: qsoftColors[subcat].dot }} />
+                        <span className="text-[10px] font-bold text-slate-500">{subcat}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Client Grid */}
         <div id="client-grid">
@@ -405,10 +429,10 @@ export default function SitePage() {
                     variants={itemVariants}
                     className="group"
                   >
-                    <div className="rounded-2xl md:rounded-3xl p-2 md:p-4 hover:-translate-y-1.5 transition-all duration-500 h-full flex flex-col items-center">
-                      <div className="relative w-full aspect-square md:aspect-video mb-4 md:mb-6 overflow-hidden">
+                    <div className="p-2 md:p-4 hover:-translate-y-1.5 transition-all duration-500 h-full flex flex-col items-center">
+                      <div className="relative w-full aspect-square md:aspect-video mb-4 md:mb-6">
                         {company.logo ? (
-                          <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-110">
+                          <div className="relative w-full h-full transform transition-transform duration-700 group-hover:scale-105">
                             <Image
                               src={company.logo}
                               alt={company.name}
@@ -417,7 +441,7 @@ export default function SitePage() {
                             />
                           </div>
                         ) : (
-                          <div className="w-full h-full bg-slate-50 flex items-center justify-center rounded-xl">
+                          <div className="w-full h-full bg-slate-50 flex items-center justify-center rounded-2xl">
                             <Users className="w-8 h-8 text-slate-200" />
                           </div>
                         )}
