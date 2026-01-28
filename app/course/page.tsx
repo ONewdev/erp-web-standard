@@ -22,7 +22,7 @@ const courses = [
     level: "All Level",
     image: "/img/course/Utilizing.jpg",
     href: "/utilizing",
-    color: "bg-indigo-600"
+    color: "bg-purple-600"
   },
   {
     title: "LLMs in your organization",
@@ -31,7 +31,7 @@ const courses = [
     level: "Intermediate",
     image: "/img/course/LLMs.jpg",
     href: "/llms",
-    color: "bg-slate-800"
+    color: "bg-pink-500"
   },
 ];
 

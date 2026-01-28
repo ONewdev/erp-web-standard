@@ -38,7 +38,7 @@ export default function LLMsPage() {
                     : "bg-pink-200"
                   }`}
               >
-                <span className="font-bold text-sm">{course.id}</span>
+                <span className="font-bold text-sm text-black">{course.id}</span>
               </div>
               <div
                 className={`flex items-center h-10 px-5 pl-12 rounded-full border-2 border-dashed transition-all duration-300 ${activeCourse === course.id
